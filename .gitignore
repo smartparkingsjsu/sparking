@@ -17,6 +17,16 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore IDE files
+.idea/.generators
+.idea/.rakeTasks
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/sparking.iml
+.idea/vcs.xml
+.idea/workspace.xml
+
 /node_modules
 /yarn-error.log
 
