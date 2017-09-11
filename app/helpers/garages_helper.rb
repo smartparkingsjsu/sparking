@@ -1,0 +1,2 @@
+module GaragesHelper
+end
