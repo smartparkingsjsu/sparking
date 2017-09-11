@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Spots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spots.each do |spot| %>
+      <tr>
+        <td><%= spot.name %></td>
+        <td><%= link_to 'Show', spot %></td>
+        <td><%= link_to 'Edit', edit_spot_path(spot) %></td>
+        <td><%= link_to 'Destroy', spot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spot', new_spot_path %>
