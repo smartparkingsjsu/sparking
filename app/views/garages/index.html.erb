@@ -6,8 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Longitude</th>
-      <th>Latitude</th>
+      <th>Address</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,8 +15,7 @@
     <% @garages.each do |garage| %>
       <tr>
         <td><%= garage.name %></td>
-        <td><%= garage.longitude %></td>
-        <td><%= garage.latitude %></td>
+        <td><%= garage.address %></td>
         <td><%= link_to 'Show', garage %></td>
         <td><%= link_to 'Edit', edit_garage_path(garage) %></td>
         <td><%= link_to 'Destroy', garage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
