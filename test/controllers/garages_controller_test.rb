@@ -17,7 +17,7 @@ class GaragesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create garage" do
     assert_difference('Garage.count') do
-      post garages_url, params: { garage: { latitude: @garage.latitude, longitude: @garage.longitude, name: @garage.name } }
+      post garages_url, params: { garage: { address: @garage.address, name: @garage.name } }
     end
 
     assert_redirected_to garage_url(Garage.last)
@@ -34,7 +34,7 @@ class GaragesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update garage" do
-    patch garage_url(@garage), params: { garage: { latitude: @garage.latitude, longitude: @garage.longitude, name: @garage.name } }
+    patch garage_url(@garage), params: { garage: { address: @garage.address, name: @garage.name } }
     assert_redirected_to garage_url(@garage)
   end
 
