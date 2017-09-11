@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Garage:</strong>
+  <%= @garage_spot.garage %>
+</p>
+
+<p>
+  <strong>Spot:</strong>
+  <%= @garage_spot.spot %>
+</p>
+
+<%= link_to 'Edit', edit_garage_spot_path(@garage_spot) %> |
+<%= link_to 'Back', garage_spots_path %>
