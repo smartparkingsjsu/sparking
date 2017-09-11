@@ -1,0 +1,27 @@
+<%= form_with(model: garage_spot, local: true) do |form| %>
+  <% if garage_spot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(garage_spot.errors.count, "error") %> prohibited this garage_spot from being saved:</h2>
+
+      <ul>
+      <% garage_spot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :garage_id %>
+    <%= form.text_field :garage_id, id: :garage_spot_garage_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :spot_id %>
+    <%= form.text_field :spot_id, id: :garage_spot_spot_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

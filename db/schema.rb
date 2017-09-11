@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170911220405) do
+ActiveRecord::Schema.define(version: 20170911222313) do
+
+  create_table "garage_spots", force: :cascade do |t|
+    t.integer "garage_id"
+    t.integer "spot_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["garage_id"], name: "index_garage_spots_on_garage_id"
+    t.index ["spot_id"], name: "index_garage_spots_on_spot_id"
+  end
 
   create_table "garages", force: :cascade do |t|
     t.string "name"

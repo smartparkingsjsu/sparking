@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Garage Spots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Garage</th>
+      <th>Spot</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @garage_spots.each do |garage_spot| %>
+      <tr>
+        <td><%= garage_spot.garage %></td>
+        <td><%= garage_spot.spot %></td>
+        <td><%= link_to 'Show', garage_spot %></td>
+        <td><%= link_to 'Edit', edit_garage_spot_path(garage_spot) %></td>
+        <td><%= link_to 'Destroy', garage_spot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Garage Spot', new_garage_spot_path %>
