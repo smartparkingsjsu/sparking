@@ -7,6 +7,7 @@ end
 
 # Meterialize gems
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem 'materialize-sass'
 gem 'material_icons'
 
