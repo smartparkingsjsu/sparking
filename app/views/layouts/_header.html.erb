@@ -1,10 +1,22 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="home" class="brand-logo"><i class="material-icons">directions_car</i>Smart Parking</a>
+    <a href="/" class="brand-logo"><i class="material-icons">directions_car</i>Smart Parking</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="#">Parking Garages</a></li>
       <li><a href="#">Price</a></li>
-      <li><a href="#">Account</a></li>
+      <!-- TODO: Check if user is logged in -->
+      <!-- If not logged in show sign up & login -->
+      <!-- If logged in show: Username -->
+      <% if user_signed_in? %>
+          <a class='dropdown-button btn-flat header-btn' data-activates='dropdown1'><%= current_user.email %></a>
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="/users/<%= current_user.id %>">Profile</a></li>
+            <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+          </ul>
+      <% else %>
+        <li><a href="/register" class="waves-effect waves-light btn-flat header-btn">Sign Up</a></li>
+        <li><a href="/login" class="waves-effect waves-light btn-flat header-btn">Log In</a></li>
+      <% end %>
     </ul>
   </div>
 </nav>

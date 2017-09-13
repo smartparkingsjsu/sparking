@@ -1,9 +1,15 @@
 @import "materialize/components/color";
 $primary-color: color("deep-orange", "accent-3") !default;
-$secondary-color: color("yellow", "base") !default;
+$secondary-color: color("green", "accent-4") !default;
 @import "materialize";
 @import "materialize/extras/nouislider";
 
 .brand-logo {
   margin-left: 15px;
+}
+
+.header-btn {
+  border: 1px dashed white;
+  border-radius: 15px;
+  color: white;
 }
