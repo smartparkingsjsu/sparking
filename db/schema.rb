@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913003107) do
+ActiveRecord::Schema.define(version: 20170914002558) do
+
+  create_table "bookings", force: :cascade do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "length"
+    t.integer "garage_spot_id"
+    t.integer "user_id"
+    t.index ["garage_spot_id"], name: "index_bookings_on_garage_spot_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
 
   create_table "garage_spots", force: :cascade do |t|
     t.integer "garage_id"

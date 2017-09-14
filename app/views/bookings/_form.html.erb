@@ -1,0 +1,8 @@
+<%= form_for([@garage, @garage_spot, @booking]) do |f| %>
+    <%= f.label 'start_time', 'Start time' %>
+    <%= f.datetime_field :start_time, { hide_label: true, value: Time.now.strftime('%Y-%m-%d'), minute_step: 10 }  %>
+    <%= f.label 'length', 'Length of booking in hours' %>
+    <%= f.number_field 'length', hide_label: true, min: 1 %>
+    <%= link_to 'Back', :back, class: "button btn btn-primary"  %>
+    <%= f.submit 'Submit', class: "button btn btn-success" %>
+<% end %> 

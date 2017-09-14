@@ -1,0 +1,11 @@
+<h3>Add booking for <%= @garage_spot.garage.name %> <%= @garage_spot.spot.name %></h3>
+  
+  <div class = "row"> 
+    <div class="col-md-3">
+        <%= render 'errors' %>
+        <%= render 'form' %>
+    </div>
+    <div class="col-md-8">
+        <%= render partial: 'calendar', bookings: @bookings, garage_spot: @garage_spot %>
+    </div>
+  </div>

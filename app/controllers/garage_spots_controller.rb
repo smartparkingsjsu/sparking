@@ -1,10 +1,15 @@
 class GarageSpotsController < ApplicationController
   before_action :set_garage_spot, only: [:show, :edit, :update, :destroy]
+  before_action :find_garage
 
   # GET /garage_spots
   # GET /garage_spots.json
   def index
-    @garage_spots = GarageSpot.all
+    if @garage.nil?
+      @garage_spots = GarageSpot.all
+    else
+      @garage_spots = GarageSpot.where("garage_id = ?", @garage)
+    end
   end
 
   # GET /garage_spots/1
@@ -70,5 +75,11 @@ class GarageSpotsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def garage_spot_params
       params.require(:garage_spot).permit(:garage_id, :spot_id)
+    end
+
+    def find_garage
+      if params[:garage_id]
+        @garage = Garage.find_by_id(params[:garage_id])
+      end
     end
 end
