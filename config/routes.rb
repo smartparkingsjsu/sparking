@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   
   resources :garage_spots
   resources :spots
-  resources :garages
   resources :users
+
+  resources :garages do
+    resources :garage_spots do
+      resources :bookings
+    end
+  end
 
   root "home#show", page: "home"
 end

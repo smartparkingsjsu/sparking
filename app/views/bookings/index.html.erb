@@ -1,0 +1,41 @@
+  <div class = "row"> 
+    <div class="col-md-10">
+      <h3> Bookings for <%= @garage_spot.garage.name %> <%= @garage_spot.spot.name %></h3>
+    </div>
+    <div class="col-md-2">
+        <h3><%= link_to "Create New Booking", new_garage_garage_spot_booking_path(@garage, @garage_spot), class: "button btn btn-success" %><h3>
+    </div>
+  </div>
+
+  <% if @bookings.empty? %>
+    <p>No future bookings</p>
+  <% else %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Duration</th>
+          <th>More</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bookings.each do |booking| %>
+          <tr>
+            <td><%= booking.user.id %></td>
+            <td><%= booking.start_time.strftime('%e %b %Y %H:%M%p') %></td>
+            <td><%= (booking.calculate_end_time + 60).strftime('%e %b %Y %H:%M%p') %></td>
+            <td><%= booking.length %></td>
+            <td><%= link_to "Show Bookings", garage_garage_spot_booking_path(@garage, @garage_spot, booking), class: "button btn btn-info btn-xs" %>
+                <%= link_to "Edit", edit_garage_garage_spot_booking_path(@garage, @garage_spot, booking), class: "button btn btn-warning btn-xs" %>
+                <%= link_to "Delete", garage_garage_spot_booking_path(@garage, @garage_spot, booking), data: { confirm: 'Are you sure?' }, method: :delete, class: "button btn btn-danger btn-xs" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+<p><%= link_to 'Back', :back, class: "button btn btn-primary" %><p> 
+<%= render partial: 'calendar', bookings: @bookings, garage_spot: @garage_spot %>

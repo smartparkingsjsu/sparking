@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'simple_calendar', '~> 2.0'
+
 # Meterialize gems
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
