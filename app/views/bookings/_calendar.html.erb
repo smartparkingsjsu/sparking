@@ -1,0 +1,13 @@
+<%= month_calendar events: @bookings do |date, bookings| %>
+  <%= date %>
+  
+  <% bookings.each do |booking| %>
+    <div>
+      <% if (current_user.id == booking.user_id) || current_user.admin? %>
+        <%= link_to booking.start_time.strftime('%H:%M')+"-"+booking.end_time.strftime('%H:%M'), garage_garage_spot_booking_path(@garage, @garage_spot, booking) %>
+      <% else %>
+        <%= booking.start_time.strftime('%H:%M')+"-"+booking.end_time.strftime('%H:%M') %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
