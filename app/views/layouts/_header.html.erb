@@ -14,9 +14,8 @@
             <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
           </ul>
       <% else %>
-        <li><%= link_to 'Sign Up', new_user_registration_path, class: "waves-effect waves-light btn-flat header-btn"%></li>
-        <li><%= link_to 'Login', new_user_session_path, class: "waves-effect waves-light btn-flat header-btn"%></li>
-        <!--<li><a class="modal-trigger waves-effect waves-light btn-flat header-btn" data-turbolinks="false" href="#modal1">Log In</a></li>-->
+        <li><a class="modal-trigger waves-effect waves-light btn-flat header-btn" data-turbolinks="false" href="#modal_signup">Sign Up</a></li>
+        <li><a class="modal-trigger waves-effect waves-light btn-flat header-btn" data-turbolinks="false" href="#modal_login">Log In</a></li>
       <% end %>
     </ul>
   </div>
@@ -24,9 +23,16 @@
 
 
 <!--Modal Structure-->
-<div class="modal modal-fixed-footer" id="modal1">
+<div class="modal modal-fixed-footer" id="modal_login">
   <div class="modal-content">
     <h4>Log In</h4>
     <%= render "users/sessions/new" %>
+  </div>
+</div>
+
+<div class="modal modal-fixed-footer" id="modal_signup">
+  <div class="modal-content">
+    <h4>Sign Up</h4>
+    <%= render "users/registrations/new" %>
   </div>
 </div>
