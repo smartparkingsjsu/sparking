@@ -15,4 +15,11 @@ Rails.application.routes.draw do
   root "home#show", page: "home"
   post "/next" => 'home#next', :as => 'home_next'
 
+  namespace :api, :defaults => {:format => 'json'} do
+    namespace :v1 do
+      resources :garages
+      resources :garage_spots
+    end
+  end
+
 end
