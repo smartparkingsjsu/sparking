@@ -3,6 +3,7 @@ $primary-color: color("deep-orange", "accent-3") !default;
 $secondary-color: color("green", "accent-4") !default;
 @import "materialize";
 @import "materialize/extras/nouislider";
+@import "simple_calendar";
 
 .brand-logo {
   margin-left: 15px;
