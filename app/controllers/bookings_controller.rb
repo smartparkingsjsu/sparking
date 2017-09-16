@@ -72,33 +72,23 @@ class BookingsController < ApplicationController
   end
 
   private
-
-  def save booking
-    if @booking.save
-        flash[:notice] = 'booking added'
-        redirect_to garage_spot_booking_path(@garage_spot, @booking)
-      else
-        render 'new'
+    def find_garage_spot
+      if params[:garage_spot_id]
+        @garage_spot = GarageSpot.find_by_id(params[:garage_spot_id])
       end
-  end
-
-  def find_garage_spot
-    if params[:garage_spot_id]
-      @garage_spot = GarageSpot.find_by_id(params[:garage_spot_id])
     end
-  end
 
-  def find_garage
-    if params[:garage_id]
-      @garage = Garage.find_by_id(params[:garage_id])
+    def find_garage
+      if params[:garage_id]
+        @garage = Garage.find_by_id(params[:garage_id])
+      end
     end
-  end
 
-  def get_booking
-    @bookings = Booking.joins(:garage_spot).where("garage_spot_id = ? AND end_time >= ?", @garage_spot.id, Time.now)
-  end
+    def get_booking
+      @bookings = Booking.joins(:garage_spot).where("garage_spot_id = ? AND end_time >= ?", @garage_spot.id, Time.now)
+    end
 
-  def get_user_booking
-    @bookings = Booking.joins(:garage_spot).where("garage_spot_id = ? AND end_time >= ? AND user_id = ?", @garage_spot.id, Time.now, current_user.id)
-  end
+    def get_user_booking
+      @bookings = Booking.joins(:garage_spot).where("garage_spot_id = ? AND end_time >= ? AND user_id = ?", @garage_spot.id, Time.now, current_user.id)
+    end
 end
