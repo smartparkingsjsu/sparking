@@ -11,5 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/home/:page" => "home#show"
   root "home#show", page: "home"
+  post "/next" => 'home#next', :as => 'home_next'
+
 end

@@ -43,3 +43,11 @@
     </div>
   </div>
 </div>
+
+<%= form_tag home_next_url(@booking) do %>
+  <%= text_field :garage, id: :garage %>
+  <%= text_field :length, id: :length %>
+  <%= submit_tag 'Save'  %>
+<% end %>
+
+
