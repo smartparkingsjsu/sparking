@@ -11,10 +11,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/home/:page" => "home#show"
-  root "home#show", page: "home"
-  post "/next" => 'home#next', :as => 'home_next'
-
   namespace :api, :defaults => {:format => 'json'} do
     namespace :v1 do
       resources :garages
@@ -23,4 +19,6 @@ Rails.application.routes.draw do
     end
   end
 
+  root "pages#show", page: "home"
+  post "/next" => 'pages#next', :as => 'home_next'
 end
