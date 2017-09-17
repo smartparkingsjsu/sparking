@@ -1,8 +1,8 @@
-class HomeController < ApplicationController
-  respond_to :html, :xml, :json
+class PagesController < ApplicationController
+respond_to :html, :xml, :json
 
   def show
-    render template: "home/#{params[:page]}"
+    render template: "pages/#{params[:page]}"
   end
 
   def next
@@ -50,5 +50,5 @@ class HomeController < ApplicationController
     def get_booking
       @bookings = Booking.joins(:garage_spot).where("garage_spot_id = ? AND end_time >= ?", @garage_spot.id, Time.now)
     end
-
+  
 end
