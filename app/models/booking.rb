@@ -5,4 +5,5 @@ class Booking < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :garage_spot
+  has_many :events, :dependent => :destroy
 end
