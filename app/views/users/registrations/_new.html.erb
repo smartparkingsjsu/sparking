@@ -22,4 +22,11 @@
     <div class="actions">
       <%= f.submit "Sign up" %>
     </div>
+
+    <div class="input-field">
+      <%= label "length", "How long will you stay?" %>
+      <%= text_field :length, id: "length" %>
+    </div>
+
+    <%= submit_tag 'Save', class: "waves-effect waves-light btn" %>
 <% end %>

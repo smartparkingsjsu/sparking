@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
+<div class="valign-wrapper whole-page">
+  <div class="row valign whole-width">
+    <%= form_tag home_next_url(@booking) do %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @garage.name %>
-</p>
+        <div class="input-field">
+          <%= label "length", "How long will you stay?" %>
+          <%= text_field :length, id: "length" %>
+        </div>
 
-<p>
-  <strong>Address:</strong>
-  <%= @garage.address %>
-</p>
-
-<%= link_to 'Edit', edit_garage_path(@garage) %> |
-<%= link_to 'Back', garages_path %>
+        <%= submit_tag 'Save', class: "waves-effect waves-light btn" %>
+    <% end %>
+  </div>
+</div>
