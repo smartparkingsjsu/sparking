@@ -71,3 +71,8 @@ Booking.create(start_time: '2018-02-26 18:45:00', end_time: '2018-02-23 20:44:00
 Booking.create(start_time: '2018-02-26 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '5', user_id: '2')
 Booking.create(start_time: '2018-02-26 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '6', user_id: '5')
 Booking.create(start_time: '2018-02-26 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '7', user_id: '1')
+
+Price.create(garage_id: '1', weekday: '2', weekend: '3')
+Price.create(garage_id: '2', weekday: '1', weekend: '2')
+Price.create(garage_id: '3', weekday: '2.5', weekend: '3.5')
+Price.create(garage_id: '4', weekday: '2', weekend: '3')
