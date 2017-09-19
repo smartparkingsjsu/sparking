@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'simple_calendar', '~> 2.0'
+gem 'stripe'
 
 # Meterialize gems
 gem 'jquery-rails'
