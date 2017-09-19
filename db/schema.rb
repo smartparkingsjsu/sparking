@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170919212807) do
+ActiveRecord::Schema.define(version: 20170917162119) do
 
   create_table "bookings", force: :cascade do |t|
     t.datetime "start_time"
@@ -42,17 +42,10 @@ ActiveRecord::Schema.define(version: 20170919212807) do
   create_table "garages", force: :cascade do |t|
     t.string "name"
     t.string "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "prices", force: :cascade do |t|
-    t.integer "garage_id"
     t.float "weekday"
     t.float "weekend"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["garage_id"], name: "index_prices_on_garage_id"
   end
 
   create_table "spots", force: :cascade do |t|
