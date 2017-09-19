@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  respond_to :html, :xml, :json
   protect_from_forgery with: :exception
   helper_method :super_admin?, :garage_owner?
 

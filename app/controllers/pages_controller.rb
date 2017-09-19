@@ -19,7 +19,7 @@ respond_to :html, :xml, :json
 
     @garage_spot.each do |a|
       @booking =  Booking.new(start_time: @time_now, length: @length, user_id: current_user.id, garage_spot_id: a.id)
-      
+
       if @booking.save
         flash[:notice] = 'booking added'
         redirect_to root_path
@@ -32,23 +32,23 @@ respond_to :html, :xml, :json
       end
     end
   end
-  
-  private
-    def find_garage_spot
-      @garage_spot = GarageSpot.all.where("garage_id = ?", @garage)
-    end
-  
-    def find_garage
-      @get_garage = params[:garage]
-      @garage = 1 #@get_garage.to_i
-    end
 
-    def get_length
-      @length = 1 #params[:length]
-    end
-      
-    def get_booking
-      @bookings = Booking.joins(:garage_spot).where("garage_spot_id = ? AND end_time >= ?", @garage_spot.id, Time.now)
-    end
-  
+  private
+  def find_garage_spot
+    @garage_spot = GarageSpot.all.where("garage_id = ?", @garage)
+  end
+
+  def find_garage
+    @get_garage = params[:garage]
+    @garage = 1 #@get_garage.to_i
+  end
+
+  def get_length
+    @length = 1 #params[:length]
+  end
+
+  def get_booking
+    @bookings = Booking.joins(:garage_spot).where("garage_spot_id = ? AND end_time >= ?", @garage_spot.id, Time.now)
+  end
+
 end
