@@ -1,18 +1,15 @@
 <div class="valign-wrapper whole-page">
   <div class="row valign whole-width">
-    <%= form_tag home_next_url(@booking) do %>
+    <%= form_tag home_next_url(@booking), :length => params[:length] do %>
 
         <div class="input-field">
-          <%= label :length, "How long will you stay?" %>
-          <%= text_field :length, id: :length %>
+          <!--<%= label :length, "How long will you stay?" %>-->
+          <%= select_tag "length", options_for_select(@garage_times.map { |obj| [obj['time'], obj['value']] }) %>
         </div>
 
-        <div class="input-field">
-          <%= label :garageid, "Garge id?" %>
-          <%= text_field :garageid, id: :garageid %>
-        </div>
+        <%= hidden_field_tag :garageid, @garage.id %>
 
-        <%= submit_tag 'Save', class: "waves-effect waves-light btn" %>
+        <%= submit_tag 'Save'%>
     <% end %>
   </div>
 </div>
