@@ -14,7 +14,7 @@ respond_to :html, :xml, :json
     get_length
     find_garage_spot
 
-    @time_now = "2018-02-26 18:45:00" #Time.now.strftime('%e %b %Y %H:%M%p')
+    @time_now = Time.now.in_time_zone.change(:sec => 0) + 1.minutes
     @last_in_list = @garage_spot.last
 
     @garage_spot.each do |a|

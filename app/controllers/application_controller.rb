@@ -22,12 +22,11 @@ class ApplicationController < ActionController::Base
 
   def get_garage_times
     return [
-        {"value" => 30, "time" => "30 mins"},
-        {"value" => 60, "time" => "1:00 hour"},
-        {"value" => 90, "time" => "1:30 hours"},
-        {"value" => 120, "time" => "2:00 hours"},
+        {"value" => 1, "time" => "1:00 hour"},
+        {"value" => 2, "time" => "2:00 hours"},
+        {"value" => 3, "time" => "3:00 hours"},
+        {"value" => 4, "time" => "4:00 hours"}
     ]
-
   end
 
 end
