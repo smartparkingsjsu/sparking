@@ -3,8 +3,13 @@
     <%= form_tag home_next_url(@booking) do %>
 
         <div class="input-field">
-          <%= label "length", "How long will you stay?" %>
-          <%= text_field :length, id: "length" %>
+          <%= label :length, "How long will you stay?" %>
+          <%= text_field :length, id: :length %>
+        </div>
+
+        <div class="input-field">
+          <%= label :garageid, "Garge id?" %>
+          <%= text_field :garageid, id: :garageid %>
         </div>
 
         <%= submit_tag 'Save', class: "waves-effect waves-light btn" %>

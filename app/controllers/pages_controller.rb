@@ -35,16 +35,16 @@ respond_to :html, :xml, :json
 
   private
   def find_garage_spot
-    @garage_spot = GarageSpot.all.where("garage_id = ?", @garage)
+    @garage_spot = GarageSpot.all.where("garage_id = ?", @garageid)
   end
 
   def find_garage
-    @get_garage = params[:garage]
-    @garage = 1 #@get_garage.to_i
+    # @get_garage = params[:garage]
+    @garageid = params[:garageid]
   end
 
   def get_length
-    @length = 1 #params[:length]
+    @length = params[:length]
   end
 
   def get_booking

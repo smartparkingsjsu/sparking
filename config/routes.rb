@@ -21,5 +21,5 @@ Rails.application.routes.draw do
   end
 
   root "pages#show", page: "home"
-  post "/next" => 'application#next', :as => 'home_next'
+  post "/next" => 'pages#next', :as => 'home_next'
 end
