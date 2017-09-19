@@ -14,3 +14,11 @@ $secondary-color: color("green", "accent-4") !default;
   border-radius: 15px;
   color: white;
 }
+
+.whole-page {
+  height: 100vh;
+}
+
+.whole-width {
+  width: 100%;
+}

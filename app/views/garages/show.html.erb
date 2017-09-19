@@ -1,14 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class="valign-wrapper whole-page">
+  <div class="row valign whole-width">
+    <%= form_tag home_next_url(@booking), :length => params[:length] do %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @garage.name %>
-</p>
+        <div class="input-field">
+          <!--<%= label :length, "How long will you stay?" %>-->
+          <%= select_tag "length", options_for_select(@garage_times.map { |obj| [obj['time'], obj['value']] }) %>
+        </div>
 
-<p>
-  <strong>Address:</strong>
-  <%= @garage.address %>
-</p>
+        <%= hidden_field_tag :garageid, @garage.id %>
 
-<%= link_to 'Edit', edit_garage_path(@garage) %> |
-<%= link_to 'Back', garages_path %>
+        <%= submit_tag 'Save'%>
+    <% end %>
+  </div>
+</div>

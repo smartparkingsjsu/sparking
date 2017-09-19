@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :events
-  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers:  { sessions: 'devise/sessions'}
-  
+  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers:  { sessions: 'users/sessions', registrations: 'users/registrations'}
+
   resources :garage_spots
   resources :spots
   resources :users

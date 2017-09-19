@@ -10,6 +10,8 @@ class GaragesController < ApplicationController
   # GET /garages/1
   # GET /garages/1.json
   def show
+    @skip_header = true
+    @garage_times = get_garage_times
   end
 
   # GET /garages/new

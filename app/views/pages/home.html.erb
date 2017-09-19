@@ -3,11 +3,12 @@
   <a class="modal-trigger waves-effect waves-light btn" data-turbolinks="false" href="#modal_login"> Test Modal</a>
 </div>
 
-<%= form_tag home_next_url(@booking) do %>
-  <%= text_field :garage, id: :garage %>
-  <%= text_field :length, id: :length %>
-  <%= submit_tag 'Save'  %>
-<% end %>
+
+<div class="row center-align">
+  <a class="modal-trigger waves-effect waves-light btn" data-turbolinks="false" href="/garages/1"> Test in-garage reservation</a>
+</div>
 
 Super admin: <%= super_admin? %>
 Garage owner: <%= garage_owner? %>
+
+<%=  DateTime.now   %>
