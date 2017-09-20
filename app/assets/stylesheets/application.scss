@@ -22,3 +22,11 @@ $secondary-color: color("green", "accent-4") !default;
 .whole-width {
   width: 100%;
 }
+
+.dev .row {
+  border: 1px dashed black;
+}
+
+.dev .col {
+  border: 1px dashed black;
+}
