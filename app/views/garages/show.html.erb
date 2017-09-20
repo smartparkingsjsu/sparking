@@ -3,13 +3,14 @@
     <%= form_tag pages_next_url(@booking), :length => params[:length] do %>
 
         <div class="input-field">
-          <!--<%= label :length, "How long will you stay?" %>-->
+          <%= label :length, "How long will you stay?" %>
+          <br/><br/>
           <%= select_tag "length", options_for_select(@garage_times.map { |obj| [obj['time'], obj['value']] }) %>
         </div>
 
         <%= hidden_field_tag :garageid, @garage.id %>
 
-        <!-- %= submit_tag 'Save'% -->
+        <!--<%= submit_tag 'Save', class: "btn" %>-->
   
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="<%= Rails.application.secrets.stripe_publishable_key %>"
