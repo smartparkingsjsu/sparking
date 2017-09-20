@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_garage_spot
   before_action :find_garage
+  before_action :authenticate_user!
 
   def index
     get_booking

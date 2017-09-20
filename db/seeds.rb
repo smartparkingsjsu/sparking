@@ -1,7 +1,7 @@
-Garage.create(name: 'Forth/St. John Garage', address: '88 S 4th St, San Jose, CA 95112' )
-Garage.create(name: 'ParkSJ: Third and Santa Clara Garage', address: '25 S 3rd St, San Jose, CA 95113')
-Garage.create(name: 'ParkSJ: Fourth/St. John Garage', address: '50 N 4th St, San Jose, CA 95112')
-Garage.create(name: 'Second and San Carlos Street Garage', address: '280 S 2nd St, San Jose, CA 95113')
+Garage.create(name: 'Forth/St. John Garage', address: '88 S 4th St, San Jose, CA 95112', weekday: '1.5', weekend: '3' )
+Garage.create(name: 'ParkSJ: Third and Santa Clara Garage', address: '25 S 3rd St, San Jose, CA 95113', weekday: '2', weekend: '2')
+Garage.create(name: 'ParkSJ: Fourth/St. John Garage', address: '50 N 4th St, San Jose, CA 95112', weekday: '2', weekend: '2.5')
+Garage.create(name: 'Second and San Carlos Street Garage', address: '280 S 2nd St, San Jose, CA 95113', weekday: '2', weekend: '3.5')
 
 User.create(name: 'Super Admin', email: 'test@test.com', encrypted_password: '$2a$11$qmspSHgRPfpa9EifEx/X0uDhfbwD5BEBl7M18zrfNFtPl85BYHB8S', admin: 't')
 User.create(name: 'Forth/St. John Garage Admin', email: 'admin1@gmail.com', encrypted_password: '$2a$11$qmspSHgRPfpa9EifEx/X0uDhfbwD5BEBl7M18zrfNFtPl85BYHB8S', admin: 't', garage_id: '1')

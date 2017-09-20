@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170917162119) do
   create_table "garages", force: :cascade do |t|
     t.string "name"
     t.string "address"
+    t.float "weekday"
+    t.float "weekend"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
