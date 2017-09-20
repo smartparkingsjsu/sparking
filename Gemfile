@@ -5,10 +5,16 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Controller-JS Link
+gem 'gon'
+
+# Calendar
 gem 'simple_calendar', '~> 2.0'
+
+# Payment
 gem 'stripe'
 
-# Meterialize gems
+# Meterialize
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'materialize-sass'
