@@ -1,5 +1,6 @@
 class GaragesController < ApplicationController
   before_action :set_garage, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /garages
   # GET /garages.json
