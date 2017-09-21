@@ -1,6 +1,8 @@
 @import "materialize/components/color";
-$primary-color: color("deep-orange", "accent-3") !default;
-$secondary-color: color("green", "accent-4") !default;
+$primary-color: color("blue-grey", "darken-4") !default;
+$secondary-color: color("light-blue","lighten-1") !default;
+$background-dark-color: #5F0F4E !default;
+$background-light-color: #e6ecf0 !default;
 @import "materialize";
 @import "materialize/extras/nouislider";
 @import "simple_calendar";
@@ -30,3 +32,5 @@ $secondary-color: color("green", "accent-4") !default;
 .dev .col {
   border: 1px dashed black;
 }
+
+@media only screen and (max-width: 600px) { .row.valign-wrapper { display: inherit; } }

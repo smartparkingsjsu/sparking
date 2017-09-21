@@ -16,7 +16,3 @@
 //= require materialize-sprockets
 //= require init
 
-$(document).ready(function() {
-    $('select').material_select();
-});
-
