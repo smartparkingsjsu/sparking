@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'geocoder'
+gem 'gmaps4rails'
 
 # Controller-JS Link
 gem 'gon'

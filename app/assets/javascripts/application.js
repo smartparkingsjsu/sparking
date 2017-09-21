@@ -15,6 +15,7 @@
 //= require jquery.turbolinks
 //= require materialize-sprockets
 //= require init
+//= require gmaps/google
 
 $(document).ready(function() {
     $('select').material_select();
