@@ -1,7 +1,3 @@
-@import "materialize/components/color";
-$primary-color: color("deep-orange", "accent-3") !default;
-$secondary-color: color("green", "accent-4") !default;
-
 .body-text {
   font-size: 20px;
 }
@@ -19,4 +15,10 @@ $secondary-color: color("green", "accent-4") !default;
 
 .parent-height {
   height: inherit;
+}
+
+#vehicle,
+#payment,
+#history {
+  display: none;
 }
