@@ -89,8 +89,7 @@ respond_to :html, :xml, :json
   end
 
   def find_garage
-    # @get_garage = params[:garage]
-    @garageid = Garage.find(params[:id])
+    @garageid = params[:garageid]
   end
 
   def get_length
