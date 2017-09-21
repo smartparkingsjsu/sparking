@@ -1,7 +1,34 @@
 class PagesController < ApplicationController
 respond_to :html, :xml, :json
 
+  def load_google_map
+    @list_all_garages = Garage.pluck(:id, :address, :name)
+    @coordinates = []
+
+    @list_all_garages.each do |a|
+      @coordinates << [a.at(0), Geocoder.coordinates(a.at(1)).at(0), Geocoder.coordinates(a.at(1)).at(1), a.at(2), a.at(1)]
+    end
+
+    @all_garages = Gmaps4rails.build_markers(@coordinates) do |plot, marker|  
+      marker.lat plot.at(1)
+      marker.lng plot.at(2)
+
+      url_alert = "/images/parking.png"  
+
+      marker.picture({  
+        "url" => url_alert,  
+        "width" => 30,  
+        "height" => 30  
+      })  
+
+      marker.infowindow render_to_string(:partial => "/pages/info",   
+      :locals => {:name => plot.at(3), :address => plot.at(4), :id => plot.at(0) })  
+    end
+  end
+
   def show
+    load_google_map
+
     render template: "pages/#{params[:page]}"
   end
 
@@ -22,7 +49,7 @@ respond_to :html, :xml, :json
       @booking =  Booking.new(start_time: @time_now, length: @length, user_id: current_user.id, garage_spot_id: a.id)
 
       if @booking.save
-        flash[:notice] = 'booking added'
+        flash[:notice] = 'Booking added!'
         redirect_to root_path
         break
       end
@@ -30,7 +57,7 @@ respond_to :html, :xml, :json
       if @last_in_list == a
         #charge = Stripe::Charge.retrieve("ch_123")
         #charge.refund
-        flash[:notice] = 'booking failed'
+        flash[:notice] = 'Booking failed!'
         redirect_to root_path
       end
     end
@@ -62,7 +89,6 @@ respond_to :html, :xml, :json
   end
 
   def find_garage
-    # @get_garage = params[:garage]
     @garageid = params[:garageid]
   end
 
