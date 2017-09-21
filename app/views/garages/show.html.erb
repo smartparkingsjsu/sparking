@@ -1,7 +1,9 @@
 <div class="valign-wrapper whole-page">
   <div class="row valign whole-width">
     <%= form_tag pages_next_url(@booking), :length => params[:length] do %>
-
+        
+        Coordinates of current garage: <%= Geocoder.coordinates(Garage.find(@garage.id).address) %>
+        
         <div class="input-field">
           <%= label :length, "How long will you stay?" %>
           <br/><br/>
