@@ -17,6 +17,3 @@
 //= require init
 //= require gmaps/google
 
-$(document).ready(function() {
-    $('select').material_select();
-});

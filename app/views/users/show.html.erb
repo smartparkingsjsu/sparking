@@ -1,5 +1,66 @@
-<h2>Profile Page</h2>
+<%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<% if user_signed_in? %>
-  <%= current_user.email %>
-<% end %>
+<!-- Sidenav -->
+<ul id="slide-out" class="side-nav">
+  <li><div class="user-view">
+    <div class="background">
+    </div>
+    <img class="circle" src="http://i0.kym-cdn.com/entries/icons/original/000/005/543/Image7.png">
+    <a><span class="name"><%= @user.id %></span></a>
+    <a><span class="email"><%= @user.email %></span></a>
+  </div></li>
+  <li><div class="divider"></div></li>
+  <li><a class="subheader">Account</a></li>
+  <li><div class="divider"></div></li>
+  <li><a class="subheader">Vehicle Information</a></li>
+  <li><div class="divider"></div></li>
+  <li><a class="subheader">Payment Method</a></li>
+  <li><div class="divider"></div></li>
+  <li><a class="subheader">History</a></li>
+</ul>
+
+<!-- Account -->
+<div class="profile-container">
+  <div class="row valign-wrapper">
+
+    <div class="col s12 m4 center-align">
+      <img src="http://via.placeholder.com/200x200">
+    </div>
+
+    <div class="col s12 m3 center-align">
+      <div class="row body-text">Shazam Sew</div>
+      <div class="row body-text"><%= @user.email %></div>
+      <div class="row body-text">(408) 222-1234</div>
+    </div>
+
+    <div class="col s12 m5 center-align">
+      <div><a href="#" data-activates="slide-out" class="button-collapse btn waves-effect waves-light">More</a></div>
+      <br>
+      <div><a href="#" class="btn waves-effect waves-light">Edit</a></div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!--&lt;!&ndash; Vehicle &ndash;&gt;-->
+<!--<div class="dev">-->
+  <!--<div class="row">-->
+    <!--<div class="col-12">asdas</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Payment &ndash;&gt;-->
+<!--<div class="dev">-->
+  <!--<div class="row">-->
+    <!--<div class="col-12">asdas</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; History &ndash;&gt;-->
+<!--<div class="dev">-->
+  <!--<div class="row">-->
+    <!--<div class="col-12">asdas</div>-->
+  <!--</div>-->
+<!--</div>-->
