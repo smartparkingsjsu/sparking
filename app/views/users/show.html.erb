@@ -1,5 +1,98 @@
-<h2>Profile Page</h2>
+<%= javascript_include_tag 'users', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<% if user_signed_in? %>
-  <%= current_user.email %>
-<% end %>
+<!-- Sidenav -->
+<ul id="slide-out" class="side-nav">
+  <li><div class="user-view">
+    <div class="background">
+    </div>
+    <img class="circle" src="http://i0.kym-cdn.com/entries/icons/original/000/005/543/Image7.png">
+    <a><span class="name">Shazam Sew</span></a>
+    <a><span class="email"><%= @user.email %></span></a>
+  </div></li>
+  <li><div class="divider"></div></li>
+  <li><a id="account-toggle" href="#" class="waves-effect">Account</a></li>
+  <li><a id="vehicle-toggle" href="#" class="waves-effect">Vehicle Information</a></li>
+  <li><a id="payment-toggle" href="#" class="waves-effect">Payment Method</a></li>
+  <li><a id="history-toggle" href="#" class="waves-effect">History</a></li>
+</ul>
+
+<!-- Account -->
+<div id="account" class="profile-container">
+  <div class="row valign-wrapper">
+
+    <div class="col s12 m4 center-align">
+      <img class="circle" src="http://via.placeholder.com/200x200">
+    </div>
+
+    <div class="col s12 m3 center-align">
+      <div class="row body-text">Shazam Sew</div>
+      <div class="row body-text"><%= @user.email %></div>
+      <div class="row body-text">(408) 222-1234</div>
+    </div>
+
+    <div class="col s12 m5 center-align">
+      <div><a href="#" data-activates="slide-out" class="button-collapse btn waves-effect waves-light">More</a></div>
+      <br>
+      <div><a href="#" class="btn waves-effect waves-light">Edit</a></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Vehicle -->
+<div id="vehicle" class="profile-container">
+  <div class="row valign-wrapper">
+
+    <div class="col s12 m7 center-align">
+      <div class="row body-text">License plate</div>
+      <div class="row body-text">Make</div>
+      <div class="row body-text">Year</div>
+      <div class="row body-text">Color</div>
+    </div>
+
+    <div class="col s12 m5 center-align">
+      <div><a href="#" data-activates="slide-out" class="button-collapse btn waves-effect waves-light">More</a></div>
+      <br>
+      <div><a href="#" class="btn waves-effect waves-light">Edit</a></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Payment -->
+<div id="payment" class="profile-container">
+  <div class="row valign-wrapper">
+
+    <div class="col s12 m7 center-align">
+      <div class="row body-text">Name</div>
+      <div class="row body-text">Address</div>
+      <div class="row body-text">Card Number</div>
+      <div class="row body-text">Exp Date</div>
+    </div>
+
+    <div class="col s12 m5 center-align">
+      <div><a href="#" data-activates="slide-out" class="button-collapse btn waves-effect waves-light">More</a></div>
+      <br>
+      <div><a href="#" class="btn waves-effect waves-light">Edit</a></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- History -->
+<div id="history" class="profile-container">
+  <div class="row valign-wrapper">
+
+    <div class="col s12 m7 center-align">
+      <div class="row body-text">Back in the days...</div>
+    </div>
+
+    <div class="col s12 m5 center-align">
+      <div><a href="#" data-activates="slide-out" class="button-collapse btn waves-effect waves-light">More</a></div>
+      <br>
+      <div><a href="#" class="btn waves-effect waves-light">Edit</a></div>
+    </div>
+
+  </div>
+</div>

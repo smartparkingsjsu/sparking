@@ -1,0 +1,24 @@
+.body-text {
+  font-size: 20px;
+}
+
+.profile-container {
+  margin-top: 100px;
+  border: solid 1.5px darkgrey;
+  border-radius: 10px;
+  padding: 20px 20px 20px 20px;
+}
+
+.profile-container .row {
+  margin-bottom: 0px;
+}
+
+.parent-height {
+  height: inherit;
+}
+
+#vehicle,
+#payment,
+#history {
+  display: none;
+}
