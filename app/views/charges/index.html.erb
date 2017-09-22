@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Booking</th>
+      <th>Booking ID</th>
       <th>Amount</th>
       <th>Token</th>
       <th colspan="3"></th>
@@ -15,7 +15,7 @@
   <tbody>
     <% @charges.each do |charge| %>
       <tr>
-        <td><%= charge.booking %></td>
+        <td><%= charge.booking.id %></td>
         <td><%= charge.amount %></td>
         <td><%= charge.token %></td>
         <td><%= link_to 'Show', charge %></td>
