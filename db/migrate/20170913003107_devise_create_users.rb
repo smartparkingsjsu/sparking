@@ -3,6 +3,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
     create_table :users do |t|
       ## User information
       t.string :name
+      t.bigint :phone
       t.string :license_plate
       t.boolean :admin,             null: false, default: "f"
       t.references :garage, foreign_key: true

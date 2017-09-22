@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20170922061343) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.bigint "phone"
     t.string "license_plate"
     t.boolean "admin", default: false, null: false
     t.integer "garage_id"

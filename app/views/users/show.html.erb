@@ -25,9 +25,9 @@
     </div>
 
     <div class="col s12 m3 center-align">
-      <div class="row body-text">Shazam Sew</div>
+      <div class="row body-text"><%= @user.name %></div>
       <div class="row body-text"><%= @user.email %></div>
-      <div class="row body-text">(408) 222-1234</div>
+      <div class="row body-text"><%= number_to_phone(@user.phone, area_code: true) %></div>
     </div>
 
     <div class="col s12 m5 center-align">
