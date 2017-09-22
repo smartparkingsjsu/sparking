@@ -5,6 +5,7 @@ $(document).ready(function() {
         VEHICLE: $("#vehicle"),
         PAYMENT: $("#payment"),
         HISTORY: $("#history"),
+        EDIT: $("#edit"),
         ALL: $(".profile-container")
     };
 
@@ -13,6 +14,10 @@ $(document).ready(function() {
         fadeOut(elementEnum.ALL);
         fadeIn(elementEnum.ACCOUNT);
         $('.button-collapse').sideNav('hide');
+    });
+
+    $("#edit-toggle").click(function(){
+        fadeIn(elementEnum.EDIT);
     });
 
     $("#vehicle-toggle").click(function() {
