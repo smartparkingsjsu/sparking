@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170917162119) do
+ActiveRecord::Schema.define(version: 20170922053021) do
 
   create_table "bookings", force: :cascade do |t|
     t.datetime "start_time"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20170917162119) do
     t.integer "user_id"
     t.index ["garage_spot_id"], name: "index_bookings_on_garage_spot_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "charges", force: :cascade do |t|
+    t.integer "booking_id"
+    t.float "amount"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_charges_on_booking_id"
   end
 
   create_table "events", force: :cascade do |t|

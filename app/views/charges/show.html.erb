@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Booking:</strong>
+  <%= @charge.booking %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @charge.amount %>
+</p>
+
+<p>
+  <strong>Token:</strong>
+  <%= @charge.token %>
+</p>
+
+<%= link_to 'Edit', edit_charge_path(@charge) %> |
+<%= link_to 'Back', charges_path %>

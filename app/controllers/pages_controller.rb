@@ -45,26 +45,38 @@ respond_to :html, :xml, :json
     @time_now = Time.now.in_time_zone.change(:sec => 0) + 1.minutes
     @last_in_list = @garage_spot.last
 
-    @garage_spot.each do |a|
-      @booking =  Booking.new(start_time: @time_now, length: @length, user_id: current_user.id, garage_spot_id: a.id)
+    if @garage_spot.empty?
+      flash[:notice] = 'Not spot is assigned to garage!'
+      redirect_to root_path
+    else
+      @garage_spot.each do |a|
+        @booking =  Booking.new(start_time: @time_now, length: @length, user_id: current_user.id, garage_spot_id: a.id)
 
-      if @booking.save
-        flash[:notice] = 'Booking added!'
-        redirect_to root_path
-        break
-      end
+        if @booking.save
+          @charges = Charge.new(booking_id: @booking.id, amount: @amount, token: @token)
 
-      if @last_in_list == a
-        #charge = Stripe::Charge.retrieve("ch_123")
-        #charge.refund
-        flash[:notice] = 'Booking failed!'
-        redirect_to root_path
+          if @charges.save
+            flash[:notice] = 'Booking added!'
+          end
+          
+          redirect_to root_path
+          break
+        end
+
+        if @last_in_list == a
+          flash[:notice] = 'No spot available. Your card is not charged'
+          redirect_to root_path
+          break
+        end
+        
       end
     end
+
   end
 
   def charge
-    @amount = 500
+    @amount = rand(100..1000)
+    @token = params[:stripeToken]
   
     customer = Stripe::Customer.create(
       email: params[:stripeEmail],

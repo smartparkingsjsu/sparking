@@ -13,7 +13,6 @@
   <li><div class="divider"></div></li>
   <li><a id="account-toggle" href="#" class="waves-effect">Account</a></li>
   <li><a id="vehicle-toggle" href="#" class="waves-effect">Vehicle Information</a></li>
-  <li><a id="payment-toggle" href="#" class="waves-effect">Payment Method</a></li>
   <li><a id="history-toggle" href="#" class="waves-effect">History</a></li>
 </ul>
 
@@ -60,32 +59,12 @@
   </div>
 </div>
 
-<!-- Payment -->
-<div id="payment" class="profile-container">
-  <div class="row valign-wrapper">
-
-    <div class="col s12 m7 center-align">
-      <div class="row body-text">Name</div>
-      <div class="row body-text">Address</div>
-      <div class="row body-text">Card Number</div>
-      <div class="row body-text">Exp Date</div>
-    </div>
-
-    <div class="col s12 m5 center-align">
-      <div><a href="#" data-activates="slide-out" class="button-collapse btn waves-effect waves-light">More</a></div>
-      <br>
-      <div><a href="#" class="btn waves-effect waves-light">Edit</a></div>
-    </div>
-
-  </div>
-</div>
-
 <!-- History -->
 <div id="history" class="profile-container">
   <div class="row valign-wrapper">
 
     <div class="col s12 m7 center-align">
-      <div class="row body-text">Back in the days...</div>
+      <div class="row body-text"><%= @charges.inspect %></div>
     </div>
 
     <div class="col s12 m5 center-align">
