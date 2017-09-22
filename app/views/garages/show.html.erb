@@ -19,7 +19,7 @@
         <!--<%= submit_tag 'Save', class: "btn" %>-->
   
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key= "<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-key= "<%= Rails.application.secrets.stripe_publishable_key %>"
                 data-description= "Parking Spot Payment"
                 data-amount= 
                 <%= 
