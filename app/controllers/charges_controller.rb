@@ -1,10 +1,16 @@
 class ChargesController < ApplicationController
   before_action :set_charge, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /charges
   # GET /charges.json
   def index
-    @charges = Charge.all
+    if super_admin?
+      @charges = Charge.all
+    else
+      flash[:notice] = 'Unauthorize user!'
+      redirect_to root_path
+    end
   end
 
   # GET /charges/1
