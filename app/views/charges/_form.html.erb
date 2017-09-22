@@ -26,6 +26,11 @@
     <%= form.text_field :token, id: :charge_token %>
   </div>
 
+  <div class="field">
+    <%= form.label :paid %>
+    <%= form.check_box :paid, id: :charge_paid %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -4,8 +4,10 @@ one:
   booking: one
   amount: 1.5
   token: MyString
+  paid: false
 
 two:
   booking: two
   amount: 1.5
   token: MyString
+  paid: false

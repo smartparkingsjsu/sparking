@@ -17,7 +17,7 @@ class ChargesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create charge" do
     assert_difference('Charge.count') do
-      post charges_url, params: { charge: { amount: @charge.amount, booking_id: @charge.booking_id, token: @charge.token } }
+      post charges_url, params: { charge: { amount: @charge.amount, booking_id: @charge.booking_id, paid: @charge.paid, token: @charge.token } }
     end
 
     assert_redirected_to charge_url(Charge.last)
@@ -34,7 +34,7 @@ class ChargesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update charge" do
-    patch charge_url(@charge), params: { charge: { amount: @charge.amount, booking_id: @charge.booking_id, token: @charge.token } }
+    patch charge_url(@charge), params: { charge: { amount: @charge.amount, booking_id: @charge.booking_id, paid: @charge.paid, token: @charge.token } }
     assert_redirected_to charge_url(@charge)
   end
 

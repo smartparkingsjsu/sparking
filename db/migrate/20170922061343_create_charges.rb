@@ -4,6 +4,7 @@ class CreateCharges < ActiveRecord::Migration[5.1]
       t.references :booking, foreign_key: true
       t.float :amount
       t.string :token
+      t.boolean :paid, null: false, default: "t"
 
       t.timestamps
     end
