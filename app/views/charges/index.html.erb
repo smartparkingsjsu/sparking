@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Charges</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Booking</th>
+      <th>Amount</th>
+      <th>Token</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @charges.each do |charge| %>
+      <tr>
+        <td><%= charge.booking %></td>
+        <td><%= charge.amount %></td>
+        <td><%= charge.token %></td>
+        <td><%= link_to 'Show', charge %></td>
+        <td><%= link_to 'Edit', edit_charge_path(charge) %></td>
+        <td><%= link_to 'Destroy', charge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Charge', new_charge_path %>
