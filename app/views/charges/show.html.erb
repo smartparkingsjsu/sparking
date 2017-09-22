@@ -15,5 +15,10 @@
   <%= @charge.token %>
 </p>
 
+<p>
+  <strong>Paid:</strong>
+  <%= @charge.paid %>
+</p>
+
 <%= link_to 'Edit', edit_charge_path(@charge) %> |
 <%= link_to 'Back', charges_path %>

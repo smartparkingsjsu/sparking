@@ -8,6 +8,7 @@
       <th>Booking ID</th>
       <th>Amount</th>
       <th>Token</th>
+      <th>Paid</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= charge.booking.id %></td>
         <td><%= charge.amount %></td>
         <td><%= charge.token %></td>
+        <td><%= charge.paid %></td>
         <td><%= link_to 'Show', charge %></td>
         <td><%= link_to 'Edit', edit_charge_path(charge) %></td>
         <td><%= link_to 'Destroy', charge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
