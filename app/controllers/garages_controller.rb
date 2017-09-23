@@ -11,9 +11,6 @@ class GaragesController < ApplicationController
   # GET /garages/1
   # GET /garages/1.json
   def show
-    @coordinate = Geocoder.coordinates(Garage.find(@garage.id).address)
-    @garage_name = Garage.find(@garage.id).address
-
     @skip_header = true
     @garage_times = get_garage_times
   end
