@@ -102,7 +102,7 @@ respond_to :html, :xml, :json
   def get_qr_code
     require 'rqrcode'
 
-    @qr = RQRCode::QRCode.new(@hash_booking_id, :size => 4, :level => :h )
+    @qr = RQRCode::QRCode.new(@hash_booking_id, :size => 8, :level => :h )
   end
 
   def get_unique_booking_id

@@ -17,3 +17,7 @@
 //= require init
 //= require gmaps/google
 //= require custom_gmaps
+
+function printPage() {
+    window.print()
+}
