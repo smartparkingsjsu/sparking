@@ -9,6 +9,8 @@ $(document).ready(function() {
         ALL: $(".profile-container")
     };
 
+    var editToggle = false;
+
 
     $("#account-toggle").click(function() {
         fadeOut(elementEnum.ALL);
@@ -16,8 +18,14 @@ $(document).ready(function() {
         $('.button-collapse').sideNav('hide');
     });
 
-    $("#edit-toggle").click(function(){
-        fadeIn(elementEnum.EDIT);
+    $("#edit-toggle").click(function() {
+        if ( editToggle ) {
+            elementEnum.EDIT.slideUp("slow");
+        }
+        else {
+            elementEnum.EDIT.slideDown("slow");
+        }
+        editToggle = !editToggle; 
     });
 
     $("#vehicle-toggle").click(function() {

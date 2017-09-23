@@ -18,18 +18,13 @@
   <%= render 'layouts/header' unless @skip_header %>
 
   <body>
-    <% unless current_page?('/') %>
-      <div class="container">
-    <% end %>
+    <div class="container">
 
-    <% flash.each do |message_type, message| %>
-        <%= javascript_tag "Materialize.toast('#{message}', 4000)" %>
-    <% end %>
+      <% flash.each do |message_type, message| %>
+          <%= javascript_tag "Materialize.toast('#{message}', 4000)" %>
+      <% end %>
 
-    <%= yield %>
-
-    <% unless current_page?('/') %>
-      </div>
-    <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

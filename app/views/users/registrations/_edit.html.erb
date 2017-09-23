@@ -3,8 +3,13 @@
   <%= devise_error_messages! %>
 
   <div class="input-field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, value: @current_user.name, required: true %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :phone %>
+    <%= f.phone_field :phone, autofocus: true, value: @current_user.phone, required: true %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
