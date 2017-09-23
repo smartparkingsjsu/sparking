@@ -3,17 +3,17 @@
 
     <div class="input-field">
       <%= f.label :name%>
-      <%= f.text_field :name, autofocus: true%>
+      <%= f.text_field :name, autofocus: true, required: true%>
     </div>
 
     <div class="input-field">
       <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true %>
+      <%= f.email_field :email, autofocus: true, required: true %>
     </div>
 
     <div class="input-field">
       <%= f.label :phone %>
-      <%= f.phone_field :phone, autofocus: true %>
+      <%= f.number_field :phone, autofocus: true, required: true %>
     </div>
 
     <div class="input-field">
@@ -32,5 +32,4 @@
     <div class="actions">
       <%= f.submit "Sign up", class: "btn" %>
     </div>
-
 <% end %>
