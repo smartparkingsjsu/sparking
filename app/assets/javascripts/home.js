@@ -1,12 +1,15 @@
 $(document).ready(function(){
     var options = [
-        {selector: '#staggered-2', offset: 400, callback: function(el) {
-            Materialize.toast("This is our ScrollFire Demo!", 1500 );
+        {selector: '#fade-image', offset: 100, callback: function(el) {
+            Materialize.fadeInImage($(el));
         } },
-        {selector: '#staggered-2', offset: 400, callback: function(el) {
+        {selector: '#staggered-1', offset: 50, callback: function(el) {
             Materialize.showStaggeredList($(el));
         } },
-        {selector: '#staggered-3', offset: 500, callback: function(el) {
+        {selector: '#staggered-2', offset: 100, callback: function(el) {
+            Materialize.showStaggeredList($(el));
+        } },
+        {selector: '#staggered-3', offset: 150, callback: function(el) {
             Materialize.showStaggeredList($(el));
         } }
     ];
