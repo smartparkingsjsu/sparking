@@ -40,27 +40,45 @@ respond_to :html, :xml, :json
     find_garage
     get_length
     find_garage_spot
-    charge
-
-    @time_now = Time.now.in_time_zone.change(:sec => 0) + 1.minutes
+    user_booking_view
+    
+    @time = Time.now.in_time_zone.change(:sec => 0) + 1.minutes
     @last_in_list = @garage_spot.last
+    @amount = rand(100..1000)
 
     if @garage_spot.empty?
       flash[:notice] = 'Not spot is assigned to garage!'
       redirect_to root_path
     else
       @garage_spot.each do |a|
-        @booking =  Booking.new(start_time: @time_now, length: @length, user_id: current_user.id, garage_spot_id: a.id)
+        @booking =  Booking.new(start_time: @time, length: @length, user_id: current_user.id, garage_spot_id: a.id)
 
         if @booking.save
-          @charges = Charge.new(booking_id: @booking.id, amount: @amount, token: @token)
+          if @user_booking_view.present?
+            charge
+            @charges = Charge.new(booking_id: @booking.id, amount: @amount, token: @token, paid: "t")
+      
+            if @charges.save
+              flash[:notice] = 'Booking added & Card is charged!'
+            else
+              flash[:notice] = 'Booking is added but not stored in history!'
+            end
 
-          if @charges.save
-            flash[:notice] = 'Booking added!'
+            redirect_to root_path
+            break
+  
+          else  
+            @charges = Charge.new(booking_id: @booking.id, amount: @amount, paid: "f")
+            
+            if @charges.save
+              flash[:notice] = 'Booking added!'
+            else
+              flash[:notice] = 'Booking is added but not stored in history!'
+            end
+            
+            redirect_to root_path
+            break
           end
-          
-          redirect_to root_path
-          break
         end
 
         if @last_in_list == a
@@ -75,7 +93,6 @@ respond_to :html, :xml, :json
   end
 
   def charge
-    @amount = rand(100..1000)
     @token = params[:stripeToken]
   
     customer = Stripe::Customer.create(
@@ -92,7 +109,7 @@ respond_to :html, :xml, :json
   
     rescue Stripe::CardError => e
       flash[:error] = e.message
-      redirect_to new_charge_path #this need to be changed
+      redirect_to new_charge_path #should not go into this
   end
 
   private
@@ -102,6 +119,10 @@ respond_to :html, :xml, :json
 
   def find_garage
     @garageid = params[:garageid]
+  end
+
+  def user_booking_view
+    @user_booking_view = params[:user_booking_view]
   end
 
   def get_length
