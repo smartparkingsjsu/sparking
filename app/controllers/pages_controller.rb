@@ -46,6 +46,10 @@ respond_to :html, :xml, :json
     @last_in_list = @garage_spot.last
     @amount = rand(100..1000)
 
+    booking_logic
+  end
+
+  def booking_logic
     if @garage_spot.empty?
       flash[:notice] = 'Not spot is assigned to garage!'
       redirect_to root_path
@@ -64,9 +68,10 @@ respond_to :html, :xml, :json
               flash[:notice] = 'Booking is added but not stored in history!'
             end
 
-            redirect_to root_path
+            get_unique_booking_id
+            get_qr_code
+
             break
-  
           else  
             @charges = Charge.new(booking_id: @booking.id, amount: @amount, paid: "f")
             
@@ -76,9 +81,12 @@ respond_to :html, :xml, :json
               flash[:notice] = 'Booking is added but not stored in history!'
             end
             
-            redirect_to root_path
+            get_unique_booking_id
+            get_qr_code
+
             break
           end
+
         end
 
         if @last_in_list == a
@@ -89,7 +97,22 @@ respond_to :html, :xml, :json
         
       end
     end
+  end
 
+  def get_qr_code
+    require 'rqrcode'
+
+    @qr = RQRCode::QRCode.new(@hash_booking_id, :size => 4, :level => :h )
+  end
+
+  def get_unique_booking_id
+    hashids = Hashids.new("$p@rk!ng", 4)
+    @hash_booking_id = hashids.encode(@booking.id)
+  end
+
+  def reterive_booking_id
+    hashids = Hashids.new("$p@rk!ng", 4)
+    @booking_id = hashids.decode(@hash_booking_id)
   end
 
   def charge
