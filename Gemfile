@@ -5,6 +5,11 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Unique Hash
+gem 'hashids'
+gem 'rqrcode'
+
+# Google Map
 gem 'geocoder'
 gem 'gmaps4rails'
 
