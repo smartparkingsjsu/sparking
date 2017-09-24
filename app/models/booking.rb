@@ -8,4 +8,5 @@ class Booking < ActiveRecord::Base
   has_many :events, :dependent => :destroy
   has_many :charges, :dependent => :destroy
   has_one :charge
+  has_many :notifications, :dependent => :destroy
 end

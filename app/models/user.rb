@@ -5,4 +5,5 @@ class User < ApplicationRecord
          # :recoverable, :rememberable, :trackable, :validatable, :confirmable
    
    has_many :bookings, :dependent => :destroy
+   has_many :notifications, foreign_key: :recipient_id
 end

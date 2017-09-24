@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170922061343) do
+ActiveRecord::Schema.define(version: 20170924010207) do
 
   create_table "bookings", force: :cascade do |t|
     t.datetime "start_time"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 20170922061343) do
     t.string "address"
     t.float "weekday"
     t.float "weekend"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "event_id"
+    t.datetime "read_at"
+    t.string "action"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

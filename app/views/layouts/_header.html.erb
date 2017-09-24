@@ -24,11 +24,17 @@
       <li><a href="#">Price</a></li>
 
       <% if user_signed_in? %>
+        <a class='dropdown-button btn-flat header-btn' data-activates='dropdown2' data-behavior='notifications-link'><i class="material-icons" data-behavior='notifications'>notifications</i></a>
+        <li><a><span data-behavior='unread-count'></span></a></li>
         <a class='dropdown-button btn-flat header-btn' data-activates='dropdown1'><%= current_user.email %></a>
+
         <ul id='dropdown1' class='dropdown-content'>
           <li><a href="/users/<%= current_user.id %>">Profile</a></li>
           <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
         </ul>
+
+        <ul id='dropdown2' class='dropdown-content' data-behavior='notification-items'></ul>
+
       <% else %>
         <li><a class="modal-trigger waves-effect waves-light btn-flat header-btn" data-turbolinks="false" href="#modal_signup">Sign Up</a></li>
         <li><a class="modal-trigger waves-effect waves-light btn-flat header-btn" data-turbolinks="false" href="#modal_login">Log In</a></li>
