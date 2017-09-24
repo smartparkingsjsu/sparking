@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   resources :charges
   resources :events
+  
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
 
   devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers:  { sessions: 'users/sessions', registrations: 'registrations'}
 

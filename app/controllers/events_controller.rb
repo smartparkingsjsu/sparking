@@ -28,6 +28,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        Notification.create(recipient_id: current_user.id, event_id: @event.id, action: "license plate mismatch")    
+
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
