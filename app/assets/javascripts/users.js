@@ -24,6 +24,7 @@ $(document).ready(function() {
         }
         else {
             elementEnum.EDIT.slideDown("slow");
+            Materialize.updateTextFields();
         }
         editToggle = !editToggle; 
     });
