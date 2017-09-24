@@ -1,9 +1,15 @@
 class Notifications
     constructor: ->
         @notifications = $("[data-behavior='notifications']")
-        @setup() if @notifications.length > 0 
 
-    setup: -> 
+        @getNewNotifications() if @notifications.length > 0 
+            $("[data-behavior='notifications-link']").on "click", @handleClick
+
+            setInterval (=>
+                @getNewNotifications()
+            ), 30000
+
+    getNewNotifications: ->
         $.ajax(
             url: "/notifications.json"
             dataType: "JSON"
@@ -11,8 +17,16 @@ class Notifications
             success: @handleSuccess
         )
 
+    handleClick: (e) =>
+        $.ajax(
+            url:"/notifications/mark_as_read"
+            method: "POST"
+            dataType: "JSON"
+            success: -> 
+                $("[data-behavior='unread-count']").text(0)
+        )
+
     handleSuccess: (data) =>
-        console.log(data)
         items = $.map data, (a) ->
             "<li><a href='#{a.url}'>#{a.action} #{a.message.license_plate} #{a.garage.located_at}</a></li>"
 
