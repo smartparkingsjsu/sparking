@@ -16,4 +16,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # stylesheet and js
 Rails.application.config.assets.precompile += %w( users.js users.css )
 Rails.application.config.assets.precompile += %w( home.js home.css )
-Rails.application.config.assets.precompile += %w( notifications.js.coffee )
+Rails.application.config.assets.precompile += %w( notifications.js )
