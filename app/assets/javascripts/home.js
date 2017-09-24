@@ -1,4 +1,10 @@
 $(document).ready(function(){
+    var elementEnum = {
+        RESERVE_BTN: $("#reserve-home-btn"),
+        RESERVE_FORM: $("#reserve-form"),
+        HOME_IMG: $("#img-home")
+    };
+
     var options = [
         {selector: '#fade-image', offset: 100, callback: function(el) {
             Materialize.fadeInImage($(el));
@@ -14,5 +20,11 @@ $(document).ready(function(){
         } }
     ];
     Materialize.scrollFire(options);
+
+    elementEnum.RESERVE_BTN.click(function() {
+        $(this).fadeOut("slow");
+        elementEnum.HOME_IMG.fadeOut("slow");
+        elementEnum.RESERVE_FORM.delay(600).fadeIn("slow");
+    });
 
 });

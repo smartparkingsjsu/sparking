@@ -5,15 +5,23 @@
   <div id="map" style='width: 100%; height: 50vh;'></div>
 </div> %>
 
-<div class="row top-margin">
-  <img src="http://via.placeholder.com/1075x350">
+<div class="row top-margin valign-wrapper">
+  <div id="img-home" class="img-container">
+    <img src="http://via.placeholder.com/1075x350">
+  </div>
+
+  <a id="reserve-home-btn" class="waves-effect waves-light btn-large">Reserve</a>
+
+  <%= render "pages/reservation" %>
 </div>
 
 <ul>
   <li>
     <div class="row">
       <div class="col s12 m4">
-        <img src="http://via.placeholder.com/300x150">
+        <div class="img-container">
+          <img src="http://via.placeholder.com/300x150">
+        </div>
       </div>
 
       <div class="col s12 m8">
@@ -24,7 +32,9 @@
 </ul>
 
 <div id="fade-image" class="row">
-  <img src="http://via.placeholder.com/1075x150">
+  <div class="img-container">
+    <img src="http://via.placeholder.com/1075x150">
+  </div>
 </div>
 
 <ul id="staggered-1" class="staggered-list">
@@ -35,7 +45,9 @@
       </div>
 
       <div class="col s12 m4">
-        <img src="http://via.placeholder.com/300x150">
+        <div class="img-container">
+          <img src="http://via.placeholder.com/300x150">
+        </div>
       </div>
     </div>
   </li>
@@ -45,7 +57,9 @@
   <li>
     <div class="row">
       <div class="col s12 m4">
-        <img src="http://via.placeholder.com/300x150">
+        <div class="img-container">
+          <img src="http://via.placeholder.com/300x150">
+        </div>
       </div>
 
       <div class="col s12 m8">
@@ -63,7 +77,9 @@
       </div>
 
       <div class="col s12 m4">
-        <img src="http://via.placeholder.com/300x150">
+        <div class="img-container">
+          <img src="http://via.placeholder.com/300x150">
+        </div>
       </div>
     </div>
   </li>

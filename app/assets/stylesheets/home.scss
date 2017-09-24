@@ -2,12 +2,23 @@
   opacity: 0;
 }
 
-// TODO: move this to application and to an image wrapper
-img {
-  height: 100%;
+#fade-image {
+  opacity: 0;
+}
+
+#reserve-home-btn {
+  position: absolute;
+  left: 50%;
+  margin-left: -55px;
+}
+
+#reserve-form {
+  display: none;
+  background-color: black;
+  color: white;
   width: 100%;
 }
 
-#fade-image {
-  opacity: 0;
+#img-home {
+  height: 350px;
 }
