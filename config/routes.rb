@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers:  { sessions: 'users/sessions', registrations: 'registrations'}
+  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers:  { registrations: 'registrations'}
 
   resources :garage_spots
   resources :spots
