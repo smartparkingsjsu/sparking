@@ -17,7 +17,20 @@
 //= require init
 //= require gmaps/google
 //= require custom_gmaps
+//= require jquery.inputmask
+//= require jquery.inputmask.extensions
+//= require jquery.inputmask.numeric.extensions
+//= require jquery.inputmask.date.extensions
 
 function printPage() {
     window.print()
 }
+
+$(document).ready(function() {
+    var phones = [{ "mask": "(###) ###-####"}];
+    $('.phone-text').inputmask({
+        mask: phones,
+        greedy: false,
+        showMaskOnHover: false,
+        definitions: { '#': { validator: "[0-9]", cardinality: 1}} });
+});
