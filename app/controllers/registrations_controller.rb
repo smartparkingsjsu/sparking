@@ -1,5 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def create
+    super
+    resource.update_attribute(:phone, params[:user][:phone].gsub(/\D/, ''))
+  end
+
   def update
     super
     resource.update_attribute(:phone, params[:user][:phone].gsub(/\D/, ''))

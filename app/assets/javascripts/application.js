@@ -31,5 +31,6 @@ $(document).ready(function() {
     $('.phone-text').inputmask({
         mask: phones,
         greedy: false,
+        showMaskOnHover: false,
         definitions: { '#': { validator: "[0-9]", cardinality: 1}} });
 });
