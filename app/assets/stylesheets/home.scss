@@ -1,13 +1,31 @@
+@import "utilities/variables";
 .staggered-list li {
   opacity: 0;
 }
 
-// TODO: move this to application and to an image wrapper
-img {
+.top-margin {
   height: 100%;
-  width: 100%;
 }
 
 #fade-image {
   opacity: 0;
+}
+
+#reserve-home-btn {
+  position: absolute;
+  left: 50%;
+  margin-left: -55px;
+}
+
+#img-home {
+  height: 350px;
+}
+
+#reserve-form {
+  display: none;
+  height: 100%;
+  width: 100%;
+  border: $primary-color solid 2px;
+  border-radius: 25px;
+  padding: 20px 20px 20px 20px;
 }

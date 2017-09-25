@@ -29,7 +29,7 @@
       <% end %>
 
       <% if user_signed_in? %>
-        <a class='dropdown-button btn-flat header-btn' data-activates='dropdown1'><%= current_user.email %></a>
+        <a class='dropdown-button btn-flat header-btn' data-activates='dropdown1'><%= current_user.name %></a>
 
         <ul id='dropdown1' class='dropdown-content'>
           <li><a href="/users/<%= current_user.id %>">Profile</a></li>

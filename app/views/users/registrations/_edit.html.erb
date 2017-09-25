@@ -32,6 +32,8 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+<div id="password">
+
   <div class="input-field">
     <%= f.label :password %>
     <%= f.password_field :password, autocomplete: "off" %>
@@ -49,6 +51,8 @@
     <%= f.label :current_password %>
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
+
+</div>
 
   <div class="actions">
     <%= f.submit "Update", class: "btn" %>
