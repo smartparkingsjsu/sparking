@@ -19,6 +19,15 @@
     <%= f.text_field :phone, class: "phone-text", autofocus: true, value: @current_user.phone, required: true %>
   </div>
 
+  <% if @licenseplates.present? %>
+    <% @licenseplates.each do |a| %>
+      <div class="input-field">
+        <%= f.label :license_plate %>
+        <%= f.text_field :license_plate, autofocus: true, value: a.license_plate, required: true %>
+      </div>
+    <% end %>
+  <% end %>  
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>

@@ -23,6 +23,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
+    @get_license_plate = params[:user][:license_plate]
+    
+    update_license_plate = Licenseplate.find(1)
+    update_license_plate.update_attributes(user_id: current_user.id, license_plate: @get_license_plate)
+
     new_params = params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :current_password)
     change_password = true
     if params[:user][:password].blank?
@@ -50,9 +55,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     resource.update_attribute(:phone, params[:user][:phone].gsub(/\D/, ''))
-    
   end
-
 
   protected
 
