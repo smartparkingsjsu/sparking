@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>License plate:</strong>
+  <%= @licenseplate.license_plate %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @licenseplate.user %>
+</p>
+
+<%= link_to 'Edit', edit_licenseplate_path(@licenseplate) %> |
+<%= link_to 'Back', licenseplates_path %>

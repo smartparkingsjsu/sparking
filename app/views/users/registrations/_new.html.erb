@@ -17,6 +17,11 @@
     </div>
 
     <div class="input-field">
+      <%= f.label :license_plate %>
+      <%= f.text_field :license_plate, autofocus: true, required: true %>
+    </div>
+
+    <div class="input-field">
       <%= f.label :password %>
       <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
