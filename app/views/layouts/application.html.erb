@@ -4,7 +4,11 @@
     <title>Sparking</title>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'notifications' %>
+    
+    <% if super_admin? || garage_owner? %>
+      <%= javascript_include_tag 'notifications' %>
+    <% end %>
+
     <%= Gon::Base.render_data %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>

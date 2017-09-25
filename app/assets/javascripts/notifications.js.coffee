@@ -26,7 +26,6 @@ class Notifications
       )
 
   handleSuccess: (data) =>
-    console.log(data)
     items = $.map data, (a) ->
       "<li><a href='#{a.url}'>#{a.action} #{a.message.license_plate} #{a.garage.located_at}</a></li>"
 

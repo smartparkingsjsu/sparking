@@ -23,9 +23,12 @@
       <li><a href="/garages">Parking Garages</a></li>
       <li><a href="#">Price</a></li>
 
-      <% if user_signed_in? %>
+      <% if super_admin? || garage_owner? %>
         <a class='dropdown-button btn-flat header-btn' data-activates='dropdown2' data-behavior='notifications-link'><i class="material-icons" data-behavior='notifications'>notifications</i></a>
         <li><a><span data-behavior='unread-count'></span></a></li>
+      <% end %>
+
+      <% if user_signed_in? %>
         <a class='dropdown-button btn-flat header-btn' data-activates='dropdown1'><%= current_user.email %></a>
 
         <ul id='dropdown1' class='dropdown-content'>
