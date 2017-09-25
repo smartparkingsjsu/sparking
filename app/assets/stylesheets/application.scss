@@ -1,8 +1,4 @@
-@import "materialize/components/color";
-$primary-color: color("blue-grey", "darken-4") !default;
-$secondary-color: color("light-blue","lighten-1") !default;
-$background-dark-color: #5F0F4E !default;
-$background-light-color: #e6ecf0 !default;
+@import "utilities/variables";
 @import "materialize";
 @import "materialize/extras/nouislider";
 @import "simple_calendar";
@@ -14,7 +10,6 @@ $background-light-color: #e6ecf0 !default;
 
 .header-btn {
   border: 1px dashed white;
-  border-radius: 15px;
   color: white;
 }
 
@@ -30,12 +25,18 @@ $background-light-color: #e6ecf0 !default;
   margin-top: 20px;
 }
 
-.dev .row {
-  border: 1px dashed black;
+.img-container {
+  width: 100%;
 }
 
-.dev .col {
-  border: 1px dashed black;
+.img-container img {
+  height: 100%;
+  width: 100%;
+}
+
+.btn,
+.btn-flat {
+  border-radius: 15px;
 }
 
 @media only screen and (max-width: 600px) { .row.valign-wrapper { display: inherit; } }
