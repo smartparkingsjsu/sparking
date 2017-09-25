@@ -6,4 +6,5 @@ class User < ApplicationRecord
    
    has_many :bookings, :dependent => :destroy
    has_many :notifications, foreign_key: :recipient_id
+   has_many :licenseplates, :dependent => :destroy
 end

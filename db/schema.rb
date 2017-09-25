@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170924010207) do
+ActiveRecord::Schema.define(version: 20170925034840) do
 
   create_table "bookings", force: :cascade do |t|
     t.datetime "start_time"
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(version: 20170924010207) do
     t.float "weekend"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "licenseplates", force: :cascade do |t|
+    t.string "license_plate"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_licenseplates_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
