@@ -1,3 +1,52 @@
-<div id="reserve-form" style="height:350px">
-  Form goes here
+<div id="reserve-form">
+  <%= form_tag pages_online_reservation_url(@booking),
+               :time => params[:time],
+               :end_time => params[:end_time],
+               :garageid => params[:garageid],
+               :date => params[:date] do %>
+
+      <div class="input-field col s12 m12">
+        <%= label :date, "Date" %>
+        <%= text_field_tag :date, "", class: "datepicker" %>
+      </div>
+
+      <div class="input-field col s12 m6">
+        <%= label :time, "Start time" %>
+        <br/><br/>
+        <%= select_tag "time", options_for_select(@booking_time.map { |obj| [obj['time'], obj['value']] }) %>
+      </div>
+
+      <div class="input-field col s12 m6">
+        <%= label :end_time, "End time" %>
+        <br/><br/>
+        <%= select_tag "end_time", options_for_select(@booking_time.map { |obj| [obj['time'], obj['value']] }) %>
+      </div>
+
+      <div class="input-field col s12 m12">
+        <%= label :garageid, "Parking garage" %>
+        <br/><br/>
+        <%= select_tag "garageid", options_from_collection_for_select(@parking_garages, "id", "name") %>
+      </div>
+
+      <% if (garage_owner?.present?) || (super_admin? == true) %>
+          <%= submit_tag 'Book Now', class: "btn" %>
+      <% else %>
+          <%= hidden_field_tag :user_booking_view, current_user.id %>
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key= "<%= Rails.application.secrets.stripe_publishable_key %>"
+                  data-description= "Parking Spot Payment"
+                  data-amount=
+                    <%=
+                      if DateTime.now.on_weekend?
+                        @garage.weekend*100 #*params[:length] #need dynamic jquery to fetch in length
+                      else
+                        @garage.weekday*100 #*params[:length]
+                      end
+                    %>
+                      data-locale="auto"
+                  data-email= <%= current_user.email %> >
+          </script>
+      <% end %>
+
+  <% end %>
 </div>

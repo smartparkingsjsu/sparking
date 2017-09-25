@@ -22,9 +22,15 @@ $(document).ready(function(){
     Materialize.scrollFire(options);
 
     elementEnum.RESERVE_BTN.click(function() {
-        $(this).fadeOut("slow");
-        elementEnum.HOME_IMG.fadeOut("slow");
-        elementEnum.RESERVE_FORM.delay(600).fadeIn("slow");
+        if (gon.user_signed) {
+            $(this).fadeOut("slow");
+            elementEnum.HOME_IMG.fadeOut("slow");
+            elementEnum.RESERVE_FORM.delay(580).fadeIn("slow");
+        }
+        else {
+            window.location = "login";
+        }
+
     });
 
 });

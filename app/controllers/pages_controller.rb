@@ -29,6 +29,10 @@ respond_to :html, :xml, :json
   def show
     load_google_map
 
+    @booking_time = get_booking_times
+    @parking_garages = Garage.all
+    gon.user_signed = current_user.present?
+
     render template: "pages/#{params[:page]}"
   end
 
@@ -36,12 +40,17 @@ respond_to :html, :xml, :json
     get_spot_now
   end
 
+  def online_reservation
+    get_spot_online
+  end
+
+  # In-garage booking method
   def get_spot_now
     find_garage
     get_length
     find_garage_spot
     user_booking_view
-    
+
     @time = Time.now.in_time_zone.change(:sec => 0) + 1.minutes
     @last_in_list = @garage_spot.last
     @amount = rand(100..1000)
@@ -49,6 +58,25 @@ respond_to :html, :xml, :json
     booking_logic
   end
 
+  # Online booking method
+  def get_spot_online
+    find_garage
+    get_start_time
+    get_length_online
+    find_garage_spot
+    user_booking_view
+
+    @last_in_list = @garage_spot.last
+    @amount = rand(100..1000)
+
+    booking_logic
+  end
+
+  # Requires: @garageid
+  #           @time
+  #           @length
+  #           @garage_spot
+  #           @user_booking_view
   def booking_logic
     if @garage_spot.empty?
       flash[:notice] = 'Not spot is assigned to garage!'
@@ -136,8 +164,18 @@ respond_to :html, :xml, :json
   end
 
   private
+
   def find_garage_spot
     @garage_spot = GarageSpot.all.where("garage_id = ?", @garageid)
+  end
+
+  def get_start_time
+    @time = params[:start_time]
+  end
+
+  def get_length_online
+    @end_time = params[:end_time]
+    @length = @end_time - @time
   end
 
   def find_garage
