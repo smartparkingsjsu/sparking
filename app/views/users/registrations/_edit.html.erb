@@ -16,7 +16,7 @@
 
   <div class="input-field">
     <%= f.label :phone %>
-    <%= f.number_field :phone, autofocus: true, value: @current_user.phone, required: true %>
+    <%= f.text_field :phone, class: "phone-text", autofocus: true, value: @current_user.phone, required: true %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -24,7 +24,7 @@
   <% end %>
 
   <div class="input-field">
-    <%= f.label :password %> 
+    <%= f.label :password %>
     <%= f.password_field :password, autocomplete: "off" %>
     <% if @minimum_password_length %>
       <em><%= @minimum_password_length %> characters minimum</em>
@@ -37,7 +37,7 @@
   </div>
 
   <div class="input-field">
-    <%= f.label :current_password %> 
+    <%= f.label :current_password %>
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
