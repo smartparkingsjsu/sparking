@@ -1,7 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def create
+    super
+    resource.update_attribute(:phone, params[:user][:phone].gsub(/\D/, ''))
+  end
+
   def update
-    new_params = params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation,  :current_password)
+    new_params = params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :current_password)
     change_password = true
     if params[:user][:password].blank?
       params[:user].delete("password")
@@ -26,12 +31,19 @@ class RegistrationsController < Devise::RegistrationsController
     else
       render "edit"
     end
+
+    resource.update_attribute(:phone, params[:user][:phone].gsub(/\D/, ''))
+    
   end
 
-  private
-    
-      def sign_up_params
-        params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation)
-      end
+  protected
 
-    end
+  def after_update_path_for(resource)
+    user_path(@user.id)
+  end
+
+  def sign_up_params
+    params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation)
+  end
+
+end
