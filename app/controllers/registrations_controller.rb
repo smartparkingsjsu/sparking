@@ -23,7 +23,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    super
     new_params = params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :current_password)
     change_password = true
     if params[:user][:password].blank?
@@ -50,8 +49,10 @@ class RegistrationsController < Devise::RegistrationsController
       render "edit"
     end
 
-    resource.update_attribute(:phone, params[:user][:phone].gsub(/\D/, ''))  
+    resource.update_attribute(:phone, params[:user][:phone].gsub(/\D/, ''))
+    
   end
+
 
   protected
 
