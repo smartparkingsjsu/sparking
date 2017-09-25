@@ -3,7 +3,6 @@ $(document).ready(function() {
     var elementEnum = {
         ACCOUNT: $("#account"),
         VEHICLE: $("#vehicle"),
-        PAYMENT: $("#payment"),
         HISTORY: $("#history"),
         EDIT: $("#edit"),
         ALL: $(".profile-container")
@@ -32,12 +31,6 @@ $(document).ready(function() {
     $("#vehicle-toggle").click(function() {
         fadeOut(elementEnum.ALL);
         fadeIn(elementEnum.VEHICLE);
-        $('.button-collapse').sideNav('hide');
-    });
-
-    $("#payment-toggle").click(function() {
-        fadeOut(elementEnum.ALL);
-        fadeIn(elementEnum.PAYMENT);
         $('.button-collapse').sideNav('hide');
     });
 
