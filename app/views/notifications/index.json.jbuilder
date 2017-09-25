@@ -3,7 +3,7 @@ json.array! @notifications do |a|
     json.action a.action
 
     json.message do
-        json.license_plate "on #{a.event.booking.user.license_plate}"
+        json.license_plate "with booking ID #{a.event.booking_id} "
     end
     #json.recipient a.recipient.name
     json.garage do
