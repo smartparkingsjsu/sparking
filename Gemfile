@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Frontend input masks
+gem 'jquery-inputmask-rails'
+
 # Unique Hash
 gem 'hashids'
 gem 'rqrcode'
