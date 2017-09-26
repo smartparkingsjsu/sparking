@@ -31,5 +31,5 @@ Rails.application.routes.draw do
 
   root "pages#show", page: "home"
   post "/next" => 'pages#next', :as => 'pages_next'
-  post "/online_reservation" => 'pages#online_reservation', :as => 'pages_online_reservation'
+  post "/reserved" => 'pages#online_reservation', :as => 'pages_online_reservation'
 end

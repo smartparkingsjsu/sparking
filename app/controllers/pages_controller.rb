@@ -72,11 +72,6 @@ respond_to :html, :xml, :json
     booking_logic
   end
 
-  # Requires: @garageid
-  #           @time
-  #           @length
-  #           @garage_spot
-  #           @user_booking_view
   def booking_logic
     if @garage_spot.empty?
       flash[:notice] = 'Not spot is assigned to garage!'
@@ -84,6 +79,8 @@ respond_to :html, :xml, :json
     else
       @garage_spot.each do |a|
         @booking =  Booking.new(start_time: @time, length: @length, user_id: current_user.id, garage_spot_id: a.id)
+
+        logger.debug "Start Time: #{@booking.inspect}"
 
         if @booking.save
           if @user_booking_view.present?
@@ -170,12 +167,13 @@ respond_to :html, :xml, :json
   end
 
   def get_start_time
-    @time = params[:start_time]
+    @date = Time.parse(params[:date]).in_time_zone
+    @time = @date+(params[:time]).to_i.hours
   end
 
   def get_length_online
     @end_time = params[:end_time]
-    @length = @end_time - @time
+    @length = @end_time.to_i - params[:time].to_i
   end
 
   def find_garage
