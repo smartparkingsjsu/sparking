@@ -13,6 +13,7 @@
       <tr>
         <th>Spot Name</th>
         <th>Garage Name</th>
+        <th>Serial</th>
         <th>More</th>
       </tr>
     </thead>
@@ -21,6 +22,7 @@
         <tr>
           <td><%= garage_spot.spot.name %></td>
           <td><%= garage_spot.garage.name %></td>
+          <td><%= garage_spot.serial %></td>
           <td>    <%= link_to "Show", garage_spot_path(garage_spot), class: "button btn btn-info btn-xs" %>
 
       
