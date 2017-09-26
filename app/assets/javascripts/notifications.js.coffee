@@ -6,7 +6,7 @@ class Notifications
     $("[data-behavior='notifications-link']").on "click", @handleClick
     setInterval (=>
         @getNewNotifications()
-    ), 30000
+    ), 300000
 
   getNewNotifications: ->
       $.ajax(
