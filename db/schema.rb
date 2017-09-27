@@ -32,21 +32,13 @@ ActiveRecord::Schema.define(version: 20170925034840) do
     t.index ["booking_id"], name: "index_charges_on_booking_id"
   end
 
-  create_table "events", force: :cascade do |t|
-    t.integer "booking_id"
-    t.float "confidence"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["booking_id"], name: "index_events_on_booking_id"
-  end
-
   create_table "garage_spots", force: :cascade do |t|
     t.integer "garage_id"
     t.integer "spot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "serial"
-    t.string "#<ActiveRecord::ConnectionAdapters::SQLite3::TableDefinition:0x0000000811b838>"
+    t.string "#<ActiveRecord::ConnectionAdapters::SQLite3::TableDefinition:0x00000007667bd0>"
     t.index ["garage_id"], name: "index_garage_spots_on_garage_id"
     t.index ["serial"], name: "index_garage_spots_on_serial", unique: true
     t.index ["spot_id"], name: "index_garage_spots_on_spot_id"
@@ -71,11 +63,13 @@ ActiveRecord::Schema.define(version: 20170925034840) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer "recipient_id"
-    t.integer "event_id"
-    t.datetime "read_at"
+    t.integer "booking_id"
+    t.float "confidence"
     t.string "action"
+    t.datetime "read_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_notifications_on_booking_id"
   end
 
   create_table "spots", force: :cascade do |t|

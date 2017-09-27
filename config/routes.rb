@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :licenseplates
   resources :charges
-  resources :events
   
   resources :notifications do
     collection do

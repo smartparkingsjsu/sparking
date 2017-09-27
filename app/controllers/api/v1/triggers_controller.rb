@@ -20,11 +20,7 @@ class API::V1::TriggersController < ApplicationController
         @get_license_plates = Licenseplate.where(user_id: @get_user_id).pluck(:license_plate)
 
         unless @get_license_plates.include? @license
-            @event = Event.create(booking_id: @get_booking.id, confidence: @confidence)
-            
-            if @event.save
-                Notification.create(recipient_id: @get_garage_owner_id, event_id: @event.id, action: "license plate mismatch") 
-            end
+            Notification.create(recipient_id: @get_garage_owner_id, booking_id: @get_booking.id, confidence: @confidence, action: "license plate mismatch") 
         end
 
         debug_section
