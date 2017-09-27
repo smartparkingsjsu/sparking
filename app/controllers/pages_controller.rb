@@ -27,7 +27,7 @@ respond_to :html, :xml, :json
   end
 
   def show
-    load_google_map
+    # load_google_map
 
     @booking_time = get_booking_times
     @parking_garages = Garage.all

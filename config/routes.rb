@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :garages do
+    get "/dashboard" => "pages#dashboard", :as => "pages_dashboard"
     resources :garage_spots do
       resources :bookings
     end
