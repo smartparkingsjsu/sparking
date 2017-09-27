@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :garages do
-    get "/dashboard" => "pages#dashboard", :as => "pages_dashboard"
+    get '/dashboard' => 'pages#dashboard', :as => 'pages_dashboard'
     resources :garage_spots do
       resources :bookings
     end
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root "pages#show", page: "home"
-  post "/next" => 'pages#next', :as => 'pages_next'
-  post "/reserved" => 'pages#online_reservation', :as => 'pages_online_reservation'
+  root 'pages#show', page: 'home'
+  post '/next' => 'pages#next', :as => 'pages_next'
+  post '/reserved' => 'pages#online_reservation', :as => 'pages_online_reservation'
 end
