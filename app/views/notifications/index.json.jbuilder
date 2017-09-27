@@ -3,12 +3,12 @@ json.array! @notifications do |a|
     json.action a.action
 
     json.message do
-        json.license_plate "with booking ID #{a.event.booking_id} "
+        json.license_plate "with booking ID #{a.booking_id} "
     end
     #json.recipient a.recipient.name
     json.garage do
-        json.located_at "located in #{a.event.booking.garage_spot.garage.name}, spot #{a.event.booking.garage_spot.spot.name}"
+        json.located_at "located in #{a.booking.garage_spot.garage.name}, spot #{a.booking.garage_spot.spot.name}"
     end
 
-    json.url event_path(a.event.id)
+    json.url notification_path(a.id)
 end
