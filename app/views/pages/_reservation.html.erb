@@ -36,13 +36,13 @@
                   data-key= "<%= Rails.application.secrets.stripe_publishable_key %>"
                   data-description= "Parking Spot Payment"
                   data-amount=
-                    <%=
+                    <%# <%=
                       if DateTime.now.on_weekend?
                         @garage.weekend*100 #*params[:length] #need dynamic jquery to fetch in length
                       else
                         @garage.weekday*100 #*params[:length]
                       end
-                    %>
+                    %> %>
                       data-locale="auto"
                   data-email= <%= current_user.email %> >
           </script>
