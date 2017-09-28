@@ -39,4 +39,12 @@
   border-radius: 15px;
 }
 
+.tabs-content .carousel-item {
+  height: auto;
+}
+
+.carousel .carousel-item {
+  width: 100%;
+}
+
 @media only screen and (max-width: 600px) { .row.valign-wrapper { display: inherit; } }
