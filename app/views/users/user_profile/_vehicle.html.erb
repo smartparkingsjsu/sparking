@@ -2,6 +2,15 @@
   <div class="row valign-wrapper">
 
     <div class="col s12 m7 center-align">
+      <% @licenseplates.each do |licenseplate| %>
+          <tr>
+            <td><%= licenseplate.license_plate %></td>
+            <td><%= licenseplate.user.name %></td>
+            <td><%= link_to 'Show', licenseplate %></td>
+            <td><%= link_to 'Edit', edit_licenseplate_path(licenseplate) %></td>
+            <td><%= link_to 'Destroy', licenseplate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
       <div class="row body-text">License plate</div>
       <div class="row body-text">Make</div>
       <div class="row body-text">Year</div>

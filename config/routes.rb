@@ -8,13 +8,14 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers:  { registrations: 'registrations'}
+  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers:  { sessions: 'users/sessions', registrations: 'users/registrations'}
 
   resources :garage_spots
   resources :spots
   resources :users
 
   resources :garages do
+    get '/dashboard' => 'pages#dashboard', :as => 'pages_dashboard'
     resources :garage_spots do
       resources :bookings
     end
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root "pages#show", page: "home"
-  post "/next" => 'pages#next', :as => 'pages_next'
-  post "/reserved" => 'pages#online_reservation', :as => 'pages_online_reservation'
+  root 'pages#show', page: 'home'
+  post '/next' => 'pages#next', :as => 'pages_next'
+  post '/reserved' => 'pages#online_reservation', :as => 'pages_online_reservation'
 end

@@ -4,23 +4,34 @@
 
     <a href="#" data-activates="mobile-sidenav" class="button-collapse"><i class="material-icons">menu</i></a>
 
+    <!-- Mobile view -->
     <ul id="mobile-sidenav" class="side-nav">
 
       <% if user_signed_in? %>
-        <li><a href="/users/<%= current_user.id %>">Profile</a></li>
+        <li><%= link_to('Profile', user_path(:id => current_user.id)) %></li>
         <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
       <% else %>
         <li><a href="register">Sign Up</a></li>
         <li><a href="login">Log In</a></li>
       <% end %>
 
-      <li><a href="/garages">Parking Garages</a></li>
-      <li><a href="#">Price</a></li>
+      <% if garage_owner? %>
+          <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?)) %></li>
+      <% else %>
+          <li><a href="/garages">Parking Garages</a></li>
+      <% end %>
 
     </ul>
 
+    <!-- PC view -->
     <ul id="nav" class="right hide-on-med-and-down">
-      <li><a href="/garages">Parking Garages</a></li>
+
+      <% if garage_owner? %>
+          <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?)) %></li>
+      <% else %>
+        <li><a href="/garages">Parking Garages</a></li>
+      <% end %>
+
       <li><a href="#">Price</a></li>
 
       <% if super_admin? || garage_owner? %>
@@ -32,7 +43,7 @@
         <a class='dropdown-button btn-flat header-btn' data-activates='dropdown1'><%= current_user.name %></a>
 
         <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="/users/<%= current_user.id %>">Profile</a></li>
+          <li><%= link_to('Profile', user_path(:id => current_user.id)) %></li>
           <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
         </ul>
 
