@@ -6,6 +6,7 @@
 
 # Ignore Edison files
 *.*~
+*.pyc
 
 # Ignore bundler config.
 /.bundle
