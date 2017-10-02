@@ -1,3 +1,4 @@
 task :test_message => :environment do
-    logger.debug "Hello World \n"
+    command "echo 'ALBERTO IS AWESOME'"
+    @bookings = Booking.all
 end
