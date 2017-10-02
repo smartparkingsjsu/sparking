@@ -1,6 +1,5 @@
 task :test_message => :environment do
     require 'sendgrid-ruby'
-    include SendGrid
     
     sendgrid = SendGrid::Client.new do |c|
         c.api_key = 'SENDGRID_APIKEY'
