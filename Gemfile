@@ -5,9 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-# Email
-gem 'sendgrid-ruby'
-
 # Frontend input masks
 gem 'jquery-inputmask-rails'
 
