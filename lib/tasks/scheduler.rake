@@ -1,4 +1,4 @@
 task :test_message => :environment do
-    command "echo 'ALBERTO IS AWESOME'"
+    puts "ALBERTO IS AWESOME"
     @bookings = Booking.all
 end
