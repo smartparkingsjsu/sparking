@@ -1,12 +1,10 @@
-class BookingNotifierMailer < ApplicationMailer
+class TestNotifierMailer < ApplicationMailer
     default :from => 'smartparkingsjsu@gmail.com'
     
     # send a signup email to the user, pass in the user object that   contains the user's email address
-    def send_booking_reminder(user, booking)
+    def test_booking_reminder(user)
     @user = user
-    @booking = booking
-
     mail(   :to => @user.email,
-            :subject => "You have a upcomming booking" )
+            :subject => "Hello World" )
     end    
 end
