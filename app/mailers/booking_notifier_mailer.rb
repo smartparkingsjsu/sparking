@@ -7,6 +7,6 @@ class BookingNotifierMailer < ApplicationMailer
     @booking = booking
 
     mail(   :to => @user.email,
-            :subject => "You have a upcomming booking" )
+            :subject => "You have an upcoming booking in 24 hours" )
     end    
 end

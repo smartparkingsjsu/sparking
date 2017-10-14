@@ -7,9 +7,10 @@ end
 
 task :booking_reminder => :environment do
     
-    @booking = Booking.first
+    @bookings = Booking.where("start_time <= ?", Time.now + 1.day)
 
-    @user = User.new(name: @booking.user.name, email: "alexischeungho@gmail.com")
-
-    BookingNotifierMailer.send_booking_reminder(@user, @booking).deliver
+    @bookings.each do |booking|
+        user = User.new(name: booking.user.name, email: "alexischeungho@gmail.com")
+        BookingNotifierMailer.send_booking_reminder(user, booking).deliver
+    end
 end
