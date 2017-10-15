@@ -1,5 +1,6 @@
 class LicenseplatesController < ApplicationController
   before_action :set_licenseplate, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /licenseplates
   # GET /licenseplates.json

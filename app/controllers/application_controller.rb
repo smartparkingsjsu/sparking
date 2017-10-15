@@ -1,6 +1,26 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :super_admin?, :garage_owner?
+  helper_method :super_admin?, :garage_owner?, :check_garage_owner?, :check_super_admin?, :check_garage_owner_super_admin?
+
+  def check_garage_owner_super_admin?
+    if super_admin? || garage_owner?.present?
+      return true
+    else
+      redirect_to root_path, notice: 'You are not suppose to be here, kid!'
+    end
+  end
+
+  def check_garage_owner?
+    if !garage_owner?
+      redirect_to root_path, notice: 'Garage Owner only! You are not suppose to be here!'
+    end
+  end
+
+  def check_super_admin?
+    if !super_admin?
+      redirect_to root_path, notice: 'Super Admin only! You are not suppose to be here!'
+    end
+  end
 
   def super_admin?
     if current_user.present? && current_user.admin? && current_user.garage_id.nil?
