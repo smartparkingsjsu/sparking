@@ -17,3 +17,6 @@ class Camera(Sensor):
 
     def write(self):
         subprocess.call(self.camera_args)
+
+    def getImagePath(self):
+        return self.image_path
