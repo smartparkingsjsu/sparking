@@ -10,7 +10,7 @@ class CheckLicenseApi(object):
         self.licensePlate = None
         self.edisonSerial = None
 
-    def buildParams(self, licensePlate, edisonSerial, confidence):
+    def buildParams(self, edisonSerial, licensePlate, confidence):
         self.licensePlate = licensePlate
         self.confidence = confidence
         self.edisonSerial = edisonSerial
