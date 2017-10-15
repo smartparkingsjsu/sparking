@@ -27,7 +27,7 @@ task :booking_end_reminder => :environment do
     @bookings = Booking.where("end_time <= ?", Time.now + 30.minutes)
 
     @bookings.each do |booking|
-        user = User.new(name: booking.user.name, email: ENV["TEST_EMAIL"])
+        user = User.new(name: booking.user.name, email: ENV["TEST_PHONE"])
         BookingNotifierMailer.send_booking_end_reminder(user, booking).deliver
     end
 end
