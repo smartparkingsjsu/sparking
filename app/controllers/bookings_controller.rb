@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   respond_to :html, :xml, :json
-  before_action :authenticate_user!
+  before_action :check_garage_owner_super_admin?
   before_action :find_garage_spot
   before_action :find_garage
 

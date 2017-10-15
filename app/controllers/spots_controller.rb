@@ -1,6 +1,6 @@
 class SpotsController < ApplicationController
   before_action :set_spot, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :check_garage_owner_super_admin?
 
   # GET /spots
   # GET /spots.json
