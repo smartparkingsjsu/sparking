@@ -4,24 +4,22 @@
     <div class="col s12 m7 center-align">
       <% @licenseplates.each do |licenseplate| %>
           <tr>
-            <td><%= licenseplate.license_plate %></td>
-            <td><%= licenseplate.user.name %></td>
-            <td><%= link_to 'Show', licenseplate %></td>
-            <td><%= link_to 'Edit', edit_licenseplate_path(licenseplate) %></td>
-            <td><%= link_to 'Destroy', licenseplate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <div class="row body-text"><td><%= licenseplate.license_plate %></td></div>
+            <div class="row body-text"><td><%= licenseplate.make %></td></div>
+            <div class="row body-text"><td><%= licenseplate.year %></td></div>
+            <div class="row body-text"><td><%= licenseplate.color %></td></div>
           </tr>
       <% end %>
-      <div class="row body-text">License plate</div>
-      <div class="row body-text">Make</div>
-      <div class="row body-text">Year</div>
-      <div class="row body-text">Color</div>
     </div>
 
     <div class="col s12 m5 center-align">
       <div><a href="#" data-activates="slide-out" class="button-collapse btn waves-effect waves-light">More</a></div>
       <br>
-      <div><a href="#" class="btn waves-effect waves-light">Edit</a></div>
+      <div><a id="vehicle-edit-toggle" href="#" class="btn waves-effect waves-light">Edit</a></div>
     </div>
-
+    
   </div>
+  
+  <%=render "users/registrations/vehicle_edit"%>
+
 </div>

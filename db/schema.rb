@@ -35,10 +35,9 @@ ActiveRecord::Schema.define(version: 20170925034840) do
   create_table "garage_spots", force: :cascade do |t|
     t.integer "garage_id"
     t.integer "spot_id"
+    t.string "serial"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "serial"
-    t.string "#<ActiveRecord::ConnectionAdapters::SQLite3::TableDefinition:0x0000000805d298>"
     t.index ["garage_id"], name: "index_garage_spots_on_garage_id"
     t.index ["serial"], name: "index_garage_spots_on_serial", unique: true
     t.index ["spot_id"], name: "index_garage_spots_on_spot_id"
@@ -55,6 +54,9 @@ ActiveRecord::Schema.define(version: 20170925034840) do
 
   create_table "licenseplates", force: :cascade do |t|
     t.string "license_plate"
+    t.string "make"
+    t.integer "year"
+    t.string "color"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -5,6 +5,7 @@ $(document).ready(function() {
         VEHICLE: $("#vehicle"),
         HISTORY: $("#history"),
         EDIT: $("#edit"),
+        VEHICLE_EDIT: $("#vehicle-edit"),
         ALL: $(".profile-container")
     };
 
@@ -23,6 +24,17 @@ $(document).ready(function() {
         }
         else {
             elementEnum.EDIT.slideDown("slow");
+            Materialize.updateTextFields();
+        }
+        editToggle = !editToggle; 
+    });
+
+    $("#vehicle-edit-toggle").click(function() {
+        if ( editToggle ) {
+            elementEnum.VEHICLE_EDIT.slideUp("slow");
+        }
+        else {
+            elementEnum.VEHICLE_EDIT.slideDown("slow");
             Materialize.updateTextFields();
         }
         editToggle = !editToggle; 

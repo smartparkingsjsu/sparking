@@ -15,6 +15,9 @@
     <% @licenseplates.each do |licenseplate| %>
       <tr>
         <td><%= licenseplate.license_plate %></td>
+        <td><%= licenseplate.make %></td>
+        <td><%= licenseplate.year %></td>
+        <td><%= licenseplate.color %></td>
         <td><%= licenseplate.user.name %></td>
         <td><%= link_to 'Show', licenseplate %></td>
         <td><%= link_to 'Edit', edit_licenseplate_path(licenseplate) %></td>
