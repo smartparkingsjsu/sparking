@@ -69,6 +69,6 @@ class LicenseplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def licenseplate_params
-      params.require(:licenseplate).permit(:license_plate, :make, :color, :year, :user_id)
+      params.require(:licenseplate).permit(:license_plate, :user_id)
     end
 end
