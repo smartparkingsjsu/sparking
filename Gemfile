@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'abracadabra', git: 'https://github.com/melvinchng/abracadabra.git'
+
 # Frontend input masks
 gem 'jquery-inputmask-rails'
 
