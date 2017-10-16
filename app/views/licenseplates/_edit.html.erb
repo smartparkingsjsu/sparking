@@ -1,0 +1,27 @@
+<%= form_for(@licenseplates) do |form| %>
+  <% if @licenseplates.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@licenseplates.errors.count, "error") %> prohibited this licenseplate from being saved:</h2>
+
+      <ul>
+      <% @licenseplates.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :license_plate %>
+    <%= form.text_field :license_plate, id: :licenseplate_license_plate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :make %>
+    <%= form.text_field :make, id: :licenseplate_license_plate %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

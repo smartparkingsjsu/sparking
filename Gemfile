@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'abracadabra', git: 'https://github.com/melvinchng/abracadabra.git'
+
 # Frontend input masks
 gem 'jquery-inputmask-rails'
 
@@ -88,3 +90,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Peformance Information
+gem 'rack-mini-profiler'

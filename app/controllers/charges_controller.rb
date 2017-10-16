@@ -1,6 +1,6 @@
 class ChargesController < ApplicationController
   before_action :set_charge, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :check_super_admin!
 
   # GET /charges
   # GET /charges.json

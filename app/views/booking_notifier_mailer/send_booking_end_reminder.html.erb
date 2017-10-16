@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Hello <%= @user.name %>! You have a booking in <%= @booking.garage_spot.garage.name %> that is going to end at <%= @booking.end_time %>. Your spot is <%= @booking.garage_spot.spot.name %></p>
+  </body>
+</html>

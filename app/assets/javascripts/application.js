@@ -21,6 +21,7 @@
 //= require jquery.inputmask.extensions
 //= require jquery.inputmask.numeric.extensions
 //= require jquery.inputmask.date.extensions
+//= require abracadabra
 
 function printPage() {
     window.print()

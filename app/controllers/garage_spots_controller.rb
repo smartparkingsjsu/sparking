@@ -1,7 +1,7 @@
 class GarageSpotsController < ApplicationController
   before_action :set_garage_spot, only: [:show, :edit, :update, :destroy]
   before_action :find_garage
-  before_action :authenticate_user!
+  before_action :check_garage_owner_super_admin?
 
   # GET /garage_spots
   # GET /garage_spots.json
