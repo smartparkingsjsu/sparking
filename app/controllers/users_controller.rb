@@ -11,9 +11,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    if params[:id].to_i != current_user.id.to_i
+      redirect_to user_path(current_user.id)
+    end
     @user = User.find(params[:id])
     @charges = Charge.joins(:booking).where("user_id = ?", current_user.id)
-    gon.charges = @charges
     @licenseplates = Licenseplate.where(user_id: current_user.id)
   end
 
