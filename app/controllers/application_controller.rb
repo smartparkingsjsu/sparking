@@ -38,6 +38,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def catch_not_found
+    yield
+  rescue ActiveRecord::RecordNotFound
+    redirect_to(:back,  :flash => { :notice => "Something goes very wrong!" })
+  end
+
   private
 
   def get_garage_times

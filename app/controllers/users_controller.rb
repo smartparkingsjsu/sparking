@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @charges = Charge.joins(:booking).where("user_id = ?", current_user.id)
+    gon.charges = @charges
     @licenseplates = Licenseplate.where(user_id: current_user.id)
   end
 
