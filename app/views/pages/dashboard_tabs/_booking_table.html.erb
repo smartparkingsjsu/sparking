@@ -1,15 +1,57 @@
+<div class="row valign-wrapper">
+  <div class="col s2 center-align">
+    <i class="small material-icons">arrow_back</i>
+  </div>
+  <div class="col s8">
+    <h5 class="center-align">10/16/17</h5>
+  </div>
+  <div class="col s2 center-align">
+    <i class="small material-icons">arrow_forward</i>
+  </div>
+</div>
+
 <table>
   <thead>
   <tr>
-    <th>ID</th>
-    <th>Start time</th>
-    <th>End time</th>
-    <th>Recurring</th>
-    <th>All day</th>
+    <th>Time</th>
+    <th>1A</th>
+    <th>1B</th>
+    <th>2A</th>
+    <th>2B</th>
   </tr>
   </thead>
 
   <tbody id="table_contents">
     <!-- Will be generated dynamically by JS -->
+
+    <!-- Sample -->
+    <tr>
+      <td>1:00AM</td>
+      <td class="spot-taken"></td>
+      <td class="spot-free"></td>
+      <td class="spot-free"></td>
+      <td class="spot-free"></td>
+    </tr>
+    <tr>
+      <td>2:00AM</td>
+      <td class="spot-free"></td>
+      <td class="spot-free"></td>
+      <td class="spot-free"></td>
+      <td class="spot-free"></td>
+    </tr>
+    <tr>
+      <td>3:00AM</td>
+      <td class="spot-free"></td>
+      <td class="spot-free"></td>
+      <td class="spot-taken"></td>
+      <td class="spot-free"></td>
+    </tr>
+    <tr>
+      <td>4:00AM</td>
+      <td class="spot-taken"></td>
+      <td class="spot-free"></td>
+      <td class="spot-free"></td>
+      <td class="spot-taken"></td>
+    </tr>
   </tbody>
 </table>

@@ -30,10 +30,6 @@ respond_to :html, :xml, :json
     if !garage_owner? && !super_admin?
       redirect_to root_path
       flash[:notice] = 'Unauthorize user!'
-    else
-      @get_garage_spot_ids = GarageSpot.where(garage_id: garage_owner?)
-      @bookings = Booking.where(garage_spot_id: @get_garage_spot_ids ).as_json
-      gon.watch.bookings = @bookings
     end
 
   end
