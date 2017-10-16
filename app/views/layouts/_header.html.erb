@@ -17,7 +17,7 @@
 
       <% if garage_owner? %>
           <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?)) %></li>
-      <% else %>
+      <% elif garage_owner? || garage_admin? %>
           <li><a href="/garages">Parking Garages</a></li>
       <% end %>
 
@@ -28,7 +28,7 @@
 
       <% if garage_owner? %>
           <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?)) %></li>
-      <% else %>
+      <% elif garage_owner? || garage_admin? %>
         <li><a href="/garages">Parking Garages</a></li>
       <% end %>
 
