@@ -16,13 +16,13 @@
       <div class="input-field col s12 m6">
         <%= label :time, "Start time" %>
         <br/><br/>
-        <%= select_tag "time", options_for_select(@booking_time.map { |obj| [obj['time'], obj['value']] })%>
+        <%= select_tag "time", options_for_select(@booking_time.map { |obj| [obj['time'], obj['value']] }), class: "start-select" %>
       </div>
 
       <div class="input-field col s12 m6">
         <%= label :end_time, "End time" %>
         <br/><br/>
-        <%= select_tag "end_time", options_for_select(@booking_time.map { |obj| [obj['time'], obj['value']] })%>
+        <%= select_tag "end_time", options_for_select(@booking_time.map { |obj| [obj['time'], obj['value']] }), class: "end-select" %>
       </div>
 
       <div class="input-field col s12 m12">
