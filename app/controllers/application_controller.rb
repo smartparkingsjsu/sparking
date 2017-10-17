@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :super_admin?, :garage_owner?, :check_garage_owner?, :check_super_admin?, :check_garage_owner_super_admin?
+  helper_method :super_admin?, :garage_owner?, :check_garage_owner?, :check_super_admin?, :check_garage_owner_super_admin?, :garage_owner_super_admin?
 
   def check_garage_owner_super_admin?
     if super_admin? || garage_owner?.present?
@@ -24,6 +24,14 @@ class ApplicationController < ActionController::Base
 
   def super_admin?
     if current_user.present? && current_user.admin? && current_user.garage_id.nil?
+      return true
+    else
+      return false
+    end
+  end
+
+  def garage_owner_super_admin?
+    if super_admin? || garage_owner?.present?
       return true
     else
       return false
