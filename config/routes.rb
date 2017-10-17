@@ -31,6 +31,6 @@ Rails.application.routes.draw do
   end
 
   root 'pages#show', page: 'home'
-  post '/next' => 'pages#next', :as => 'pages_next'
-  post '/reserved' => 'pages#online_reservation', :as => 'pages_online_reservation'
+  post '/confirmed' => 'reservations#garage_reservation', :as => 'reservations_garage_reservation'
+  post '/reserved' => 'reservations#online_reservation', :as => 'reservations_online_reservation'
 end

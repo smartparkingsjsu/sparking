@@ -2,7 +2,7 @@
 <%= stylesheet_link_tag 'reservation_partial', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 <div id="reserve-form">
-  <%= form_tag pages_online_reservation_url(@booking),
+  <%= form_tag reservations_online_reservation_url(@booking),
                :time => params[:time],
                :end_time => params[:end_time],
                :garageid => params[:garageid],
