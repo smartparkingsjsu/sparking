@@ -1,0 +1,23 @@
+<center>
+
+    <% @bookings.each do |a| %>
+        <h2>Your booking ID: <%= @hashids.encode(a.id) %></h2>
+
+        Garage: <%= a.garage_spot.garage.name %><br>
+        Spot: <%= a.garage_spot.spot.name %><br><br>
+
+        Start Time: <%= a.start_time %><br>
+        End Time: <%= a.end_time %><br>
+        Length: <%= a.length %> hour(s)<br><br>
+
+        Charges: $<%= (get_charges(a.id).amount)/100 %><br>
+        Paid: $<%= get_charges(a.id).paid %><br>
+        
+        <div class="qr"><%= raw get_qr_code(@hashids.encode(a.id)).as_html %></div>
+
+    <% end %>
+
+</center>
+
+<br>
+<%= link_to "print", "#", onclick: "printPage()", class: "button btn btn-info btn-xs" %>

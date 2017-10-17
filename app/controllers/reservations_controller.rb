@@ -126,7 +126,6 @@ respond_to :html, :xml, :json
   end
 
   private
-
     def find_garage_spot
       @garage_spot = GarageSpot.all.where("garage_id = ?", @garageid)
     end
