@@ -10,48 +10,71 @@
   </div>
 </div>
 
-<table>
+<table id="booking-table">
   <thead>
   <tr>
-    <th>Time</th>
-    <th>1A</th>
-    <th>1B</th>
-    <th>2A</th>
-    <th>2B</th>
+    <th>Spots</th>
+    <% @booking_time.each do |booking| %>
+    <th><%= booking["time"] %></th>
+    <% end %>
+
   </tr>
   </thead>
 
-  <tbody id="table_contents">
+  <tbody id="table-contents">
     <!-- Will be generated dynamically by JS -->
 
     <!-- Sample -->
-    <tr>
-      <td>1:00AM</td>
-      <td class="spot-taken"></td>
-      <td class="spot-free"></td>
-      <td class="spot-free"></td>
-      <td class="spot-free"></td>
-    </tr>
-    <tr>
-      <td>2:00AM</td>
-      <td class="spot-free"></td>
-      <td class="spot-free"></td>
-      <td class="spot-free"></td>
-      <td class="spot-free"></td>
-    </tr>
-    <tr>
-      <td>3:00AM</td>
-      <td class="spot-free"></td>
-      <td class="spot-free"></td>
-      <td class="spot-taken"></td>
-      <td class="spot-free"></td>
-    </tr>
-    <tr>
-      <td>4:00AM</td>
-      <td class="spot-taken"></td>
-      <td class="spot-free"></td>
-      <td class="spot-free"></td>
-      <td class="spot-taken"></td>
-    </tr>
-  </tbody>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+    <tr><td>dummy</td></tr>
+
+
 </table>

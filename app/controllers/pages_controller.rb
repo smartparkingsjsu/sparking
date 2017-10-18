@@ -30,8 +30,11 @@ respond_to :html, :xml, :json
     if !garage_owner? && !super_admin?
       redirect_to root_path
       flash[:notice] = 'Unauthorize user!'
+    else
+      @booking_time = get_booking_times
+      gon.garage_id = params[:garage_id]
+      gon.booking_time = @booking_time
     end
-
   end
 
   def show
