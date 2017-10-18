@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :garage_spots
       resources :bookings
       resources :triggers
+      resources :dashboards
     end
   end
 
