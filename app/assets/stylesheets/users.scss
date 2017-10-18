@@ -17,6 +17,14 @@
   height: inherit;
 }
 
+.qr-picture {
+  display: none;
+}
+
+.booking-row:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
 #vehicle,
 #vehicle-edit,
 #history,

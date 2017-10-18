@@ -15,9 +15,5 @@ $(document).ready(function() {
         $endOptions.empty();
         $endOptions.append($newEndOptions);
         $endOptions.material_select();
-
-        console.log("Selected Index", selectedIndex);
-        console.log("New Options", $newEndOptions);
-        console.log("Options", $endOptions);
     });
 });
