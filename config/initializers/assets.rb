@@ -15,6 +15,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 # stylesheet and js
 Rails.application.config.assets.precompile += %w( users.js users.css )
+Rails.application.config.assets.precompile += %w( users_reservation.js )
 Rails.application.config.assets.precompile += %w( home.js home.css )
 Rails.application.config.assets.precompile += %w( dashboard.js dashboard.css )
 Rails.application.config.assets.precompile += %w( reservation_partial.js reservation_partial.css )

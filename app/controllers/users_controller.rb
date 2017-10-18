@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def get_qr_code(hash_id)
     require 'rqrcode'
 
-    return RQRCode::QRCode.new(hash_id, :size => 8, :level => :h )
+    return RQRCode::QRCode.new(hash_id, :size => 1, :level => :h )
   end
 
   def show

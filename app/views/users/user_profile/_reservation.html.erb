@@ -1,23 +1,29 @@
-<center>
+<%= javascript_include_tag 'users_reservation', 'data-turbolinks-track': 'reload' %>
+<div>
+  <table class="bordered">
+    <thead>
+    <tr>
+      <th>Garage</th>
+      <th>Spot</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Length</th>
+    </tr>
+    </thead>
 
-    <% @bookings.each do |a| %>
-        <h2>Your booking ID: <%= @hashids.encode(a.id) %></h2>
-
-        Garage: <%= a.garage_spot.garage.name %><br>
-        Spot: <%= a.garage_spot.spot.name %><br><br>
-
-        Start Time: <%= a.start_time %><br>
-        End Time: <%= a.end_time %><br>
-        Length: <%= a.length %> hour(s)<br><br>
-
-        Charges: $<%= (get_charges(a.id).amount)/100 %><br>
-        Paid: $<%= get_charges(a.id).paid %><br>
-        
-        <div class="qr"><%= raw get_qr_code(@hashids.encode(a.id)).as_html %></div>
-
-    <% end %>
-
-</center>
-
-<br>
-<%= link_to "print", "#", onclick: "printPage()", class: "button btn btn-info btn-xs" %>
+    <tbody class="booking-table">
+      <% @bookings.each do |a| %>
+        <tr class="clickable booking-row">
+          <td><%= a.garage_spot.garage.name %></td>
+          <td><%= a.garage_spot.spot.name %></td>
+          <td><%= a.start_time %></td>
+          <td><%= a.end_time %></td>
+          <td><%= a.length %> hour(s)</td>
+        </tr>
+        <tr class="qr-picture">
+          <td><div class="qr"><%= raw get_qr_code(@hashids.encode(a.id)).as_html %></div></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

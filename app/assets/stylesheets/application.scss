@@ -48,4 +48,8 @@
   width: 100%;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 600px) { .row.valign-wrapper { display: inherit; } }
