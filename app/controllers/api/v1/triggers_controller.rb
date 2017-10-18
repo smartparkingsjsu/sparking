@@ -24,6 +24,8 @@ class API::V1::TriggersController < ApplicationController
         end
 
         debug_section
+
+        render status: :OK
     end
 
     def debug_section
