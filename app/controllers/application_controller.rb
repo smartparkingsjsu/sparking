@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :super_admin?, :garage_owner?, :check_garage_owner?, :check_super_admin?, :check_garage_owner_super_admin?
+  helper_method :super_admin?, :garage_owner?, :check_garage_owner?, :check_super_admin?, :check_garage_owner_super_admin?, :garage_owner_super_admin?
 
   def check_garage_owner_super_admin?
     if super_admin? || garage_owner?.present?
@@ -30,12 +30,26 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def garage_owner_super_admin?
+    if super_admin? || garage_owner?.present?
+      return true
+    else
+      return false
+    end
+  end
+
   def garage_owner?
     if current_user.present? && current_user.admin? && current_user.garage_id.present?
       return current_user.garage_id
     else
       return false
     end
+  end
+
+  def catch_not_found
+    yield
+  rescue ActiveRecord::RecordNotFound
+    redirect_to(:back,  :flash => { :notice => "Something goes very wrong!" })
   end
 
   private

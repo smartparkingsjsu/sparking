@@ -24,7 +24,6 @@ $(document).ready(function() {
         }
         else {
             elementEnum.EDIT.slideDown("slow");
-            Materialize.updateTextFields();
         }
         editToggle = !editToggle; 
     });
@@ -35,7 +34,6 @@ $(document).ready(function() {
         }
         else {
             elementEnum.VEHICLE_EDIT.slideDown("slow");
-            Materialize.updateTextFields();
         }
         editToggle = !editToggle; 
     });

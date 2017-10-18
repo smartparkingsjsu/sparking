@@ -1,19 +1,31 @@
 class GaragesController < ApplicationController
   before_action :set_garage, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :check_super_admin?
+  #before_action :check_super_admin?
 
   # GET /garages
   # GET /garages.json
   def index
-    @garages = Garage.all
+    if super_admin?
+      @garages = Garage.all
+    elsif garage_owner?
+      redirect_to garage_path(garage_owner?)
+    else
+      flash[:notice] = 'Unauthorize user!'
+      redirect_to root_path      
+    end
   end
 
   # GET /garages/1
   # GET /garages/1.json
-  def show
-    @skip_header = true
-    @garage_times = get_garage_times
+  def show    
+    if super_admin? || (garage_owner?.to_i == params[:id].to_i)
+      @skip_header = true
+      @garage_times = get_garage_times
+    else
+      flash[:notice] = 'Unauthorize user!'
+      redirect_to root_path
+    end
   end
 
   # GET /garages/new
