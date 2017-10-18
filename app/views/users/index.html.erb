@@ -1,5 +1,29 @@
 <%= javascript_include_tag 'users', 'data-turbolinks-track': 'reload' %>
 <%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<h2>Show All Users</h2>
-<%= @user.inspect %>
+<h2>Showing All Users</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Admin</th>
+        <th>Garage Owner</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |a| %>
+        <tr>
+          <td><%= a.id %></td>
+          <td><%= click_to_edit a, path: user_path(a), attribute: :name %></td>
+          <td><%= click_to_edit a, path: user_path(a), attribute: :phone %></td>
+          <td><%= click_to_edit a, path: user_path(a), attribute: :admin %></td>
+          <td><%= click_to_edit a, path: user_path(a), attribute: :garage_id %></td>
+          <td><%= click_to_edit a, path: user_path(a), attribute: :email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
