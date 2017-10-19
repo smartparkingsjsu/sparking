@@ -5,6 +5,7 @@
     <tr>
       <th>Garage</th>
       <th>Spot</th>
+      <th>Date</th>
       <th>Start Time</th>
       <th>End Time</th>
       <th>Length</th>
@@ -16,8 +17,9 @@
         <tr class="clickable booking-row">
           <td><%= a.garage_spot.garage.name %></td>
           <td><%= a.garage_spot.spot.name %></td>
-          <td><%= a.start_time %></td>
-          <td><%= a.end_time %></td>
+          <td><%= a.start_time.strftime("%m/%d/%y") %></td>
+          <td><%= a.start_time.strftime("%l:%M %p") %></td>
+          <td><%= a.end_time.strftime("%l:%M %p") %></td>
           <td><%= a.length %> hour(s)</td>
         </tr>
         <tr class="qr-picture">
