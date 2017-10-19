@@ -1,16 +1,33 @@
 $(document).ready(function(){
 
     var url = "http://localhost:3000/api/v1/dashboards/" + gon.garage_id;
-    var partial_url = "http://localhost:3000/garages/" + gon.garage_id + "/dashboard";
     // var url = "http://smartparkingsjsu.herokuapp.com/api/v1/dashboards/" + gon.garage_id;
 
-    var booking_times = gon.booking_time; // booking_times[0]["value"]
+    var state_date = new Date();
+    var $tableRows = $('#table-contents').children();
 
     // Data format:
     // [booking, booking, ...]
     // booking = [spot_id, spot_name, start_time, end_time, user_id]
 
+    var indexTimeHash = getRowTimeValues(); // {"<time>", "<index of row>"}
+    var indexSpotHash = getColSpotValues(); // {"<spot_name>", "<index of col>"}
+
+    setDateTitle(state_date);
+    // Update data
     update();
+
+    $('#arrow-left').click(function() {
+        updateDateTitle(state_date, "left");
+        setDateTitle(state_date);
+        update();
+    });
+
+    $('#arrow-right').click(function() {
+        updateDateTitle(state_date, "right");
+        setDateTitle(state_date);
+        update();
+    });
 
     function update() {
         $.ajax({
@@ -18,10 +35,9 @@ $(document).ready(function(){
             url: url,
             timeout: 2000,
             success: function(data) {
-                console.log(data);
                 updateTable(data);
                 // 5 secs for debbugging, change later
-                window.setTimeout(update, 30000);
+                window.setTimeout(update, 15000);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log("Error fetching data");
@@ -31,11 +47,89 @@ $(document).ready(function(){
     }
 
     function updateTable(data) {
-        $('#table-contents').empty();
+        // console.log(data);
+        var newData = [];
+
+        // Clear table
+        for (var i=0; i<(Object.keys(indexSpotHash).length); i++) {
+            for (var j=1; j<(Object.keys(indexTimeHash).length); j++) {
+                $cell = jQuery($tableRows[i].children[j]);
+                if (($cell).hasClass("spot-taken")) {
+                    $cell.removeClass("spot-taken");
+                    $cell.addClass("spot-free");
+                }
+            }
+        }
+
         $.each(data, function(i, item) {
-            var $tr = $('<tr>').append(
-                $('<td>').text(item[1])
-            ).appendTo('#table-contents');
+            // Check if date is the same as state_date
+            var startTime = new Date(item[2]);
+            var endTime = new Date(item[3]);
+            // Round up hours
+            if (endTime.getMinutes() > 30) {
+                endTime.setHours(endTime.getHours()+1);
+            }
+            if ((state_date.getFullYear() == startTime.getFullYear()) &&
+                (state_date.getMonth() == startTime.getMonth()) &&
+                (state_date.getDate() == startTime.getDate())) {
+                newData.push(item);
+
+                // Calculate start time, reservation length, spot name
+                var spotName = item[1];
+                var startHour = Math.floor(startTime.getHours());
+                var reservationLength = Math.ceil(endTime.getHours() - startTime.getHours());
+                // Adjust start time
+                if (startTime.getHours() > 30) {
+                    reservationLength++;
+                }
+
+                // Add to table
+                for (var i=0; i<reservationLength; i++) {
+                    $startCell = jQuery($tableRows[indexSpotHash[spotName]].children[indexTimeHash[startHour]+i]);
+                }
+
+                $startCell.removeClass("spot-free");
+                $startCell.addClass("spot-taken");
+            }
         });
+
+        console.log(newData);
     }
+
+    function updateDateTitle(date, increment) {
+        switch(increment) {
+            case "right":
+                date.setDate(date.getDate()+1);
+                break;
+            case "left":
+                date.setDate(date.getDate()-1);
+                break;
+            default:
+                break;
+        }
+    }
+
+    function setDateTitle(date) {
+        $('#date-title').text(date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear());
+    }
+
+    function getRowTimeValues() {
+        var indexTimeHash = {};
+        var $thead = $('#booking-table').find('tr').eq(0).children();
+
+        for (var i=1; i<$thead.length; i++) {
+            indexTimeHash[$thead[i].id] = i;
+        }
+        return indexTimeHash;
+    }
+
+    function getColSpotValues() {
+        var indexSpotHash = {};
+        var $tbody = $('#table-contents').children();
+        for (var i=0; i<$tbody.length; i++) {
+            indexSpotHash[$tbody[i].children[0].innerText] = i;
+        }
+        return indexSpotHash;
+    }
+
 });

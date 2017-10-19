@@ -32,6 +32,11 @@ respond_to :html, :xml, :json
       flash[:notice] = 'Unauthorize user!'
     else
       @booking_time = get_booking_times
+      @garage_spots = GarageSpot.where(garage_id: params[:garage_id])
+      @spots_name = []
+      @garage_spots.each do |spots|
+        @spots_name << spots.spot.name
+      end
       gon.garage_id = params[:garage_id]
       gon.booking_time = @booking_time
     end

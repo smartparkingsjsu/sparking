@@ -1,80 +1,33 @@
 <div class="row valign-wrapper">
   <div class="col s2 center-align">
-    <i class="small material-icons">arrow_back</i>
+    <i id="arrow-left" class="small material-icons clickable">arrow_back</i>
   </div>
   <div class="col s8">
-    <h5 class="center-align">10/16/17</h5>
+    <h5 id="date-title" class="center-align"><!-- Date placeholder --></h5>
   </div>
   <div class="col s2 center-align">
-    <i class="small material-icons">arrow_forward</i>
+    <i id="arrow-right" class="small material-icons clickable">arrow_forward</i>
   </div>
 </div>
 
 <table id="booking-table">
   <thead>
-  <tr>
-    <th>Spots</th>
-    <% @booking_time.each do |booking| %>
-    <th><%= booking["time"] %></th>
-    <% end %>
-
-  </tr>
+    <tr>
+      <th>Spots</th>
+      <% @booking_time.each do |booking| %>
+      <th id="<%= booking["value"] %>"><%= booking["time"] %></th>
+      <% end %>
+    </tr>
   </thead>
 
   <tbody id="table-contents">
-    <!-- Will be generated dynamically by JS -->
-
-    <!-- Sample -->
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-    <tr><td>dummy</td></tr>
-
-
+    <% for name in @spots_name %>
+      <tr>
+        <td><%= name %></td>
+        <% for i in 0..(@booking_time.length-1) %>
+          <td class="spot-free"></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
