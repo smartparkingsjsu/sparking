@@ -1,19 +1,17 @@
-<center>
-    <h2>Your booking ID: <%= @hash_booking_id %></h2>
+<div class="col s12 center-align top-margin"><h3>Your Reservation</h3></div>
 
-    Garage: <%= @booking.garage_spot.garage.name %><br>
-    Spot: <%= @booking.garage_spot.spot.name %><br><br>
+<div class="row top-margin valign-wrapper">
+  <div class="col s12 m6">
+    <div class="row"><span>Your booking ID: </span><span class="bold"><%= @hash_booking_id %></span></div>
+    <div class="row"><span>Garage: <%= @booking.garage_spot.garage.name %></span></div>
+    <div class="row"><span>Spot: </span><span class="bold"><%= @booking.garage_spot.spot.name %></span></div>
+    <div class="row"><span>Date: <%= @booking.start_time.strftime("%m/%d/%y") %></span></div>
+    <div class="row"><span>Time: </span><span class="bold"><%= @booking.start_time.strftime("%l:%M %p") %> - <%= @booking.end_time.strftime("%l:%M %p") %></span></div>
+    <div class="row"><span>Amount: $<%= (@charges.amount)/100 %></span></div>
+    <div class="row top-margin"><%= link_to "print", "#", onclick: "printPage()", class: "button btn btn-info btn-xs" %></div>
+  </div>
 
-    Start Time: <%= @booking.start_time %><br>
-    End Time: <%= @booking.end_time %><br>
-    Length: <%= @booking.length %> hour(s)<br><br>
-
-    Charges: $<%= (@charges.amount)/100 %><br>
-    Paid: <%= @charges.paid %><br><br>
-
+  <div class="col s12 m6">
     <div class="qr"><%= raw @qr.as_html %></div>
-
-</center>
-
-<br>
-<%= link_to "print", "#", onclick: "printPage()", class: "button btn btn-info btn-xs" %>
+  </div>
+</div>
