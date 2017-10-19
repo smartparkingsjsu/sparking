@@ -1,7 +1,10 @@
 $(document).ready(function(){
 
-    // var url = "http://localhost:3000/api/v1/dashboards/" + gon.garage_id;
-    var url = "http://smartparkingsjsu.herokuapp.com/api/v1/dashboards/" + gon.garage_id;
+    <% if Rails.env.development? %>
+        var url = "http://localhost:3000/api/v1/dashboards/" + gon.garage_id;
+    <% else %>
+        var url = "http://smartparkingsjsu.herokuapp.com/api/v1/dashboards/" + gon.garage_id;
+    <% end %>
 
     var state_date = new Date();
     var $tableRows = $('#table-contents').children();
