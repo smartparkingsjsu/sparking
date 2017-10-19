@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-    var url = "http://localhost:3000/api/v1/dashboards/" + gon.garage_id;
-    // var url = "http://smartparkingsjsu.herokuapp.com/api/v1/dashboards/" + gon.garage_id;
+    // var url = "http://localhost:3000/api/v1/dashboards/" + gon.garage_id;
+    var url = "http://smartparkingsjsu.herokuapp.com/api/v1/dashboards/" + gon.garage_id;
 
     var state_date = new Date();
     var $tableRows = $('#table-contents').children();
@@ -65,10 +65,7 @@ $(document).ready(function(){
             // Check if date is the same as state_date
             var startTime = new Date(item[2]);
             var endTime = new Date(item[3]);
-            // Round up hours
-            if (endTime.getMinutes() > 30) {
-                endTime.setHours(endTime.getHours()+1);
-            }
+
             if ((state_date.getFullYear() == startTime.getFullYear()) &&
                 (state_date.getMonth() == startTime.getMonth()) &&
                 (state_date.getDate() == startTime.getDate())) {
@@ -77,23 +74,19 @@ $(document).ready(function(){
                 // Calculate start time, reservation length, spot name
                 var spotName = item[1];
                 var startHour = Math.floor(startTime.getHours());
-                var reservationLength = Math.ceil(endTime.getHours() - startTime.getHours());
-                // Adjust start time
-                if (startTime.getHours() > 30) {
-                    reservationLength++;
-                }
+                // Account for its own cell so + 1
+                var reservationLength = (endTime.getHours() - startTime.getHours()) + 1;
 
                 // Add to table
                 for (var i=0; i<reservationLength; i++) {
                     $startCell = jQuery($tableRows[indexSpotHash[spotName]].children[indexTimeHash[startHour]+i]);
+                    $startCell.removeClass("spot-free");
+                    $startCell.addClass("spot-taken");
                 }
-
-                $startCell.removeClass("spot-free");
-                $startCell.addClass("spot-taken");
             }
-        });
 
-        console.log(newData);
+        });
+        console.log("New Data", newData);
     }
 
     function updateDateTitle(date, increment) {
