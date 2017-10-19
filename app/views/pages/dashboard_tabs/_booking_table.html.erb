@@ -1,0 +1,33 @@
+<div class="row valign-wrapper">
+  <div class="col s2 center-align">
+    <i id="arrow-left" class="small material-icons clickable">arrow_back</i>
+  </div>
+  <div class="col s8">
+    <div><h5 id="date-title" class="center-align"><!-- Date placeholder --></h5></div>
+  </div>
+  <div class="col s2 center-align">
+    <i id="arrow-right" class="small material-icons clickable">arrow_forward</i>
+  </div>
+</div>
+
+<table id="booking-table">
+  <thead>
+    <tr>
+      <th>Spots</th>
+      <% @booking_time.each do |booking| %>
+      <th id="<%= booking["value"] %>"><%= booking["time"] %></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody id="table-contents">
+    <% for name in @spots_name %>
+      <tr>
+        <td><%= name %></td>
+        <% for i in 0..(@booking_time.length-1) %>
+          <td class="spot-free"></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

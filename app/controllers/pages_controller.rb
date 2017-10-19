@@ -31,11 +31,15 @@ respond_to :html, :xml, :json
       redirect_to root_path
       flash[:notice] = 'Unauthorize user!'
     else
-      @get_garage_spot_ids = GarageSpot.where(garage_id: garage_owner?)
-      @bookings = Booking.where(garage_spot_id: @get_garage_spot_ids ).as_json
-      gon.watch.bookings = @bookings
+      @booking_time = get_booking_times
+      @garage_spots = GarageSpot.where(garage_id: params[:garage_id])
+      @spots_name = []
+      @garage_spots.each do |spots|
+        @spots_name << spots.spot.name
+      end
+      gon.garage_id = params[:garage_id]
+      gon.booking_time = @booking_time
     end
-
   end
 
   def show

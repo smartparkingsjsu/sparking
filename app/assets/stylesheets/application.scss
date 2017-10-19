@@ -52,4 +52,12 @@
   cursor: pointer;
 }
 
+.tabs {
+  margin-bottom: 20px;
+}
+
+.tabs-content {
+  margin-bottom: 20px;
+}
+
 @media only screen and (max-width: 600px) { .row.valign-wrapper { display: inherit; } }

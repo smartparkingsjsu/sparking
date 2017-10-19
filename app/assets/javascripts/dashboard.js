@@ -1,12 +1,128 @@
 $(document).ready(function(){
 
-    // Change timer to 30 mins, 5 secs right now
-    gon.watch("bookings", {interval: 5000}, renewBookings);
+    // var url = "http://localhost:3000/api/v1/dashboards/" + gon.garage_id;
+    var url = "http://smartparkingsjsu.herokuapp.com/api/v1/dashboards/" + gon.garage_id;
 
-    var bookingsLength = gon.bookings.length
+    var state_date = new Date();
+    var $tableRows = $('#table-contents').children();
 
-    function renewBookings(newVal) {
-        $("#swipe-1").text(newVal.length);
+    // Data format:
+    // [booking, booking, ...]
+    // booking = [spot_id, spot_name, start_time, end_time, user_id]
+
+    var indexTimeHash = getRowTimeValues(); // {"<time>", "<index of row>"}
+    var indexSpotHash = getColSpotValues(); // {"<spot_name>", "<index of col>"}
+
+    setDateTitle(state_date);
+    // Update data
+    update();
+
+    $('#arrow-left').click(function() {
+        updateDateTitle(state_date, "left");
+        setDateTitle(state_date);
+        update();
+    });
+
+    $('#arrow-right').click(function() {
+        updateDateTitle(state_date, "right");
+        setDateTitle(state_date);
+        update();
+    });
+
+    function update() {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            timeout: 2000,
+            success: function(data) {
+                updateTable(data);
+                // 5 secs for debbugging, change later
+                window.setTimeout(update, 15000);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log("Error fetching data");
+                window.setTimeout(update, 60000);
+            }
+        })
+    }
+
+    function updateTable(data) {
+        // console.log(data);
+        var newData = [];
+
+        // Clear table
+        for (var i=0; i<(Object.keys(indexSpotHash).length); i++) {
+            for (var j=1; j<(Object.keys(indexTimeHash).length); j++) {
+                $cell = jQuery($tableRows[i].children[j]);
+                if (($cell).hasClass("spot-taken")) {
+                    $cell.removeClass("spot-taken");
+                    $cell.addClass("spot-free");
+                }
+            }
+        }
+
+        $.each(data, function(i, item) {
+            // Check if date is the same as state_date
+            var startTime = new Date(item[2]);
+            var endTime = new Date(item[3]);
+
+            if ((state_date.getFullYear() == startTime.getFullYear()) &&
+                (state_date.getMonth() == startTime.getMonth()) &&
+                (state_date.getDate() == startTime.getDate())) {
+                newData.push(item);
+
+                // Calculate start time, reservation length, spot name
+                var spotName = item[1];
+                var startHour = Math.floor(startTime.getHours());
+                // Account for its own cell so + 1
+                var reservationLength = (endTime.getHours() - startTime.getHours()) + 1;
+
+                // Add to table
+                for (var i=0; i<reservationLength; i++) {
+                    $startCell = jQuery($tableRows[indexSpotHash[spotName]].children[indexTimeHash[startHour]+i]);
+                    $startCell.removeClass("spot-free");
+                    $startCell.addClass("spot-taken");
+                }
+            }
+
+        });
+        console.log("New Data", newData);
+    }
+
+    function updateDateTitle(date, increment) {
+        switch(increment) {
+            case "right":
+                date.setDate(date.getDate()+1);
+                break;
+            case "left":
+                date.setDate(date.getDate()-1);
+                break;
+            default:
+                break;
+        }
+    }
+
+    function setDateTitle(date) {
+        $('#date-title').text(date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear());
+    }
+
+    function getRowTimeValues() {
+        var indexTimeHash = {};
+        var $thead = $('#booking-table').find('tr').eq(0).children();
+
+        for (var i=1; i<$thead.length; i++) {
+            indexTimeHash[$thead[i].id] = i;
+        }
+        return indexTimeHash;
+    }
+
+    function getColSpotValues() {
+        var indexSpotHash = {};
+        var $tbody = $('#table-contents').children();
+        for (var i=0; i<$tbody.length; i++) {
+            indexSpotHash[$tbody[i].children[0].innerText] = i;
+        }
+        return indexSpotHash;
     }
 
 });
