@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   resources :garages do
     get '/dashboard' => 'pages#dashboard', :as => 'pages_dashboard'
     get '/search' => 'garages#search', :as => 'garages_search'
-    post '/result' => 'garages#result', :as => 'garages_result'
+    post '/retrieve' => 'garages#retrieve', :as => 'garages_retrieve'
+    post '/retrieve/pay' => 'garages#pay', :as => 'garages_pay'
+
     resources :garage_spots do
       resources :bookings
     end

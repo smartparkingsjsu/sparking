@@ -16,6 +16,11 @@ class GaragesController < ApplicationController
     end
   end
 
+  def reterive_booking_id
+    hashids = Hashids.new("$p@rk!ng", 4)
+    @booking_id = hashids.decode(@hash_booking_id)
+  end
+
   def form_data_for_session
     session[:license_plate] = params[:license_plate]
     session[:booking_confirmation] = params[:booking_confirmation]
@@ -25,11 +30,22 @@ class GaragesController < ApplicationController
     form_data_for_session
   end
 
-  def result
+  def retrieve
     form_data_for_session
-    
-    @license_plate = session[:license_plate]
-    @booking_confirmation = session[:booking_confirmation]
+    @hash_booking_id = session[:booking_confirmation]
+
+    reterive_booking_id
+    @charge = Charge.where(booking_id: @booking_id).first
+
+    if @charge.nil?
+      redirect_to garage_garages_search_path, notice: 'Unable to retreive booking with Booking Confirmation!'
+    else
+
+      if @charge.update_attributes(paid: true)
+        redirect_to garage_garages_search_path, notice: 'You have paid your due successfully!'
+      end
+    end
+
   end
 
   # GET /garages/1
