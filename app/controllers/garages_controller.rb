@@ -16,6 +16,22 @@ class GaragesController < ApplicationController
     end
   end
 
+  def form_data_for_session
+    session[:license_plate] = params[:license_plate]
+    session[:booking_confirmation] = params[:booking_confirmation]
+  end
+
+  def search
+    form_data_for_session
+  end
+
+  def result
+    form_data_for_session
+    
+    @license_plate = session[:license_plate]
+    @booking_confirmation = session[:booking_confirmation]
+  end
+
   # GET /garages/1
   # GET /garages/1.json
   def show    

@@ -16,9 +16,12 @@ Rails.application.routes.draw do
 
   resources :garages do
     get '/dashboard' => 'pages#dashboard', :as => 'pages_dashboard'
+    get '/search' => 'garages#search', :as => 'garages_search'
+    post '/result' => 'garages#result', :as => 'garages_result'
     resources :garage_spots do
       resources :bookings
     end
+    resources :charges
   end
 
   namespace :api, :defaults => {:format => 'json'} do

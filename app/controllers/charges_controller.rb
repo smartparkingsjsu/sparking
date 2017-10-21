@@ -1,12 +1,21 @@
 class ChargesController < ApplicationController
   before_action :set_charge, only: [:show, :edit, :update, :destroy]
-  before_action :check_super_admin!
+  before_action :set_garage
+  before_action :check_garage_owner_super_admin?
 
   # GET /charges
   # GET /charges.json
+  def search
+  end
+
   def index
-    if super_admin?
-      @charges = Charge.all
+    if check_garage_owner_super_admin?
+      if @garage.present?
+        @bookings = Booking.joins(garage_spot: :garage).where("garage_spots.garage_id = ?", params[:garage_id])
+        @charges = Charge.where(booking_id: @bookings)
+      else
+        @charges = Charge.all
+      end
     else
       flash[:notice] = 'Unauthorize user!'
       redirect_to root_path
@@ -71,6 +80,10 @@ class ChargesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_charge
       @charge = Charge.find(params[:id])
+    end
+
+    def set_garage
+      @garage = Garage.find(params[:garage_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
