@@ -1,0 +1,10 @@
+<%= form_tag garage_garages_retrieve_path do %>
+
+    <div class="input-field col s12 m12">
+      <%= label :booking_confirmation, "Booking Confirmation" %>
+      <%= text_field_tag :booking_confirmation %>
+    </div>
+
+    <%= submit_tag 'submit', class: "btn" %>
+
+<% end %>
