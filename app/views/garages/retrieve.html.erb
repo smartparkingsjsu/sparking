@@ -1,20 +1,30 @@
-<%= @get_user_id.inspect %>
+<%= form_tag garage_garages_charged_path do %>
 
-<br>
-<br>
-License Plate <%= @license_plate.inspect %>
+  <div class="col s12 center-align top-margin"><h3>Your Booking Due</h3></div>
 
-<br>
-<br>
+  <div class="row top-margin valign-wrapper">
+    <div class="col s12 m12">
+        <div class="row"><span>Your booking ID: </span><span class="bold"><%= @hash_booking_id %></span></div>
+        <div class="row"><span>Garage: <%= @charge.booking.garage_spot.garage.name %></span></div>
+        <div class="row"><span>Spot: </span><span class="bold"><%= @charge.booking.garage_spot.spot.name %></span></div>
+        <div class="row"><span>Date: <%= @charge.booking.start_time.strftime("%m/%d/%y") %></span></div>
+        <div class="row"><span>Time: </span><span class="bold"><%= @charge.booking.start_time.strftime("%l:%M %p") %> - <%= @charge.booking.end_time.strftime("%l:%M %p") %></span></div>
+        <div class="row"><span>Amount: $<%= (@charge.amount)/100 %></span></div>
+        <div class="row"><span>Paid: <%= @charge.paid %></span></div>
+    </div>
+  </div>
 
-Booking <%= @booking.inspect %>
+  <% unless (garage_owner?.present?) %>
+    <%= submit_tag 'Pay Now', class: "btn" %>
+  <% else %>
+    <%= hidden_field_tag :user_booking_view, current_user.id %>
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key= "<%= Rails.application.secrets.stripe_publishable_key %>"
+            data-description= "Parking Spot Payment"
+            data-amount= "<%= @charge.amount %>"
+            data-locale="auto"
+            data-email= <%= current_user.email %> >
+    </script>
+  <% end %>
 
-<br>
-<br>
-
-Charge: <%= @charge.inspect %>
-
-<br>
-<br>
-
-Result <%= @result.inspect %>
+<% end %>

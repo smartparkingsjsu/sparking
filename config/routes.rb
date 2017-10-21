@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get '/dashboard' => 'pages#dashboard', :as => 'pages_dashboard'
     get '/search' => 'garages#search', :as => 'garages_search'
     post '/retrieve' => 'garages#retrieve', :as => 'garages_retrieve'
-    post '/retrieve/pay' => 'garages#pay', :as => 'garages_pay'
+    post '/retrieve/charged' => 'garages#charged', :as => 'garages_charged'
 
     resources :garage_spots do
       resources :bookings

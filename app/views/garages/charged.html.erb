@@ -1,0 +1,16 @@
+  <div class="col s12 center-align top-margin"><h3>Thank You! Payment Success!</h3></div>
+
+  <div class="row top-margin valign-wrapper">
+    <div class="col s12 m12">
+      <div class="row"><span>Your booking ID: </span><span class="bold"><%= @hash_booking_id %></span></div>
+      <div class="row"><span>Garage: <%= @charge.booking.garage_spot.garage.name %></span></div>
+      <div class="row"><span>Spot: </span><span class="bold"><%= @charge.booking.garage_spot.spot.name %></span></div>
+      <div class="row"><span>Date: <%= @charge.booking.start_time.strftime("%m/%d/%y") %></span></div>
+      <div class="row"><span>Time: </span><span class="bold"><%= @charge.booking.start_time.strftime("%l:%M %p") %> - <%= @charge.booking.end_time.strftime("%l:%M %p") %></span></div>
+      <div class="row"><span>Amount: $<%= (@charge.amount)/100 %></span></div>
+      <div class="row"><span>Paid: <%= @charge.paid %></span></div>
+      <div class="row top-margin"><%= link_to "print", "#", onclick: "printPage()", class: "button btn btn-info btn-xs" %></div>
+    </div>
+  </div>
+  
+  <meta http-equiv="refresh" content="30; URL='<%= garage_garages_search_path %>'" />

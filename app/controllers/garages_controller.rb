@@ -1,6 +1,7 @@
 class GaragesController < ApplicationController
   before_action :set_garage, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  include ReservationsHelper
   #before_action :check_super_admin?
 
   # GET /garages
@@ -21,31 +22,29 @@ class GaragesController < ApplicationController
     @booking_id = hashids.decode(@hash_booking_id)
   end
 
-  def form_data_for_session
-    session[:license_plate] = params[:license_plate]
-    session[:booking_confirmation] = params[:booking_confirmation]
-  end
-
-  def search
-    form_data_for_session
-  end
-
   def retrieve
-    form_data_for_session
+    session[:booking_confirmation] = params[:booking_confirmation]
     @hash_booking_id = session[:booking_confirmation]
 
     reterive_booking_id
-    @charge = Charge.where(booking_id: @booking_id).first
+    @charge = Charge.joins(booking: :user).where(booking_id: @booking_id).first
 
     if @charge.nil?
       redirect_to garage_garages_search_path, notice: 'Unable to retreive booking with Booking Confirmation!'
     else
-
-      if @charge.update_attributes(paid: true)
-        redirect_to garage_garages_search_path, notice: 'You have paid your due successfully!'
-      end
+      session[:booking_id] = @booking_id
     end
+  end
 
+  def charged
+    @booking_id = session[:booking_id]
+    @charge = Charge.joins(booking: :user).where(booking_id: @booking_id).first
+  
+    if @charge.update_attributes(paid: true)
+      flash[:notice] = 'You have paid your due successfully!'
+    else
+      redirect_to garage_garages_search_path, notice: 'Something goes wrong!' #Not going to happen
+    end
   end
 
   # GET /garages/1
