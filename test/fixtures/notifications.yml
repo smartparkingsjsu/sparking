@@ -2,12 +2,12 @@
 
 one:
   recipient_id: 1
-  event_id: 1
+  booking_id: 1
   read_at: 2017-09-23 18:02:07
   action: MyString
 
 two:
   recipient_id: 1
-  event_id: 1
+  booking_id: 1
   read_at: 2017-09-23 18:02:07
   action: MyString
