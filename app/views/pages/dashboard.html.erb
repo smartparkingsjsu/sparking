@@ -1,5 +1,7 @@
-<%= javascript_include_tag 'dashboard', 'data-turbolinks-track': 'reload' %>
-<%= stylesheet_link_tag 'dashboard', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% content_for :head do %>
+    <%= javascript_include_tag 'dashboard', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'dashboard', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% end %>
 
 <div class="top-margin">
   <h2 class="center-align">Dashboard</h2>
