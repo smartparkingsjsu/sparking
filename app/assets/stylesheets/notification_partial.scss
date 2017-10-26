@@ -1,0 +1,13 @@
+@import "utilities/variables";
+
+.notification-block {
+  border: solid 3px $background-light-color;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 10px 10px 10px 10px;
+}
+
+.notification-block .material-icons {
+  margin-right: 40px;
+  margin-top: 5px;
+}
