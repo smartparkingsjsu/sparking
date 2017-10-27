@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170925034840) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["license_plate"], name: "index_licenseplates_on_license_plate", unique: true
     t.index ["user_id"], name: "index_licenseplates_on_user_id"
   end
 
@@ -83,7 +84,6 @@ ActiveRecord::Schema.define(version: 20170925034840) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.bigint "phone"
-    t.string "license_plate"
     t.boolean "admin", default: false, null: false
     t.integer "garage_id"
     t.string "email", default: "", null: false
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 20170925034840) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["garage_id"], name: "index_users_on_garage_id"
-    t.index ["license_plate"], name: "index_users_on_license_plate", unique: true
   end
 
 end

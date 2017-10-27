@@ -4,7 +4,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       ## User information
       t.string :name
       t.bigint :phone
-      t.string :license_plate
       t.boolean :admin,             null: false, default: "f"
       t.references :garage, foreign_key: true
       
@@ -41,7 +40,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
     end
 
     add_index :users, :email,                  unique: true
-    add_index :users, :license_plate,          unique: true
     # add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
