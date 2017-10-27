@@ -16,10 +16,12 @@
       <%= f.text_field :phone, class: "phone-text", autofocus: true, required: true %>
     </div>
 
-    <div class="input-field">
-      <%= f.label :license_plate %>
-      <%= f.text_field :license_plate, autofocus: true, required: true %>
-    </div>
+    <%= f.fields_for :licenseplates do |g| %>
+      <div class="input-field">
+        <%= g.label :license_plate %>
+        <%= g.text_field :license_plate, autofocus: true, required: true %>
+      </div>
+    <% end %>
 
     <div class="input-field">
       <%= f.label :password %>

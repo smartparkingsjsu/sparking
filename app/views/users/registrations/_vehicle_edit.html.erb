@@ -1,33 +1,17 @@
 <div id="vehicle-edit">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(@user) do |f| %>
   <%= devise_error_messages! %>
 
-  <% if @licenseplates.present? %>
-    <% @licenseplates.each do |a| %>
-      <div class="input-field">
-        <%= f.label :license_plate %>
-        <%= f.text_field :license_plate, autofocus: true, value: a.license_plate, required: true %>
-      </div>
-
-      <div class="input-field">
-        <%= f.label :make %>
-        <%= f.text_field :make, autofocus: true, value: a.make, required: true %>
-      </div>
-
-      <div class="input-field">
-        <%= f.label :year %>
-        <%= f.number_field :year, autofocus: true, value: a.year, required: true %>
-      </div>
-
-      <div class="input-field">
-        <%= f.label :color %>
-        <%= f.text_field :color, autofocus: true, value: a.color, required: true %>
-      </div>
-    <% end %>
-  <% end %>  
+    <div class="licenseplates">
+      <%= f.fields_for :licenseplates do |g| %>
+        <%= render 'users/licenseplate_fields', f: g %>
+      <% end %>
+    </div>
 
     <div class="actions">
-         <%= f.submit "Update", class: "btn" %>
+      <%= f.submit "Update", class: "btn" %>
+      <%= link_to_add_association 'Add License Plate', f, :licenseplates, class: "btn", data: 
+          { association_insertion_node: '.licenseplates', association_insertion_method: :append } %>
     </div>
 </div>
 

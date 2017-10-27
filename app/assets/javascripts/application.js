@@ -22,6 +22,7 @@
 //= require jquery.inputmask.numeric.extensions
 //= require jquery.inputmask.date.extensions
 //= require abracadabra
+//= require cocoon
 
 function printPage() {
     window.print()

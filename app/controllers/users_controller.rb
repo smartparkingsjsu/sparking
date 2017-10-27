@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user.licenseplates.build
   end
 
   def update
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :admin, :garage_id)
+      params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :admin, :garage_id, licenseplates_attributes: Licenseplate.attribute_names.map(&:to_sym).push(:_destroy))
     end
 
 end

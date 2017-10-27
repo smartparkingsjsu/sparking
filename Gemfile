@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'abracadabra', git: 'https://github.com/melvinchng/abracadabra.git'
+gem 'cocoon'
 
 # Frontend input masks
 gem 'jquery-inputmask-rails'
