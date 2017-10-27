@@ -4,14 +4,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     resource.update_attribute(:phone, params[:user][:phone].gsub(/\D/, ''))
-
-    # @get_license_plate = params[:user][:license_plate]
-    # @get_make = params[:user][:make]  
-    # @get_color = params[:user][:color]
-    # @get_year = params[:user][:year]
-    
-    # @a = Licenseplate.create(user_id: @user.id, license_plate: @get_license_plate, make: @get_make, color: @get_color, year: @get_year)
-    # @a.save
     
     @user.licenseplates.build
   end
@@ -19,34 +11,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     super
-
-    @user.licenseplates.build
-    # @licenseplates = Licenseplate.where(user_id: current_user.id)
-    # @make = Licenseplate.where(user_id: current_user.id)
-    # @color = Licenseplate.where(user_id: current_user.id)
-    # @year = Licenseplate.where(user_id: current_user.id)
   end
 
   def show
     super
-    # @licenseplates = Licenseplate.where(user_id: current_user.id)
-    # @make = Licenseplate.where(user_id: current_user.id)
-    # @color = Licenseplate.where(user_id: current_user.id)
-    # @year = Licenseplate.where(user_id: current_user.id)
   end
 
   # PUT /resource
   def update
-    # @get_license_plate = params[:user][:license_plate]
-    # @get_make = params[:user][:make]  
-    # @get_color = params[:user][:color]
-    # @get_year = params[:user][:year]
-    
-    # update_license_plate = Licenseplate.find(1)
-    # update_license_plate.update_attributes(user_id: current_user.id, license_plate: @get_license_plate, make: @get_make, color: @get_color, year: @get_year)
-
-    # new_params = params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :current_password)
-
     change_password = true
     if params[:user][:password].blank?
       params[:user].delete("password")

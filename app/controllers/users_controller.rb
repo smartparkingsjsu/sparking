@@ -40,9 +40,7 @@ class UsersController < ApplicationController
         redirect_to user_path(current_user.id)
       end
     end
-
-    @licenseplates = Licenseplate.where(user_id: current_user.id)
-
+    
     get_user_booking
   end
 
