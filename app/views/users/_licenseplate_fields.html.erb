@@ -1,5 +1,21 @@
 <div class="input-field">
-    <%= link_to_remove_association "Delete", f, class: "btn" %>
     <%= f.label :license_plate %>
     <%= f.text_field :license_plate, autofocus: true, required: true %>
 </div>
+
+<div class="input-field">
+    <%= f.label :make %>
+    <%= f.text_field :make, autofocus: true, required: true %>
+</div>
+
+<div class="input-field">
+    <%= f.label :year %>
+    <%= f.text_field :year, autofocus: true, required: true %>
+</div>
+
+<div class="input-field">
+    <%= f.label :color %>
+    <%= f.text_field :color, autofocus: true, required: true %>
+</div>
+
+<%= link_to_remove_association "Delete", f, class: "btn" %>`

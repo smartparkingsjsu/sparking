@@ -2,6 +2,9 @@
   <div class="row valign-wrapper">
 
     <div class="col s12 m7 center-align">
+      <% if !@user.licenseplates.present? %>
+        <div class="row body-text"><td>No license plate assoiate to your account.</td></div>
+      <% end %>
       <% @user.licenseplates.each do |licenseplate| %>
           <tr>
             <div class="row body-text"><td><%= licenseplate.license_plate %></td></div>

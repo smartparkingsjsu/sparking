@@ -1,6 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :super_admin?, :garage_owner?, :check_garage_owner?, :check_super_admin?, :check_garage_owner_super_admin?, :garage_owner_super_admin?
+  helper_method :super_admin?, :garage_owner?, :check_garage_owner?, :check_super_admin?, :check_garage_owner_super_admin?, :garage_owner_super_admin?, :check_license_plate_exists?
+
+
+  def check_license_plate_exists?
+    if garage_owner_super_admin?
+      return true
+    else
+      if current_user.licenseplates.present?
+        return true
+      else
+        return false
+      end
+    end
+  end
 
   def check_garage_owner_super_admin?
     if super_admin? || garage_owner?.present?
