@@ -1,19 +1,13 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
   # POST /resource
   def create
     super
-    resource.update_attribute(:phone, params[:user][:phone].gsub(/\D/, ''))
     
-    @user.licenseplates.build
+    resource.update_attribute(:phone, params[:user][:phone].gsub(/\D/, ''))
   end
 
   # GET /resource/edit
   def edit
-    super
-  end
-
-  def show
     super
   end
 
