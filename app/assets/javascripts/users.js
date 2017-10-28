@@ -1,22 +1,11 @@
 $(document).ready(function() {
 
     var elementEnum = {
-        ACCOUNT: $("#account"),
-        VEHICLE: $("#vehicle"),
-        HISTORY: $("#history"),
         EDIT: $("#edit"),
-        VEHICLE_EDIT: $("#vehicle-edit"),
-        ALL: $(".profile-container")
+        VEHICLE_EDIT: $("#vehicle-edit")
     };
 
     var editToggle = false;
-
-
-    $("#account-toggle").click(function() {
-        fadeOut(elementEnum.ALL);
-        fadeIn(elementEnum.ACCOUNT);
-        $('.button-collapse').sideNav('hide');
-    });
 
     $("#edit-toggle").click(function() {
         if ( editToggle ) {
@@ -36,18 +25,6 @@ $(document).ready(function() {
             elementEnum.VEHICLE_EDIT.slideDown("slow");
         }
         editToggle = !editToggle; 
-    });
-
-    $("#vehicle-toggle").click(function() {
-        fadeOut(elementEnum.ALL);
-        fadeIn(elementEnum.VEHICLE);
-        $('.button-collapse').sideNav('hide');
-    });
-
-    $("#history-toggle").click(function() {
-        fadeOut(elementEnum.ALL);
-        fadeIn(elementEnum.HISTORY);
-        $('.button-collapse').sideNav('hide');
     });
 
     function fadeOut(element) {
