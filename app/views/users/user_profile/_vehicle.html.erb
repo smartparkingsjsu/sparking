@@ -2,22 +2,25 @@
   <div class="row valign-wrapper">
 
     <div class="col s12 m7 center-align">
-      <% @licenseplates.each do |licenseplate| %>
+      <% if !@user.licenseplates.present? %>
+        <div class="row body-text"><span class="bold error-message">* License plate required for reservation!</span></div>
+      <% end %>
+      <% @user.licenseplates.each do |licenseplate| %>
           <tr>
-            <div class="row body-text"><td><%= licenseplate.license_plate %></td></div>
-            <div class="row body-text"><td><%= licenseplate.make %></td></div>
-            <div class="row body-text"><td><%= licenseplate.year %></td></div>
-            <div class="row body-text"><td><%= licenseplate.color %></td></div>
+            <div class="row body-text"><span><%= licenseplate.license_plate %></span></div>
+            <div class="row body-text"><span><%= licenseplate.make %></span></div>
+            <div class="row body-text"><span><%= licenseplate.year %></span></div>
+            <div class="row body-text"><span><%= licenseplate.color %></span></div>
           </tr>
       <% end %>
     </div>
 
     <div class="col s12 m5 center-align">
-      <div><a id="vehicle-edit-toggle" href="#" class="btn waves-effect waves-light">Edit</a></div>
+      <div><i id="vehicle-edit-toggle" class="small material-icons"><a href="#">edit</a></i></div>
     </div>
     
   </div>
   
-  <%=render "users/registrations/vehicle_edit"%>
+  <%=render "users/user_profile/vehicle_edit"%>
 
 </div>

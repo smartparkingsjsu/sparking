@@ -13,12 +13,13 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user.licenseplates.build
   end
 
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'Spot was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -39,9 +40,7 @@ class UsersController < ApplicationController
         redirect_to user_path(current_user.id)
       end
     end
-
-    @licenseplates = Licenseplate.where(user_id: current_user.id)
-
+    
     get_user_booking
   end
 
@@ -60,7 +59,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :admin, :garage_id)
+      params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :admin, :garage_id, licenseplates_attributes: Licenseplate.attribute_names.map(&:to_sym).push(:_destroy))
     end
 
 end

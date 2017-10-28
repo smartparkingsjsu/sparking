@@ -1,54 +1,51 @@
 <div id="edit">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
 
-  <div class="input-field">
-    <%= f.label :name %>
-    <%= f.text_field :name, autofocus: true, value: @current_user.name, required: true %>
-  </div>
-
-  <% if super_admin? || garage_owner? %>
     <div class="input-field">
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, value: @current_user.email, required: true, disabled: false %>
+      <%= f.label :name %>
+      <%= f.text_field :name, autofocus: true, value: @current_user.name, required: true %>
+    </div>
+
+    <% if super_admin? || garage_owner? %>
+      <div class="input-field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, value: @current_user.email, required: true, disabled: false %>
+      </div>
+    <% end %>
+
+    <div class="input-field">
+      <%= f.label :phone %>
+      <%= f.text_field :phone, class: "phone-text", autofocus: true, value: @current_user.phone, required: true %>
+    </div> 
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div id="password">
+      <div class="input-field">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "off" %>
+        <% if @minimum_password_length %>
+          <em><%= @minimum_password_length %> characters minimum</em>
+        <% end %>
+      </div>
+
+      <div class="input-field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+
+      <div class="input-field">
+        <%= f.label :current_password %>
+        <%= f.password_field :current_password, autocomplete: "off" %>
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update", class: "btn" %>
     </div>
   <% end %>
-
-  <div class="input-field">
-    <%= f.label :phone %>
-    <%= f.text_field :phone, class: "phone-text", autofocus: true, value: @current_user.phone, required: true %>
-  </div> 
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-<div id="password">
-
-  <div class="input-field">
-    <%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="input-field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="input-field">
-    <%= f.label :current_password %>
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-</div>
-
-  <div class="actions">
-    <%= f.submit "Update", class: "btn" %>
-  </div>
-<% end %>
 </div> 
-
-
