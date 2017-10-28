@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
     <% if Rails.env.development? %>
-        var url = "http://localhost:3000/api/v1/dashboards/" + gon.garage_id;
+    var url = "http://localhost:3000/api/v1/dashboards/" + gon.garage_id;
     <% else %>
-        var url = "http://smartparkingsjsu.herokuapp.com/api/v1/dashboards/" + gon.garage_id;
+    var url = "http://smartparkingsjsu.herokuapp.com/api/v1/dashboards/" + gon.garage_id;
     <% end %>
 
     var state_date = new Date();
@@ -39,8 +39,8 @@ $(document).ready(function(){
             timeout: 2000,
             success: function(data) {
                 updateTable(data);
-                // 5 secs for debbugging, change later
-                window.setTimeout(update, 15000);
+                // 1 min
+                window.setTimeout(update, 1000000);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log("Error fetching data");

@@ -1,5 +1,7 @@
-<%= javascript_include_tag 'home', 'data-turbolinks-track': 'reload' %>
-<%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% content_for :head do %>
+    <%= javascript_include_tag 'home', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% end %>
 
 <%# <div class="map-frame" style='width: 100%;'>
   <div id="map" style='width: 100%; height: 50vh;'></div>
