@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       resources :bookings
       resources :triggers
       resources :dashboards
+      resources :notifications
     end
   end
 
