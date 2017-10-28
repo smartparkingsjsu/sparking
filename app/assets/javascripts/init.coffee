@@ -2,7 +2,6 @@ $(document).on 'ready turbolinks:load', ->
   $('.modal').modal();
   $('.button-collapse').sideNav();
   $('select').material_select();
-  $('ul.tabs').tabs({'swipeable': true});
   $('ul.tabs').tabs('select_tab', 'tab_id');
   Materialize.updateTextFields();
   Waves.displayEffect()

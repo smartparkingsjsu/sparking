@@ -1,4 +1,7 @@
-<%= javascript_include_tag 'users_reservation', 'data-turbolinks-track': 'reload' %>
+<% content_for :head do %>
+    <%= javascript_include_tag 'users_reservation', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
 <div>
   <table class="bordered">
     <thead>
