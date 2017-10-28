@@ -3,22 +3,6 @@
     <%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
-<!-- Sidenav -->
-<ul id="slide-out" class="side-nav">
-  <li><div class="user-view">
-    <div class="background">
-    </div>
-    <img class="circle" src="http://i0.kym-cdn.com/entries/icons/original/000/005/543/Image7.png">
-    <a><span class="name"><%= @user.name %></span></a>
-    <a><span class="email"><%= @user.email %></span></a>
-  </div></li>
-  <li><div class="divider"></div></li>
-  <li><a id="account-toggle" href="#" class="waves-effect">Account</a></li>
-  <li><a id="vehicle-toggle" href="#" class="waves-effect">Vehicle Information</a></li>
-  <li><a id="history-toggle" href="#" class="waves-effect">History</a></li>
-</ul>
-
-
 <!-- Account -->
 <%= render "users/user_profile/account"%>
 
