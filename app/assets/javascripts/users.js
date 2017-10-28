@@ -27,12 +27,30 @@ $(document).ready(function() {
         editToggle = !editToggle; 
     });
 
-    function fadeOut(element) {
-        element.fadeOut(200);
-    }
+    // TODO: Move to license plate js file
+    var $this;
+    var $parent;
 
-    function fadeIn(element) {
-        element.slideUp( 300 ).delay( 300 ).fadeIn( 400 );
+    $("#add-license").click(function() {
+        setTimeout(function(){
+            $('.tooltipped').tooltip({delay: 50});
+            refreshRemoveJquery();
+        }, 400);
+    });
+
+    refreshRemoveJquery();
+
+    function refreshRemoveJquery() {
+        $(".remove-license").click(function() {
+            $this = $(this);
+            $parent = $this.parent().parent();
+            if ($parent.find("a").hasClass("dynamic")) {
+                $parent.hide(500, function() {$parent.remove()});
+            }
+            else {
+                $parent.hide(500);
+            }
+        });
     }
 
 });

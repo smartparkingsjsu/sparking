@@ -3,11 +3,13 @@
     <%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
-<!-- Account -->
-<%= render "users/user_profile/account"%>
+<div class="row top-margin">
+  <!-- Account -->
+  <%= render "users/user_profile/account"%>
 
-<!-- Vehicle -->
-<%= render "users/user_profile/vehicle"%>
+  <!-- Vehicle -->
+  <%= render "users/user_profile/vehicle"%>
 
-<!-- History -->
-<%= render "users/user_profile/history"%>
+  <!-- History -->
+  <%= render "users/user_profile/history"%>
+</div>

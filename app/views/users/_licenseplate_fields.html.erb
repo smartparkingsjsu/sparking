@@ -1,21 +1,28 @@
-<div class="input-field">
-    <%= f.label :license_plate %>
-    <%= f.text_field :license_plate, autofocus: true, required: true %>
+<div class="row valign-wrapper">
+  <div class="col s11 m11">
+    <div class="input-field">
+      <%= f.label :license_plate %>
+      <%= f.text_field :license_plate, autofocus: true, required: true %>
+    </div>
+
+    <div class="input-field">
+      <%= f.label :make %>
+      <%= f.text_field :make, autofocus: true, required: false %>
+    </div>
+
+    <div class="input-field">
+      <%= f.label :year %>
+      <%= f.text_field :year, autofocus: true, required: false %>
+    </div>
+
+    <div class="input-field">
+      <%= f.label :color %>
+      <%= f.text_field :color, autofocus: true, required: false %>
+    </div>
+  </div>
+  <div class="col s1 m1">
+    <i class="remove-license right-align small material-icons tooltipped" data-position="top" data-delay="50"
+       data-tooltip="Remove license plate"><%= link_to_remove_association "delete", f %></i>
+  </div>
 </div>
 
-<div class="input-field">
-    <%= f.label :make %>
-    <%= f.text_field :make, autofocus: true, required: true %>
-</div>
-
-<div class="input-field">
-    <%= f.label :year %>
-    <%= f.text_field :year, autofocus: true, required: true %>
-</div>
-
-<div class="input-field">
-    <%= f.label :color %>
-    <%= f.text_field :color, autofocus: true, required: true %>
-</div>
-
-<%= link_to_remove_association "Delete", f, class: "btn" %>`
