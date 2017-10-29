@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
     <% if Rails.env.development? %>
-    var url = "http://localhost:3000/api/v1/dashboards/" + gon.garage_id;
+      var url = "http://localhost:3000/api/v1/dashboards/" + gon.garage_id;
     <% else %>
-    var url = "http://smartparkingsjsu.herokuapp.com/api/v1/dashboards/" + gon.garage_id;
+      var url = "http://smartparkingsjsu.herokuapp.com/api/v1/dashboards/" + gon.garage_id;
     <% end %>
 
     var state_date = new Date();
@@ -50,7 +50,6 @@ $(document).ready(function(){
     }
 
     function updateTable(data) {
-        // console.log(data);
         var newData = [];
 
         // Clear table
@@ -89,7 +88,6 @@ $(document).ready(function(){
             }
 
         });
-        console.log("New Data", newData);
     }
 
     function updateDateTitle(date, increment) {
