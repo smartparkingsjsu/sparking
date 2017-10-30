@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  
+  root 'pages#show', page: 'home'
+  mount ActionCable.server, at: '/cable'
+
   resources :licenseplates
   resources :charges
   
@@ -37,7 +41,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'pages#show', page: 'home'
   post '/confirmed' => 'reservations#garage_reservation', :as => 'reservations_garage_reservation'
   post '/reserved' => 'reservations#online_reservation', :as => 'reservations_online_reservation'
 end

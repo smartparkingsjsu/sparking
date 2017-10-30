@@ -23,7 +23,7 @@ class API::V1::TriggersController < ApplicationController
         Notification.create(recipient_id: @get_garage_owner_id, booking_id: @get_booking.id, confidence: @confidence, action: "license plate mismatch") 
     end
 
-    debug_section
+    #debug_section
 
     render status: :OK, json: {
         message: "Successfully created notification",
