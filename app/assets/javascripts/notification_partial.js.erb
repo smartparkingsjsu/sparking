@@ -14,6 +14,8 @@ $(document).ready(function() {
                       ' data-tooltip="Problem has been solved">check_circle</i>'
     };
 
+    var dateHash = {};
+    var sortedDateKeys = [];
     var $this;
     var $parent;
 
@@ -25,11 +27,11 @@ $(document).ready(function() {
             url: url,
             timeout: 2000,
             success: function(data) {
-                console.log("Data", data);
+                //console.log("Data", data);
                 addNotificationRows(data);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log("Error fetching data");
+                //console.log("Error fetching data");
                 Materialize.toast("Error fetching data", 4000);
                 window.setTimeout(getNotifications, 60000);
             }
@@ -44,8 +46,33 @@ $(document).ready(function() {
             Materialize.toast("Error fetching data", 4000);
             return -1;
         }
+
+        // Sort dates
         for (var i=0; i<notifications.length; i++) {
-            addNotification(notifications[i]);
+            var date = new Date(notifications[i].created_at.split('T')[0]);
+            //console.log("Iteration", i, date);
+            // If its the first time inserting to the hash
+            if (dateHash[date] == null) {
+                // Add key
+                sortedDateKeys.push(date);
+                dateHash[date] = [];
+            }
+            dateHash[date].push(notifications[i]);
+            //console.log("dateHash", i, dateHash[date]);
+        }
+
+        sortedDateKeys.sort(function(a, b) {return b-a});
+        //console.log("Sorted keys", sortedDateKeys);
+
+        // Append html
+        for (var i=0; i<sortedDateKeys.length; i++) {
+            var thisDate = sortedDateKeys[i];
+            addDateBreakLine(thisDate.getMonth()+1 + "/" +
+                              thisDate.getDate() + "/" +
+                              thisDate.getFullYear());
+            for (var j=0; j<dateHash[thisDate].length; j++) {
+                addNotification(dateHash[thisDate][j]);
+            }
         }
         $('.tooltipped').tooltip({delay: 50});
         addEventHandlers();
@@ -77,6 +104,17 @@ $(document).ready(function() {
         $(".notification-wrapper").append($notification);
     }
 
+    function addDateBreakLine(date) {
+        var $date = '<div class="row valign-wrapper">\n' +
+                      '<div class="col s5"><hr></div>\n' +
+                        '<div class="col s2 center-align"><h5>' + date + '</h5></div>\n' +
+                      '<div class="col s5"><hr></div>\n' +
+                    '</div>'
+
+        // Add date
+        $(".notification-wrapper").append($date);
+    }
+
     function addEventHandlers() {
         $(".solve-btn").click(function() {
             $this = $(this);
@@ -92,8 +130,8 @@ $(document).ready(function() {
             $parent.append(elementEnum.checkIcon);
 
             var id = $parent.parent().attr('id');
-            console.log($parent.parent());
-            console.log(id);
+            //console.log($parent.parent());
+            //console.log(id);
 
             // Send post request
             $.ajax({
@@ -105,7 +143,7 @@ $(document).ready(function() {
                     Materialize.toast("Solved!", 4000);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    console.log("Error fetching data");
+                    //console.log("Error fetching data");
                     Materialize.toast("Connection error!", 4000);
                 }
             })
@@ -115,5 +153,4 @@ $(document).ready(function() {
             $("#confirmation-modal").modal('close');
         });
     }
-
 });
