@@ -34,7 +34,7 @@
 
       <% if garage_owner_super_admin? %>
         <li><a href="/garages/<%= garage_owner?%>/dashboard#notifications">
-          <span id="logo-notification" class="new badge red">0</span>
+          <span id="logo-notification" class="new badge red"><%= Notification.count %></span>
           <i class="material-icons center-align">notifications</i>
         </a></li>
       <% end %>
