@@ -1,7 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :super_admin?, :garage_owner?, :check_garage_owner?, :check_super_admin?, :check_garage_owner_super_admin?, :garage_owner_super_admin?, :check_license_plate_exists?
+  before_action :get_garage_id
 
+  # Gets called in all views and creates and instance of gon.garage_id for JS everywhere
+  def get_garage_id
+    if garage_owner?
+      gon.garage_id = garage_owner?
+    else
+      gon.garage_id = -1
+    end
+  end
 
   def check_license_plate_exists?
     if garage_owner_super_admin?

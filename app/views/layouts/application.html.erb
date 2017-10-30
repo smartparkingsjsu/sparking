@@ -4,6 +4,7 @@
     <title>Sparking</title>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'header', 'data-turbolinks-track': 'reload' %>
     
     <% if super_admin? || garage_owner? %>
       <%= javascript_include_tag 'notifications' %>

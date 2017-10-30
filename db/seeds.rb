@@ -112,3 +112,5 @@ Notification.create(recipient_id: '2', booking_id: '17', action: 'license plate 
 Notification.create(recipient_id: '2', booking_id: '17', action: 'license plate mismatch')
 Notification.create(recipient_id: '2', booking_id: '1', action: 'license plate mismatch')
 Notification.create(recipient_id: '2', booking_id: '1', action: 'license plate mismatch')
+Notification.create(recipient_id: '2', booking_id: '1', action: 'license plate mismatch', created_at: '2017-11-28T23:34:37.631-07:00')
+Notification.create(recipient_id: '2', booking_id: '1', action: 'license plate mismatch', created_at: '2017-09-28T23:34:37.631-07:00')
