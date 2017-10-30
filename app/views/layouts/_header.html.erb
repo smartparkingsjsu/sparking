@@ -1,6 +1,7 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="/" class="brand-logo"><i class="material-icons">directions_car</i>Smart Parking</a>
+    <%= link_to image_tag("sparking_logo_white.png", class:"brand-logo white-logo"), "/" %>
+    <%= link_to image_tag("sparking_logo_blue.png", class:"brand-logo blue-logo"), "/" %>
 
     <a href="#" data-activates="mobile-sidenav" class="button-collapse"><i class="material-icons">menu</i></a>
 
@@ -29,7 +30,7 @@
       <% if garage_owner? %>
         <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?), class: "header-icons") %></li>
       <% elsif garage_owner_super_admin? %>
-        <li><a href="/garages">Parking Garages</a></li>
+        <li><a class="header-icons" href="/garages">Parking Garages</a></li>
       <% end %>
 
       <% if garage_owner_super_admin? %>
@@ -49,8 +50,8 @@
           <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
         </ul>
       <% else %>
-        <li><a class="modal-trigger waves-effect waves-light btn-flat header-btn" data-turbolinks="false" href="#modal_signup">Sign Up</a></li>
-        <li><a class="modal-trigger waves-effect waves-light btn-flat header-btn" data-turbolinks="false" href="#modal_login">Log In</a></li>
+        <li><a class="modal-trigger btn-flat header-btn header-icons" data-turbolinks="false" href="#modal_signup">Sign Up</a></li>
+        <li><a class="modal-trigger btn-flat header-btn header-icons" data-turbolinks="false" href="#modal_login">Log In</a></li>
       <% end %>
 
     </ul>

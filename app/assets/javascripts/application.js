@@ -44,4 +44,12 @@ $(document).ready(function() {
         close: 'Ok',
         closeOnSelect: false // Close upon selecting a date,
     });
+
+    $('.brand-logo').hover(function() {
+        $('.white-logo').hide();
+        $('.blue-logo').show();
+    }, function() {
+        $('.blue-logo').hide();
+        $('.white-logo').show();
+    });
 });
