@@ -1,2 +1,2 @@
-Rack::MiniProfiler.config.position = 'right'
-Rack::MiniProfiler.config.start_hidden = false
+Rack::MiniProfiler.config.position = 'bottom-left'
+Rack::MiniProfiler.config.start_hidden = true

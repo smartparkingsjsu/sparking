@@ -27,20 +27,22 @@
     <ul id="nav" class="right hide-on-med-and-down">
 
       <% if garage_owner? %>
-        <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?)) %></li>
+        <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?), class: "header-icons") %></li>
       <% elsif garage_owner_super_admin? %>
         <li><a href="/garages">Parking Garages</a></li>
       <% end %>
 
       <% if garage_owner_super_admin? %>
-        <li><a href="/garages/<%= garage_owner?%>/dashboard#notifications">
+        <li><a href="/garages/<%= garage_owner?%>/dashboard#notifications" class="header-icons">
           <span id="logo-notification" class="new badge red">0</span>
           <i class="material-icons center-align">notifications</i>
         </a></li>
       <% end %>
 
       <% if user_signed_in? %>
-        <a class='dropdown-button btn-flat header-btn' data-activates='user-dropdown'><%= current_user.name %></a>
+        <li><a id="header-dropdown" class='dropdown-button header-icons header-btn btn-flat'
+               data-activates='user-dropdown'><%= current_user.name %></a>
+        </li>
 
         <ul id='user-dropdown' class='dropdown-content'>
           <li><%= link_to('Profile', user_path(:id => current_user.id)) %></li>

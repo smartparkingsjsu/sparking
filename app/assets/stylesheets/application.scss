@@ -10,8 +10,12 @@
 }
 
 .header-btn {
-  border: 1px dashed white;
+  border: none;
   color: white;
+}
+
+.header-icons:hover {
+  color: $secondary-color;
 }
 
 .whole-page {
@@ -33,10 +37,6 @@
 .img-container img {
   height: 100%;
   width: 100%;
-}
-
-.btn-flat {
-  border-radius: 15px;
 }
 
 .tabs-content .carousel-item {
