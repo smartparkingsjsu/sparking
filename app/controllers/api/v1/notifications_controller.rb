@@ -24,7 +24,7 @@ class API::V1::NotificationsController < ApplicationController
   end
 
   def show
-    @notifications = Notification.joins(booking: {garage_spot: :garage}).joins(booking: {garage_spot: :spot}).where("garages.id = ?", params[:id]).pluck("notifications.id, booking_id, read_at, notifications.created_at, action, confidence, garages.name, spots.name")
+    @notifications = Notification.joins(booking: {garage_spot: :garage}).joins(booking: {garage_spot: :spot}).where("recipient_id = ?", params[:id]).pluck("notifications.id, booking_id, read_at, notifications.created_at, action, confidence, garages.name, spots.name")
 
     # Form json
     notifications_array = []

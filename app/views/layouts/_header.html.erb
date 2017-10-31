@@ -37,9 +37,17 @@
         <li><a class="header-icons" href="/garages">Parking Garages</a></li>
       <% end %>
 
-      <% if garage_owner_super_admin? %>
-        <li><a href="/garages/<%= garage_owner?%>/dashboard#notifications" class="header-icons">
-          <span id="logo-notification" class="new badge red">0</span>
+      <% if garage_owner? %>
+        <script type="text/javascript">
+          $(document).ready(function(){
+            // Register for some channel
+            var bleh = <%= garage_owner? %>
+            registerSomeChannel(bleh);
+          });
+        </script>
+
+        <li><a href="/garages/<%= garage_owner?%>/dashboard#notifications">
+          <span id="logo-notification" class="new badge red"><%= Notification.where(recipient_id: garage_owner?).where(read_at: nil).count %></span>
           <i class="material-icons center-align">notifications</i>
         </a></li>
       <% end %>

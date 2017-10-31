@@ -10,6 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require cable
+//= require_tree ./channels
 //= require jquery
 //= require rails-ujs
 //= require jquery.turbolinks
@@ -23,6 +25,7 @@
 //= require jquery.inputmask.date.extensions
 //= require abracadabra
 //= require cocoon
+
 
 function printPage() {
     window.print()
