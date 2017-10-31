@@ -1,4 +1,7 @@
-App.notification = App.cable.subscriptions.create "NotificationChannel",
+App.notification = App.cable.subscriptions.create {
+    channel: "NotificationChannel"
+    garage_id: 1.toString()
+  },
   connected: ->
     # Called when the subscription is ready for use on the server
 
