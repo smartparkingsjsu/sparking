@@ -47,4 +47,16 @@ $(document).ready(function() {
         close: 'Ok',
         closeOnSelect: false // Close upon selecting a date,
     });
+
+    $('#header-dropdown').click(function() {
+        Materialize.Toast.removeAll();
+    });
+
+    $('.brand-logo').hover(function() {
+        $('.white-logo').hide();
+        $('.blue-logo').show();
+    }, function() {
+        $('.blue-logo').hide();
+        $('.white-logo').show();
+    });
 });

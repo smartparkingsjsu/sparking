@@ -10,8 +10,12 @@
 }
 
 .header-btn {
-  border: 1px dashed white;
+  border: none;
   color: white;
+}
+
+.header-icons:hover {
+  color: $secondary-color;
 }
 
 .whole-page {
@@ -30,13 +34,18 @@
   width: 100%;
 }
 
+.nav-wrapper img {
+  height: 100%;
+  color: white;
+}
+
+.brand-logo {
+  margin-left: 1em;
+}
+
 .img-container img {
   height: 100%;
   width: 100%;
-}
-
-.btn-flat {
-  border-radius: 15px;
 }
 
 .tabs-content .carousel-item {
@@ -61,6 +70,10 @@
 
 .tabs-content {
   margin-bottom: 20px;
+}
+
+.nav-wrapper .blue-logo {
+  display: none;
 }
 
 .error-message {
