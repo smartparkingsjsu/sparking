@@ -9,4 +9,3 @@ $(document).on 'ready turbolinks:load', ->
   });
   Materialize.updateTextFields();
   Waves.displayEffect()
-  console.log "load init on ready or turbolinks:load"
