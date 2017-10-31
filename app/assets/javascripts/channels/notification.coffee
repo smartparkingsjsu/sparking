@@ -7,5 +7,4 @@ App.notification = App.cable.subscriptions.create "NotificationChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    val = Math.random()
-    $('#logo-notification').text(data.notification)
+    $('#logo-notification').load((location.href + " #logo-notification"))

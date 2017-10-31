@@ -34,7 +34,7 @@
 
       <% if garage_owner_super_admin? %>
         <li><a href="/garages/<%= garage_owner?%>/dashboard#notifications">
-          <span id="logo-notification" class="new badge red"><%= Notification.count %></span>
+          <span id="logo-notification" class="new badge red"><%= Notification.where(recipient_id: current_user.id).where(read_at: nil).count %></span>
           <i class="material-icons center-align">notifications</i>
         </a></li>
       <% end %>
