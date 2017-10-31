@@ -45,6 +45,10 @@ $(document).ready(function() {
         closeOnSelect: false // Close upon selecting a date,
     });
 
+    $('#header-dropdown').click(function() {
+        Materialize.Toast.removeAll();
+    });
+
     $('.brand-logo').hover(function() {
         $('.white-logo').hide();
         $('.blue-logo').show();

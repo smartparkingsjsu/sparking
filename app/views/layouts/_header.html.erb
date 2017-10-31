@@ -17,7 +17,7 @@
       <% end %>
 
       <% if garage_owner? %>
-        <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?)) %></li>
+        <li><%= link_to('DASHBOARD', garage_pages_dashboard_path(:garage_id => garage_owner?)) %></li>
       <% elsif garage_owner_super_admin? %>
         <li><a href="/garages">Parking Garages</a></li>
       <% end %>
@@ -27,8 +27,12 @@
     <!-- PC view -->
     <ul id="nav" class="right hide-on-med-and-down">
 
+      <% if user_signed_in? %>
+        <li><a href="/" class="header-icons">HOME</a></li>
+      <% end %>
+
       <% if garage_owner? %>
-        <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?), class: "header-icons") %></li>
+        <li><%= link_to('DASHBOARD', garage_pages_dashboard_path(:garage_id => garage_owner?), class: "header-icons") %></li>
       <% elsif garage_owner_super_admin? %>
         <li><a class="header-icons" href="/garages">Parking Garages</a></li>
       <% end %>
