@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   resources :garages do
     get '/dashboard' => 'pages#dashboard', :as => 'pages_dashboard'
     get '/search' => 'garages#search', :as => 'garages_search'
+    post '/check/in/success' => 'garages#in_success', :as => 'garages_in_success'
+    get '/check/out' => 'garages#out', :as => 'garages_out'
+    post '/check/out/success' => 'garages#out_success', :as => 'garages_out_success'
     post '/retrieve' => 'garages#retrieve', :as => 'garages_retrieve'
     post '/retrieve/charged' => 'garages#charged', :as => 'garages_charged'
 

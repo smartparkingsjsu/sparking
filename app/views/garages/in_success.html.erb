@@ -1,0 +1,5 @@
+<h1>Welcome! <%= @booking.user.name %> </h1>
+
+Your spot is at <% @booking.garage_spot.spot.name %>
+
+<meta http-equiv="refresh" content="10; URL='<%= garage_path(@booking.garage_spot.garage.id) %>'" />
