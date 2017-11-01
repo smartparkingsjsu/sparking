@@ -21,6 +21,7 @@ User.create(name: 'User Ten', email: 'user10@gmail.com', phone: '4081001010', en
 User.create(name: 'A2: Forth/St. John Garage', phone: '4082001011', email: 'admin11@gmail.com', encrypted_password: '$2a$11$qmspSHgRPfpa9EifEx/X0uDhfbwD5BEBl7M18zrfNFtPl85BYHB8S', admin: 't', garage_id: '1')
 User.create(name: 'A3: Forth/St. John Garage', phone: '4082001021', email: 'admin21@gmail.com', encrypted_password: '$2a$11$qmspSHgRPfpa9EifEx/X0uDhfbwD5BEBl7M18zrfNFtPl85BYHB8S', admin: 't', garage_id: '1')
 User.create(name: 'A4: Forth/St. John Garage', phone: '4082001031', email: 'admin31@gmail.com', encrypted_password: '$2a$11$qmspSHgRPfpa9EifEx/X0uDhfbwD5BEBl7M18zrfNFtPl85BYHB8S', admin: 't', garage_id: '1')
+User.create(name: 'A5: Forth/St. John Garage', phone: '4082001041', email: 'melvinnnnnnnnnn@gmail.com', encrypted_password: '$2a$11$qmspSHgRPfpa9EifEx/X0uDhfbwD5BEBl7M18zrfNFtPl85BYHB8S', admin: 't', garage_id: '1')
 User.create(name: 'A2: ParkSJ: Third/Santa Clara Garage', phone: '4082001012', email: 'admin12@gmail.com', encrypted_password: '$2a$11$qmspSHgRPfpa9EifEx/X0uDhfbwD5BEBl7M18zrfNFtPl85BYHB8S', admin: 't', garage_id: '2')
 User.create(name: 'A3: ParkSJ: Third/Santa Clara Garage', phone: '4082001022', email: 'admin22@gmail.com', encrypted_password: '$2a$11$qmspSHgRPfpa9EifEx/X0uDhfbwD5BEBl7M18zrfNFtPl85BYHB8S', admin: 't', garage_id: '2')
 
