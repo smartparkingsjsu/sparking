@@ -17,14 +17,20 @@
   <% unless (garage_owner?.present?) %>
     <%= submit_tag 'Pay Now', class: "btn" %>
   <% else %>
-    <%= hidden_field_tag :user_booking_view, current_user.id %>
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key= "<%= Rails.application.secrets.stripe_publishable_key %>"
-            data-description= "Parking Spot Payment"
-            data-amount= "<%= @charge.amount %>"
-            data-locale="auto"
-            data-email= <%= current_user.email %> >
-    </script>
+    <% if @charge.paid == false %>
+      <%= hidden_field_tag :user_booking_view, current_user.id %>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key= "<%= Rails.application.secrets.stripe_publishable_key %>"
+              data-description= "Parking Spot Payment"
+              data-amount= "<%= @charge.amount %>"
+              data-locale="auto"
+              data-email= <%= current_user.email %> >
+      </script>
+      
+      <meta http-equiv="refresh" content="60; URL='<%= garage_path(garage_owner?)+"/search" %>'" />
+    <% else %>
+      <meta http-equiv="refresh" content="30; URL='<%= garage_path(garage_owner?)+"/search" %>'" />
+    <% end %>
   <% end %>
 
 <% end %>
