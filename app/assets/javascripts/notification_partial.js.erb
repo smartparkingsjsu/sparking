@@ -49,8 +49,10 @@ $(document).ready(function() {
 
         // Sort dates
         for (var i=0; i<notifications.length; i++) {
-            var date = new Date(notifications[i].created_at.split('T')[0]);
-            //console.log("Iteration", i, date);
+            var dateString = notifications[i].created_at.split('T')[0].split('-');
+            dateString = dateString[0] + '/' + dateString[1] + '/' + dateString[2];
+            var date = new Date(dateString);
+            //console.log("Iteration", i, date, dateString);
             // If its the first time inserting to the hash
             if (dateHash[date] == null) {
                 // Add key
