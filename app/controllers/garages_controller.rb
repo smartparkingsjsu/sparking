@@ -1,5 +1,6 @@
 class GaragesController < ApplicationController
   before_action :set_garage, only: [:show, :edit, :update, :destroy]
+  before_action :set_garage_id, only: [:out]
   before_action :authenticate_user!
   include ReservationsHelper
   #before_action :check_super_admin?
@@ -17,10 +18,10 @@ class GaragesController < ApplicationController
     end
   end
 
-  def reterive_booking_id
-    hashids = Hashids.new("$p@rk!ng", 4)
-    @booking_id = hashids.decode(@hash_booking_id)
-  end
+  # def reterive_booking_id
+  #   hashids = Hashids.new("$p@rk!ng", 4)
+  #   @booking_id = hashids.decode(@hash_booking_id)
+  # end
 
   def retrieve
     session[:booking_confirmation] = params[:booking_confirmation]
@@ -68,6 +69,21 @@ class GaragesController < ApplicationController
   def edit
   end
 
+  def in_success
+    get_booking_from_form
+  end
+  
+  def out_success
+    get_booking_from_form
+  end
+
+  def get_booking_from_form
+    @hash_booking_id = params[:booking_id]
+    reterive_booking_id
+
+    @booking = Booking.where(id: @booking_id).first    
+  end
+
   # POST /garages
   # POST /garages.json
   def create
@@ -112,6 +128,10 @@ class GaragesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_garage
       @garage = Garage.find(params[:id])
+    end
+
+    def set_garage_id
+      @garage_id = Garage.find(params[:garage_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
