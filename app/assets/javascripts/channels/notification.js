@@ -6,15 +6,22 @@ registerSomeChannel = function(bleh) {
         connected: function() {},
         disconnected: function() {},
         received: function(data) {
-            var count = $('#logo-notification').text();
+            var $notification = $('#logo-notification');
+            var count = $notification.text();
 
             if (data.notification === "") {
-                $('#logo-notification').text(++count);
+                if (count == 0) {
+                    $notification.show();
+                }
+                $notification.text(++count);
             }
             else {
-                $('#logo-notification').text(--count);
+                if (count == 1) {
+                    $notification.hide();
+                }
+                $notification.text(--count);
             }
             return true
         }
     });
-}
+};

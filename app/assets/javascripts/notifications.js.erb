@@ -1,39 +1,8 @@
 $(document).ready(function() {
+    var $notification = $('#logo-notification');
 
-    <% if Rails.env.development? %>
-      var url = "http://localhost:3000/api/v1/notifications/" + gon.garage_id;
-    <% else %>
-      var url = "http://smartparkingsjsu.herokuapp.com/api/v1/notifications/" + gon.garage_id;
-    <% end %>
-
-    //update();
-
-    function update() {
-        $.ajax({
-            type: 'GET',
-            url: url,
-            timeout: 2000,
-            success: function(data) {
-                updateNotification(data);
-                // 1 min
-                window.setTimeout(update, 1000000);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log("Error fetching data");
-                window.setTimeout(update, 60000);
-            }
-        })
+    if ($notification.text() == 0) {
+        $notification.hide();
     }
 
-    function updateNotification(data) {
-        var length = 0;
-
-        for(var i=0; i<data.notifications.length; i++) {
-            if (data.notifications[i].read_at == null) {
-                length++;
-            }
-        }
-
-        $('#logo-notification').text(length);
-    }
 });
