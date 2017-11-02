@@ -6,8 +6,9 @@ class CreateGarages < ActiveRecord::Migration[5.1]
       t.float :weekday
       t.float :weekend
 
-      t.string :email,              null: false, default: ""
-      t.boolean :notify,             null: false, default: "f"
+      t.string :email,                null: false, default: ""
+      t.boolean :notify,              null: false, default: "f"
+      t.boolean :zone,                null: false, default: "f"
 
       t.timestamps
     end

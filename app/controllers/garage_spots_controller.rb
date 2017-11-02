@@ -75,7 +75,7 @@ class GarageSpotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def garage_spot_params
-      params.require(:garage_spot).permit(:garage_id, :spot_id)
+      params.require(:garage_spot).permit(:garage_id, :spot_id, :serial)
     end
 
     def find_garage

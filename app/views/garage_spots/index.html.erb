@@ -22,7 +22,7 @@
         <tr>
           <td><%= garage_spot.spot.name %></td>
           <td><%= garage_spot.garage.name %></td>
-          <td><%= garage_spot.serial %></td>
+          <td><%= click_to_edit garage_spot, path: garage_spot_path(garage_spot), attribute: :serial %></td>
           <td>    <%= link_to "Show", garage_spot_path(garage_spot), class: "button btn btn-info btn-xs" %>
                   <%= link_to "Edit", edit_garage_spot_path( garage_spot), class: "button btn btn-warning btn-xs" %>
                   <%= link_to "Delete", garage_spots_path(garage_spot), data: { confirm: 'Are you sure?' }, method: :delete, class: "button btn btn-danger btn-xs" %>
