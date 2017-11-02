@@ -10,16 +10,19 @@
 
       <% if user_signed_in? %>
         <li><%= link_to('Profile', user_path(:id => current_user.id)) %></li>
-        <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
       <% else %>
-        <li><a href="register">Sign Up</a></li>
         <li><a href="login">Log In</a></li>
+        <li><a href="register">Sign Up</a></li>
       <% end %>
 
       <% if garage_owner? %>
         <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?)) %></li>
       <% elsif garage_owner_super_admin? %>
         <li><a href="/garages">Parking Garages</a></li>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
       <% end %>
 
     </ul>
@@ -31,29 +34,35 @@
         <li><a href="/" class="header-icons">Home</a></li>
       <% end %>
 
-      <% if garage_owner? %>
-        <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?), class: "header-icons") %></li>
-      <% elsif garage_owner_super_admin? %>
-        <li><a class="header-icons" href="/garages">Parking Garages</a></li>
+      <!-- Both admin and garage owner -->
+      <% if garage_owner? || garage_owner_super_admin? %>
+        <li><a id="tools-header" class='dropdown-button header-icons header-dropdown' data-activates='tools-dropdown'>Tools</a></li>
       <% end %>
 
+      <!-- Only garage owner -->
       <% if garage_owner? %>
-        <script type="text/javascript">
-          $(document).ready(function(){
-            // Register for some channel
-            var bleh = <%= garage_owner? %>
-            registerSomeChannel(bleh);
-          });
-        </script>
+        <script type="text/javascript">$(document).ready(function(){var bleh = <%= garage_owner? %>registerSomeChannel(bleh);});</script>
 
         <li><a href="/garages/<%= garage_owner?%>/dashboard#notifications">
           <span id="logo-notification" class="new badge red"><%= Notification.where(recipient_id: garage_owner?).where(read_at: nil).count %></span>
           <i class="material-icons center-align">notifications</i>
         </a></li>
+
+        <ul id='tools-dropdown' class='dropdown-content'>
+          <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?), class: "header-icons") %></li>
+          <li class="divider"></li>
+          <li><%= link_to('In-garage', garages_path(:id => garage_owner?)) %></li>
+        </ul>
+
+      <!-- Only admin -->
+      <% elsif garage_owner_super_admin? %>
+        <ul id='tools-dropdown' class='dropdown-content'>
+          <li><a class="header-icons" href="/garages">Parking Garages</a></li>
+        </ul>
       <% end %>
 
       <% if user_signed_in? %>
-        <li><a id="header-dropdown" class='dropdown-button header-icons margin-right'
+        <li><a class='dropdown-button header-icons margin-right header-dropdown'
                data-activates='user-dropdown'><%= current_user.name.titleize  %></a>
         </li>
 
@@ -61,8 +70,11 @@
           <li><%= link_to('Profile', user_path(:id => current_user.id)) %></li>
           <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
         </ul>
+
+      <!-- Everyone -->
       <% else %>
-        <li><a class="modal-trigger header-icons" data-turbolinks="false" href="#modal_signup">Sign up</a></li>
+        <!--<li><a class="modal-trigger header-icons" data-turbolinks="false" href="#modal_signup">Sign up</a></li>-->
+        <li><%= link_to'Sign up', new_user_registration_path, class: "header-icons" %></li>
         <li><a class="modal-trigger header-icons margin-right" data-turbolinks="false" href="#modal_login">Log in</a></li>
       <% end %>
 
@@ -80,9 +92,9 @@
   </div>
 </div>
 
-<div class="modal modal-fixed-footer" id="modal_signup">
-  <div class="modal-content">
-    <h4>Sign Up</h4>
-    <%= render "users/registrations/new" %>
-  </div>
-</div>
+<!--<div class="modal modal-fixed-footer" id="modal_signup">-->
+  <!--<div class="modal-content">-->
+    <!--<h4>Sign Up</h4>-->
+    <!--<%= render "users/registrations/new" %>-->
+  <!--</div>-->
+<!--</div>-->
