@@ -100,6 +100,7 @@ GEM
       actionpack (>= 3.0)
       multi_json
       request_store (>= 1.0)
+    gravatar_image_tag (1.2.0)
     hashids (1.0.4)
     i18n (0.9.0)
       concurrent-ruby (~> 1.0)
@@ -252,6 +253,7 @@ DEPENDENCIES
   geocoder
   gmaps4rails
   gon
+  gravatar_image_tag
   hashids
   jbuilder (~> 2.5)
   jquery-inputmask-rails

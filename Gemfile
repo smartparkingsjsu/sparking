@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'gravatar_image_tag'
 gem 'abracadabra', git: 'https://github.com/melvinchng/abracadabra.git'
 gem 'cocoon'
 
