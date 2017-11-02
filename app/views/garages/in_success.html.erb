@@ -1,5 +1,11 @@
-<h1>Welcome! <%= @booking.user.name %> </h1>
+<% content_for :head do %>
+    <%= javascript_include_tag 'in_garage', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'in_garage', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% end %>
 
-Your spot is at <% @booking.garage_spot.spot.name %>
+<div class="row center-align top-margin">
+  <h3>Welcome! <%= @booking.user.name %></h3>
+  <h3>Your spot is at <% @booking.garage_spot.spot.name %></h3>
+</div>
 
-<meta http-equiv="refresh" content="10; URL='<%= garage_path(@booking.garage_spot.garage.id) %>'" />
+<meta http-equiv="refresh" content="5; URL='<%= garage_path(@booking.garage_spot.garage.id) %>'" />
