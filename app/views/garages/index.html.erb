@@ -16,9 +16,10 @@
       <tr>
         <td><%= click_to_edit garage, path: garage_path(garage), attribute: :name %></td>
         <td><%= click_to_edit garage, path: garage_path(garage), attribute: :address %></td>
-        <td><%= link_to "Show Spots", garage_garage_spots_path(garage), class: "button btn btn-info btn-xs" %></td>
-        <td><%= link_to 'Reserve', garage %></td>
-        <td><%= link_to 'Destroy', garage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= click_to_edit garage, path: garage_path(garage), attribute: :email %></td>
+        <td><%= click_to_edit garage, path: garage_path(garage), attribute: :notify %></td>
+        <td><%= link_to "Show Spots", garage_garage_spots_path(garage), class: "btn" %></td>
+        <td><%= link_to 'Destroy', garage, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %></td>
       </tr>
     <% end %>
   </tbody>

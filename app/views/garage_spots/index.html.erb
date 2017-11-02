@@ -56,8 +56,7 @@
           <td><%= click_to_edit garage_spot, path: garage_spot_path(garage_spot), attribute: :serial %></td>
           <td>    <%= link_to "Show Bookings", garage_garage_spot_bookings_path(@garage, garage_spot), class: "button btn btn-info btn-xs" %>
                   <%= link_to "Edit", edit_garage_garage_spot_path(@garage, garage_spot), class: "button btn btn-warning btn-xs" %>
-                  <%= link_to "Delete", garage_garage_spot_path(@garage, garage_spot), data: { confirm: 'Are you sure?' }, method: :delete, class: "button btn btn-danger btn-xs" %>   
-                  <%= link_to "Create New Booking", new_garage_garage_spot_booking_path(@garage, garage_spot), class: "button btn btn-success btn-xs" %>
+                  <%= link_to "Delete", garage_garage_spot_path(@garage, garage_spot), data: { confirm: 'Are you sure?' }, method: :delete, class: "button btn btn-danger btn-xs" %>
           </td>
         </tr>
       <% end %>
