@@ -38,12 +38,14 @@ $(document).ready(function(){
             url: url,
             timeout: 2000,
             success: function(data) {
+                console.log(data);
                 updateTable(data);
                 // 1 min
                 window.setTimeout(update, 1000000);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log("Error fetching data");
+//                console.log("Error fetching data");
+                Materialize.toast("Connection error!", 4000);
                 window.setTimeout(update, 60000);
             }
         })
