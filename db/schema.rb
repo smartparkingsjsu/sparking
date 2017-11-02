@@ -48,8 +48,11 @@ ActiveRecord::Schema.define(version: 20170925034840) do
     t.string "address"
     t.float "weekday"
     t.float "weekend"
+    t.string "email", default: "", null: false
+    t.boolean "notify", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_garages_on_email", unique: true
   end
 
   create_table "licenseplates", force: :cascade do |t|
