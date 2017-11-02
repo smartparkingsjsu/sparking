@@ -1,6 +1,7 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="/" class="brand-logo"><i class="material-icons">directions_car</i>Smart Parking</a>
+    <%= link_to image_tag("sparking_logo_white.png", class:"brand-logo white-logo"), "/" %>
+    <%= link_to image_tag("sparking_logo_blue.png", class:"brand-logo blue-logo"), "/" %>
 
     <a href="#" data-activates="mobile-sidenav" class="button-collapse"><i class="material-icons">menu</i></a>
 
@@ -9,16 +10,19 @@
 
       <% if user_signed_in? %>
         <li><%= link_to('Profile', user_path(:id => current_user.id)) %></li>
-        <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
       <% else %>
-        <li><a href="register">Sign Up</a></li>
         <li><a href="login">Log In</a></li>
+        <li><a href="register">Sign Up</a></li>
       <% end %>
 
       <% if garage_owner? %>
-          <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?)) %></li>
+        <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?)) %></li>
       <% elsif garage_owner_super_admin? %>
-          <li><a href="/garages">Parking Garages</a></li>
+        <li><a href="/garages">Parking Garages</a></li>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
       <% end %>
 
     </ul>
@@ -26,30 +30,56 @@
     <!-- PC view -->
     <ul id="nav" class="right hide-on-med-and-down">
 
-      <% if garage_owner? %>
-          <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?)) %></li>
-      <% elsif garage_owner_super_admin? %>
-        <li><a href="/garages">Parking Garages</a></li>
+      <% if user_signed_in? %>
+        <li><a href="/" class="header-icons">Home</a></li>
       <% end %>
 
-      <% if garage_owner_super_admin? %>
-        <a class='dropdown-button btn-flat header-btn' data-activates='dropdown2' data-behavior='notifications-link'><i class="material-icons" data-behavior='notifications'>notifications</i></a>
-        <li><a><span data-behavior='unread-count'></span></a></li>
+      <!-- Both admin and garage owner -->
+      <% if garage_owner? || garage_owner_super_admin? %>
+        <li><a id="tools-header" class='dropdown-button header-icons header-dropdown' data-activates='tools-dropdown'>Tools</a></li>
+      <% end %>
+
+      <!-- Only garage owner -->
+      <% if garage_owner? %>
+        <script type="text/javascript">$(document).ready(function(){var bleh = <%= garage_owner? %>;registerSomeChannel(bleh);});</script>
+
+        <li><a class="header-icons" href="/garages/<%= garage_owner?%>/dashboard#notifications">
+          <span id="logo-notification" class="new badge red"><%= Notification.where(recipient_id: garage_owner?).where(read_at: nil).count %></span>
+          <i class="material-icons center-align">notifications</i>
+        </a></li>
+
+        <ul id='tools-dropdown' class='dropdown-content'>
+          <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?), class: "header-icons") %></li>
+          <li class="divider"></li>
+          <li><%= link_to('Search', garage_garages_search_path(:garage_id => garage_owner?)) %></li>
+          <li class="divider"></li>
+          <li><%= link_to('Check-in', garages_path(:id => garage_owner?)) %></li>
+          <li class="divider"></li>
+          <li><%= link_to('Check-out', garage_garages_out_path(:garage_id => garage_owner?)) %></li>
+        </ul>
+
+      <!-- Only admin -->
+      <% elsif garage_owner_super_admin? %>
+        <ul id='tools-dropdown' class='dropdown-content'>
+          <li><a class="header-icons" href="/garages">Parking Garages</a></li>
+        </ul>
       <% end %>
 
       <% if user_signed_in? %>
-        <a class='dropdown-button btn-flat header-btn' data-activates='dropdown1'><%= current_user.name %></a>
+        <li><a class='dropdown-button header-icons margin-right header-dropdown'
+               data-activates='user-dropdown'><%= current_user.name.titleize  %></a>
+        </li>
 
-        <ul id='dropdown1' class='dropdown-content'>
+        <ul id='user-dropdown' class='dropdown-content'>
           <li><%= link_to('Profile', user_path(:id => current_user.id)) %></li>
           <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
         </ul>
 
-        <ul id='dropdown2' class='dropdown-content' data-behavior='notification-items'></ul>
-
+      <!-- Everyone -->
       <% else %>
-        <li><a class="modal-trigger waves-effect waves-light btn-flat header-btn" data-turbolinks="false" href="#modal_signup">Sign Up</a></li>
-        <li><a class="modal-trigger waves-effect waves-light btn-flat header-btn" data-turbolinks="false" href="#modal_login">Log In</a></li>
+        <!--<li><a class="modal-trigger header-icons" data-turbolinks="false" href="#modal_signup">Sign up</a></li>-->
+        <li><%= link_to'Sign up', new_user_registration_path, class: "header-icons" %></li>
+        <li><a class="modal-trigger header-icons margin-right" data-turbolinks="false" href="#modal_login">Log in</a></li>
       <% end %>
 
     </ul>
@@ -66,9 +96,9 @@
   </div>
 </div>
 
-<div class="modal modal-fixed-footer" id="modal_signup">
-  <div class="modal-content">
-    <h4>Sign Up</h4>
-    <%= render "users/registrations/new" %>
-  </div>
-</div>
+<!--<div class="modal modal-fixed-footer" id="modal_signup">-->
+  <!--<div class="modal-content">-->
+    <!--<h4>Sign Up</h4>-->
+    <!--<%= render "users/registrations/new" %>-->
+  <!--</div>-->
+<!--</div>-->

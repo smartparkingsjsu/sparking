@@ -1,0 +1,9 @@
+@import "utilities/variables";
+
+#reserve-form {
+  display: none;
+  height: 100%;
+  width: 100%;
+  border: $background-light-color solid 2px;
+  padding: 20px 20px 20px 20px;
+}

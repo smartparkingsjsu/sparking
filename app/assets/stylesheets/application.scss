@@ -6,12 +6,15 @@
 @import "abracadabra-scss";
 
 .brand-logo {
-  margin-left: 15px;
+  margin-left: 1em;
 }
 
-.header-btn {
-  border: 1px dashed white;
-  color: white;
+.margin-right {
+  margin-right: 1em;
+}
+
+.header-icons:hover {
+  color: $secondary-color;
 }
 
 .whole-page {
@@ -30,14 +33,18 @@
   width: 100%;
 }
 
+.nav-wrapper img {
+  height: 100%;
+  color: white;
+}
+
+.brand-logo {
+  margin-left: 1em;
+}
+
 .img-container img {
   height: 100%;
   width: 100%;
-}
-
-.btn,
-.btn-flat {
-  border-radius: 15px;
 }
 
 .tabs-content .carousel-item {
@@ -62,6 +69,14 @@
 
 .tabs-content {
   margin-bottom: 20px;
+}
+
+.nav-wrapper .blue-logo {
+  display: none;
+}
+
+.error-message {
+  color: red;
 }
 
 @media only screen and (max-width: 600px) { .row.valign-wrapper { display: inherit; } }

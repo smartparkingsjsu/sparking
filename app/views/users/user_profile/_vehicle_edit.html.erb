@@ -1,0 +1,24 @@
+<div id="vehicle-edit">
+  <%= form_for(@user) do |f| %>
+    <%= devise_error_messages! %>
+
+      <div class="licenseplates">
+        <%= f.fields_for :licenseplates do |g| %>
+          <%= render 'users/licenseplate_fields', f: g %>
+        <% end %>
+      </div>
+
+      <div class="row top-margin actions">
+        <div class="col s8">
+          <i id="add-license" class="left-align small material-icons tooltipped" data-position="right" data-delay="50"
+             data-tooltip="Add license plate">
+            <%= link_to_add_association 'add_circle', f, :licenseplates,
+            data: { association_insertion_node: '.licenseplates', association_insertion_method: :append } %>
+          </i>
+        </div>
+        <div class="col s4 center-align">
+          <%= f.submit "Save", class: "right-align btn" %>
+        </div>
+      </div>
+  <% end %>
+</div>

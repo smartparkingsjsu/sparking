@@ -1,0 +1,15 @@
+<div class="valign-wrapper whole-page">
+  <div class="row whole-width">
+    <%= form_tag garage_garages_out_success_path(@garage_id.id) do %>
+
+        <div class="input-field">
+          <%= label :length, "Your Booking ID" %>
+          <br/><br/>
+          <%= text_field_tag :booking_id %>
+       </div>
+
+        <%= submit_tag 'Confirm', class: "btn" %>
+
+    <% end %>
+  </div>
+</div>

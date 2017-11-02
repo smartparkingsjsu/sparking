@@ -3,11 +3,16 @@ respond_to :html, :xml, :json
 include ReservationsHelper
 
   def garage_reservation
-    get_spot_now
+      get_spot_now
   end
 
   def online_reservation
-    get_spot_online
+    if check_license_plate_exists?
+      get_spot_online
+    else
+      redirect_to user_path(current_user.id)
+      flash[:notice] = "Add license plate to your account before reserving a spot!"
+    end
   end
 
   # In-garage booking method

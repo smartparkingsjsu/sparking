@@ -1,5 +1,15 @@
+<% content_for :head do %>
+    <%= javascript_include_tag 'in_garage', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'in_garage', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
 <div class="valign-wrapper whole-page">
-  <div class="row valign whole-width">
+  <div id="i-question" class="row valign-wrapper whole-width">
+    <div class="col s6 center-align"><h3>Do you have a reservation?</h3></div>
+    <div class="col s3 center-align"><button id="i-book-btn" class="waves-effect waves-light btn-large">Yes</button></div>
+    <div class="col s3 center-align"><button id="i-no-book-btn" class="waves-effect waves-light btn-large">No</button></div>
+  </div>
+  <div id="i-no-book" class="row valign-wrapper whole-width">
     <%= form_tag reservations_garage_reservation_url(@booking), :length => params[:length] do %>
 
         <div class="input-field">
@@ -10,27 +20,24 @@
 
         <%= hidden_field_tag :garageid, @garage.id %>
 
-        <% if (garage_owner?.present?) || (super_admin? == true) %>
-          <%= submit_tag 'Book Now', class: "btn" %>
-        <% else %>
-          <%= hidden_field_tag :user_booking_view, current_user.id %>
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key= "<%= Rails.application.secrets.stripe_publishable_key %>"
-                  data-description= "Parking Spot Payment"
-                  data-amount= 
-                  <%= 
-                    if DateTime.now.on_weekend?
-                      @garage.weekend*100 #*params[:length] #need dynamic jquery to fetch in length   
-                    else
-                      @garage.weekday*100 #*params[:length]   
-                    end
-                  %>
-                  data-locale="auto"
-                  data-email= <%= current_user.email %> >
-          </script>
+        <% if garage_owner_super_admin? %>
+            <%= submit_tag 'Confirm', class: "btn" %>
         <% end %>
-
     <% end %>
+    <button id="i-no-book-back-btn" class="waves-effect waves-light btn top-margin">Back</button>
+  </div>
+  <div id="i-book" class="row valign-wrapper whole-width">
+    <%= form_tag garage_garages_in_success_path(@garage.id) do %>
+
+        <div class="input-field">
+          <%= label :length, "Your Booking ID" %>
+          <br/><br/>
+          <%= text_field_tag :booking_id %>
+        </div>
+
+        <%= submit_tag 'Confirm', class: "btn" %>
+    <% end %>
+    <button id="i-book-back-btn" class="waves-effect waves-light btn top-margin">Back</button>
   </div>
 </div>
 

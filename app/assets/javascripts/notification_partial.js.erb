@@ -1,0 +1,158 @@
+$(document).ready(function() {
+
+    <% if Rails.env.development? %>
+      var base_url = "http://localhost:3000/api/v1/notifications/";
+      var url = base_url + gon.garage_id;
+    <% else %>
+      var base_url = "http://smartparkingsjsu.herokuapp.com/api/v1/notifications/";
+      var url = base_url + gon.garage_id;
+    <% end %>
+
+    var elementEnum = {
+        "solveButton": '<a class="solve-btn waves-effect waves-light btn">Solve</a>\n',
+        "checkIcon":  '<i class="small material-icons tooltipped" data-position="top" data-delay="50"\n' +
+                      ' data-tooltip="Problem has been solved">check_circle</i>'
+    };
+
+    var dateHash = {};
+    var sortedDateKeys = [];
+    var $this;
+    var $parent;
+
+    getNotifications();
+
+    function getNotifications() {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            timeout: 2000,
+            success: function(data) {
+                //console.log("Data", data);
+                addNotificationRows(data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //console.log("Error fetching data");
+                Materialize.toast("Error fetching data", 4000);
+                window.setTimeout(getNotifications, 60000);
+            }
+        })
+    }
+
+    function addNotificationRows(data) {
+        if (data.hasOwnProperty("notifications")) {
+            var notifications = data.notifications;
+        }
+        else {
+            Materialize.toast("Error fetching data", 4000);
+            return -1;
+        }
+
+        // Sort dates
+        for (var i=0; i<notifications.length; i++) {
+            var dateString = notifications[i].created_at.split('T')[0].split('-');
+            dateString = dateString[0] + '/' + dateString[1] + '/' + dateString[2];
+            var date = new Date(dateString);
+            //console.log("Iteration", i, date, dateString);
+            // If its the first time inserting to the hash
+            if (dateHash[date] == null) {
+                // Add key
+                sortedDateKeys.push(date);
+                dateHash[date] = [];
+            }
+            dateHash[date].push(notifications[i]);
+            //console.log("dateHash", i, dateHash[date]);
+        }
+
+        sortedDateKeys.sort(function(a, b) {return b-a});
+        //console.log("Sorted keys", sortedDateKeys);
+
+        // Append html
+        for (var i=0; i<sortedDateKeys.length; i++) {
+            var thisDate = sortedDateKeys[i];
+            addDateBreakLine(thisDate.getMonth()+1 + "/" +
+                              thisDate.getDate() + "/" +
+                              thisDate.getFullYear());
+            for (var j=0; j<dateHash[thisDate].length; j++) {
+                addNotification(dateHash[thisDate][j]);
+            }
+        }
+        $('.tooltipped').tooltip({delay: 50});
+        addEventHandlers();
+    }
+
+    function addNotification(data) {
+        var $solveElement = '';
+
+        if (data.read_at) {
+            $solveElement = elementEnum.checkIcon;
+        }
+        else {
+            $solveElement = elementEnum.solveButton;
+        }
+
+        // TODO: Change confidence to something else
+        var $notification = '<div id="' + data.notification_id + '" class="row notification-block valign-wrapper">\n' +
+                                '<div class="col s8">\n' +
+                                    '<div><span>Problem: ' + data.message + '</span></div>\n' +
+                                    '<div><span>Where: ' + data.spot_name + '</span></div>\n' +
+                                    '<div><span>Confidence: ' + data.confidence + '</span></div>\n' +
+                                '</div>\n' +
+                                '<div class="col s4 right-align">\n' +
+                                    $solveElement +
+                                '</div>\n' +
+                            '</div>';
+
+        // Add a row
+        $(".notification-wrapper").append($notification);
+    }
+
+    function addDateBreakLine(date) {
+        var $date = '<div class="row valign-wrapper">\n' +
+                      '<div class="col s5"><hr></div>\n' +
+                        '<div class="col s2 center-align"><h5>' + date + '</h5></div>\n' +
+                      '<div class="col s5"><hr></div>\n' +
+                    '</div>'
+
+        // Add date
+        $(".notification-wrapper").append($date);
+    }
+
+    function addEventHandlers() {
+        $(".solve-btn").click(function() {
+            $this = $(this);
+
+            // Open modal
+            $("#confirmation-modal").modal('open');
+        });
+
+        $("#yes-btn").click(function() {
+            $("#confirmation-modal").modal('close');
+            $parent = $this.parent();
+            $this.remove();
+            $parent.append(elementEnum.checkIcon);
+
+            var id = $parent.parent().attr('id');
+            //console.log($parent.parent());
+            //console.log(id);
+
+            // Send post request
+            $.ajax({
+                type: 'POST',
+                url: base_url,
+                data: {"notification_id": id},
+                timeout: 2000,
+                success: function() {
+                    Materialize.toast("Solved!", 4000);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //console.log("Error fetching data");
+                    Materialize.toast("Connection error!", 4000);
+                }
+            })
+        });
+
+        $("#no-btn").click(function() {
+            $("#confirmation-modal").modal('close');
+        });
+    }
+});

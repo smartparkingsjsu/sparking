@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  
+  root 'pages#show', page: 'home'
+  mount ActionCable.server, at: '/cable'
+
   resources :licenseplates
   resources :charges
   
@@ -8,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers:  { sessions: 'users/sessions', registrations: 'users/registrations'}
+  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register", :confirmation => "resend" }, controllers:  { sessions: 'users/sessions', registrations: 'users/registrations'}
 
   resources :garage_spots
   resources :spots
@@ -17,6 +21,9 @@ Rails.application.routes.draw do
   resources :garages do
     get '/dashboard' => 'pages#dashboard', :as => 'pages_dashboard'
     get '/search' => 'garages#search', :as => 'garages_search'
+    post '/check/in/success' => 'garages#in_success', :as => 'garages_in_success'
+    get '/check/out' => 'garages#out', :as => 'garages_out'
+    post '/check/out/success' => 'garages#out_success', :as => 'garages_out_success'
     post '/retrieve' => 'garages#retrieve', :as => 'garages_retrieve'
     post '/retrieve/charged' => 'garages#charged', :as => 'garages_charged'
 
@@ -33,10 +40,10 @@ Rails.application.routes.draw do
       resources :bookings
       resources :triggers
       resources :dashboards
+      resources :notifications
     end
   end
 
-  root 'pages#show', page: 'home'
   post '/confirmed' => 'reservations#garage_reservation', :as => 'reservations_garage_reservation'
   post '/reserved' => 'reservations#online_reservation', :as => 'reservations_online_reservation'
 end

@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://redistogo:a80e03356aa081d75e3f790571295670@grouper.redistogo.com:10752/
   channel_prefix: sparking_production

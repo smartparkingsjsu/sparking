@@ -1,5 +1,7 @@
-<%= javascript_include_tag 'reservation_partial', 'data-turbolinks-track': 'reload' %>
-<%= stylesheet_link_tag 'reservation_partial', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% content_for :head do %>
+    <%= javascript_include_tag 'reservation_partial', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'reservation_partial', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% end %>
 
 <div id="reserve-form">
   <%= form_tag reservations_online_reservation_url(@booking),
@@ -10,7 +12,7 @@
 
       <div class="input-field col s12 m12">
         <%= label :date, "Date" %>
-        <%= text_field_tag :date, "", class: "datepicker" %>
+        <%= text_field_tag :date, "", class: "datepicker clickable" %>
       </div>
 
       <div class="input-field col s12 m6">

@@ -1,10 +1,24 @@
-<%= form_tag garage_garages_retrieve_path do %>
+<div class="div valign-wrapper whole-page">
+  <div class="row whole-width">
+    <div class="center-align"><h3>Pay</h3></div>
 
-    <div class="input-field col s12 m12">
-      <%= label :booking_confirmation, "Booking Confirmation" %>
-      <%= text_field_tag :booking_confirmation %>
-    </div>
+    <%= form_tag garage_garages_retrieve_path do %>
 
-    <%= submit_tag 'submit', class: "btn" %>
+        <div class="input-field col s12 m12">
+          <%= label :booking_confirmation, "Booking Confirmation" %>
+          <%= text_field_tag :booking_confirmation %>
+        </div>
 
-<% end %>
+        <%= submit_tag 'Confirm', class: "btn" %>
+
+    <% end %>
+    <% if Rails.env.development? %>
+        <br>
+        <% bookings = Booking.joins(garage_spot: :garage).where("garage_spots.garage_id = ?", params[:garage_id]) %>
+        <% hashids = Hashids.new("$p@rk!ng", 4) %>
+        <% bookings.each do |g| %>
+            <%= hashids.encode(g.id) %>
+        <% end %>
+    <% end %>
+  </div>
+</div>

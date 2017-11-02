@@ -48,8 +48,11 @@ ActiveRecord::Schema.define(version: 20170925034840) do
     t.string "address"
     t.float "weekday"
     t.float "weekend"
+    t.string "email", default: "", null: false
+    t.boolean "notify", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_garages_on_email", unique: true
   end
 
   create_table "licenseplates", force: :cascade do |t|
@@ -60,6 +63,7 @@ ActiveRecord::Schema.define(version: 20170925034840) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["license_plate"], name: "index_licenseplates_on_license_plate", unique: true
     t.index ["user_id"], name: "index_licenseplates_on_user_id"
   end
 
@@ -83,16 +87,20 @@ ActiveRecord::Schema.define(version: 20170925034840) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.bigint "phone"
-    t.string "license_plate"
     t.boolean "admin", default: false, null: false
     t.integer "garage_id"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["garage_id"], name: "index_users_on_garage_id"
-    t.index ["license_plate"], name: "index_users_on_license_plate", unique: true
   end
 
 end

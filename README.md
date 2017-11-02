@@ -1,3 +1,6 @@
+# Clean yo branches
+git branch | grep -v "master" | xargs git branch -D
+
 # README
 
 This README would normally document whatever steps are necessary to get the

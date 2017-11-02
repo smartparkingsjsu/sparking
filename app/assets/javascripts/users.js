@@ -1,22 +1,11 @@
 $(document).ready(function() {
 
     var elementEnum = {
-        ACCOUNT: $("#account"),
-        VEHICLE: $("#vehicle"),
-        HISTORY: $("#history"),
         EDIT: $("#edit"),
-        VEHICLE_EDIT: $("#vehicle-edit"),
-        ALL: $(".profile-container")
+        VEHICLE_EDIT: $("#vehicle-edit")
     };
 
     var editToggle = false;
-
-
-    $("#account-toggle").click(function() {
-        fadeOut(elementEnum.ALL);
-        fadeIn(elementEnum.ACCOUNT);
-        $('.button-collapse').sideNav('hide');
-    });
 
     $("#edit-toggle").click(function() {
         if ( editToggle ) {
@@ -38,24 +27,30 @@ $(document).ready(function() {
         editToggle = !editToggle; 
     });
 
-    $("#vehicle-toggle").click(function() {
-        fadeOut(elementEnum.ALL);
-        fadeIn(elementEnum.VEHICLE);
-        $('.button-collapse').sideNav('hide');
+    // TODO: Move to license plate js file
+    var $this;
+    var $parent;
+
+    $("#add-license").click(function() {
+        setTimeout(function(){
+            $('.tooltipped').tooltip({delay: 50});
+            refreshRemoveJquery();
+        }, 400);
     });
 
-    $("#history-toggle").click(function() {
-        fadeOut(elementEnum.ALL);
-        fadeIn(elementEnum.HISTORY);
-        $('.button-collapse').sideNav('hide');
-    });
+    refreshRemoveJquery();
 
-    function fadeOut(element) {
-        element.fadeOut(200);
-    }
-
-    function fadeIn(element) {
-        element.slideUp( 300 ).delay( 300 ).fadeIn( 400 );
+    function refreshRemoveJquery() {
+        $(".remove-license").click(function() {
+            $this = $(this);
+            $parent = $this.parent().parent();
+            if ($parent.find("a").hasClass("dynamic")) {
+                $parent.hide(500, function() {$parent.remove()});
+            }
+            else {
+                $parent.hide(500);
+            }
+        });
     }
 
 });

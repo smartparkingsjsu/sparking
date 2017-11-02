@@ -10,6 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require cable
+//= require_tree ./channels
 //= require jquery
 //= require rails-ujs
 //= require jquery.turbolinks
@@ -22,6 +24,8 @@
 //= require jquery.inputmask.numeric.extensions
 //= require jquery.inputmask.date.extensions
 //= require abracadabra
+//= require cocoon
+
 
 function printPage() {
     window.print()
@@ -42,5 +46,32 @@ $(document).ready(function() {
         clear: 'Clear',
         close: 'Ok',
         closeOnSelect: false // Close upon selecting a date,
+    });
+
+    $('#header-dropdown').click(function() {
+        Materialize.Toast.removeAll();
+    });
+
+    $('.brand-logo').hover(function() {
+        $('.white-logo').hide();
+        $('.blue-logo').show();
+    }, function() {
+        $('.blue-logo').hide();
+        $('.white-logo').show();
+    });
+
+    // Backdoor to go home. Press SHIFT+DEV
+    var map = {16:false, 68: false, 69: false, 86: false};
+    $(document).keydown(function(e) {
+        if (e.which in map) {
+            map[e.which] = true;
+            if (map[16] && map[68] && map[69] && map[86]) {
+                window.location.href = "/";
+            }
+        }
+    }).keyup(function(e) {
+        if (e.which in map) {
+            map[e.which] = false;
+        }
     });
 });

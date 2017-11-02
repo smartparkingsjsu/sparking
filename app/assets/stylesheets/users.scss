@@ -3,9 +3,6 @@
 }
 
 .profile-container {
-  margin-top: 100px;
-  border: solid 1.5px darkgrey;
-  border-radius: 10px;
   padding: 20px 20px 20px 20px;
 }
 
@@ -25,9 +22,7 @@
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-#vehicle,
 #vehicle-edit,
-#history,
 #edit,
 #password {
   display: none;
