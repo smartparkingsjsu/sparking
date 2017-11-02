@@ -123,6 +123,13 @@ Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00
 Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '30', user_id: '12')
 Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '31', user_id: '9')
 
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '11', user_id: '15')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '12', user_id: '14')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '13', user_id: '13')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '14', user_id: '12')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '15', user_id: '11')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '16', user_id: '10')
+
 Charge.create(booking_id: '1', amount: '500', paid: 'f')
 Charge.create(booking_id: '2', amount: '501', paid: 'f')
 Charge.create(booking_id: '3', amount: '502', paid: 'f')
