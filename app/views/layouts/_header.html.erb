@@ -41,7 +41,7 @@
 
       <!-- Only garage owner -->
       <% if garage_owner? %>
-        <script type="text/javascript">$(document).ready(function(){var bleh = <%= garage_owner? %>registerSomeChannel(bleh);});</script>
+        <script type="text/javascript">$(document).ready(function(){var bleh = <%= garage_owner? %>;registerSomeChannel(bleh);});</script>
 
         <li><a class="header-icons" href="/garages/<%= garage_owner?%>/dashboard#notifications">
           <span id="logo-notification" class="new badge red"><%= Notification.where(recipient_id: garage_owner?).where(read_at: nil).count %></span>
