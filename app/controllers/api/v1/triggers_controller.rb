@@ -10,24 +10,29 @@ class API::V1::TriggersController < ApplicationController
 
   def create
     from_post_request
-
+    
+    @count = 0
     @get_garage_spot = GarageSpot.where(serial: @camera)
     @get_zone = true if @get_garage_spot.count > 1
     @get_booking = Booking.where(garage_spot_id: @get_garage_spot.pluck(:id)).where("start_time <= ? AND end_time >= ?", @time, @time)
 
     @get_booking.each do |f|
-      #unless Licenseplate.where(user_id: f.user_id).pluck(:license_plate).included_in?(@license)
-      unless ["1ABCD1", "6ABCD6", "0ABCD0"].included_in?["1ABCD1", "6ABCD6", "0ABCD0"]
+      unless Licenseplate.where(user_id: f.user_id).pluck(:license_plate).included_in?@license
         if @get_zone
-          Notification.create(recipient_id: f.garage_spot.garage_id, booking_id: f.garage_spot.spot_id, confidence: @confidence, action: "license plate mismatch at zone "+f.garage_spot.spot.name) 
+          @count = @count+1
         else
           Notification.create(recipient_id: f.garage_spot.garage_id, booking_id: f.id, confidence: @confidence, action: "license plate mismatch at spot "+f.garage_spot.spot.name) 
-        end
 
-        if f.garage_spot.garage.notify == true
-          NotifyMailer.notify_owner(f).deliver_later
+          if f.garage_spot.garage.notify == true
+            NotifyMailer.notify_owner(f).deliver_later
+          end
         end
       end
+    end
+
+    if @count >= 1
+      Notification.create(recipient_id: @get_booking.last.garage_spot.garage_id, booking_id: @get_booking.last.garage_spot.spot_id, confidence: @confidence, action: @count.to_s+" license plate mismatch at zone "+@get_booking.last.garage_spot.spot.name) 
+      NotifyMailer.notify_owner(@get_booking.last).deliver_later
     end
 
     #debug_section
