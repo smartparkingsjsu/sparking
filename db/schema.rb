@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20170925034840) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["garage_id"], name: "index_garage_spots_on_garage_id"
-    t.index ["serial"], name: "index_garage_spots_on_serial", unique: true
     t.index ["spot_id"], name: "index_garage_spots_on_spot_id"
   end
 

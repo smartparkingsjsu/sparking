@@ -7,7 +7,5 @@ class CreateGarageSpots < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-
-    add_index :garage_spots, :serial,                  unique: true
   end
 end
