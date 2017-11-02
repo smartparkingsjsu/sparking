@@ -69,6 +69,20 @@ class GaragesController < ApplicationController
   def edit
   end
 
+  # GET /garages/1/check/out
+  def out
+    @skip_header = true
+  end
+
+  def search
+    @skip_header = true
+  end
+
+  # GET /garages
+  def garage_reservation
+    @skip_header = true
+  end
+
   def in_success
     get_booking_from_form
   end
