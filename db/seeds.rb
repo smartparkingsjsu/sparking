@@ -112,6 +112,17 @@ Booking.create(start_time: '2018-02-26 18:45:00', end_time: '2018-02-23 20:44:00
 Booking.create(start_time: '2018-02-26 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '6', user_id: '10')
 Booking.create(start_time: '2018-02-26 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '7', user_id: '11')
 
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '17', user_id: '11')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '18', user_id: '10')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '19', user_id: '9')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '20', user_id: '8')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '21', user_id: '7')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '27', user_id: '15')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '28', user_id: '14')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '29', user_id: '13')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '30', user_id: '12')
+Booking.create(start_time: '2018-02-23 18:45:00', end_time: '2018-02-23 20:44:00', length: '2', garage_spot_id: '31', user_id: '9')
+
 Charge.create(booking_id: '1', amount: '500', paid: 'f')
 Charge.create(booking_id: '2', amount: '501', paid: 'f')
 Charge.create(booking_id: '3', amount: '502', paid: 'f')
