@@ -8,6 +8,9 @@
 .vscode
 .idea/*
 
+# Ignore VS files
+.vscode/*
+
 # Ignore Edison files
 *.*~
 *.pyc
