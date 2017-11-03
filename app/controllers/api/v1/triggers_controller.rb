@@ -17,7 +17,11 @@ class API::V1::TriggersController < ApplicationController
     @get_booking = Booking.where(garage_spot_id: @get_garage_spot.pluck(:id)).where("start_time <= ? AND end_time >= ?", @time, @time)
 
     @get_booking.each do |f|
-      unless Licenseplate.where(user_id: f.user_id).pluck(:license_plate).included_in?@license
+      @get_each_user_license = Licenseplate.where(user_id: f.user_id).pluck(:license_plate)
+
+      if @get_each_user_license.included_in?@license
+        @license = @license - @get_each_user_license
+      else
         if @get_zone
           @count = @count+1
         else
@@ -31,7 +35,7 @@ class API::V1::TriggersController < ApplicationController
     end
 
     if @count >= 1
-      Notification.create(recipient_id: @get_booking.last.garage_spot.garage_id, booking_id: @get_booking.last.garage_spot.spot_id, confidence: @confidence, action: @count.to_s+" license plate mismatch at zone "+@get_booking.last.garage_spot.spot.name) 
+      Notification.create(recipient_id: @get_booking.last.garage_spot.garage_id, booking_id: @get_booking.last.garage_spot.spot_id, confidence: @confidence, action: @count.to_s+" license plate mismatch "+@license.to_s+" at zone "+@get_booking.last.garage_spot.spot.name) 
       NotifyMailer.notify_owner(@get_booking.last).deliver_later
     end
 
