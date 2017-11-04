@@ -95,7 +95,11 @@ class GaragesController < ApplicationController
     @hash_booking_id = params[:booking_id]
     reterive_booking_id
 
-    @booking = Booking.where(id: @booking_id).first    
+    @booking = Booking.where(id: @booking_id).first
+    
+    if @booking.nil?
+      redirect_back(fallback_location: :back, notice: 'Booking not found!')
+    end
   end
 
   # POST /garages
