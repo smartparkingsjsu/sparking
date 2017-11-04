@@ -252,23 +252,29 @@ $(document).ready(function() {
             }
 
             // Show page
-            $page[prevPage - 1].hide();
-            $page[activePage -1].show();
+            if (totalPages != 1) {
+                $page[prevPage - 1].hide();
+                $page[activePage -1].show();
+            }
         });
 
         $('#pagination-left').click(function() {
             var $this = $(this);
             if (!$this.hasClass("disabled")) {
-                var $active = $this.siblings('.active');
-                $active.prev().trigger("click");
+                if (totalPages != 1) {
+                    var $active = $this.siblings('.active');
+                    $active.prev().trigger("click");
+                }
             }
         });
 
         $('#pagination-right').click(function() {
             var $this = $(this);
             if (!$this.hasClass("disabled")) {
-                var $active = $this.siblings('.active');
-                $active.next().trigger("click");
+                if (totalPages != 1) {
+                    var $active = $this.siblings('.active');
+                    $active.next().trigger("click");
+                }
             }
         });
     }
