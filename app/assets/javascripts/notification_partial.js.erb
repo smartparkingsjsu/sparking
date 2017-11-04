@@ -18,6 +18,9 @@ $(document).ready(function() {
     var sortedDateKeys = [];
     var $this;
     var $parent;
+    var currentPage = 1;
+    var notificationsPerPage = 10;
+    var totalPages = 1;
 
     getNotifications();
 
@@ -39,6 +42,7 @@ $(document).ready(function() {
     }
 
     function addNotificationRows(data) {
+
         if (data.hasOwnProperty("notifications")) {
             var notifications = data.notifications;
         }
@@ -49,10 +53,12 @@ $(document).ready(function() {
 
         // Sort dates
         for (var i=0; i<notifications.length; i++) {
+            // Get date
             var dateString = notifications[i].created_at.split('T')[0].split('-');
             dateString = dateString[0] + '/' + dateString[1] + '/' + dateString[2];
             var date = new Date(dateString);
             //console.log("Iteration", i, date, dateString);
+
             // If its the first time inserting to the hash
             if (dateHash[date] == null) {
                 // Add key
@@ -63,24 +69,72 @@ $(document).ready(function() {
             //console.log("dateHash", i, dateHash[date]);
         }
 
+        totalPages = Math.ceil(notifications.length/notificationsPerPage);
+
+        //console.log("Total pages", totalPages);
+
         sortedDateKeys.sort(function(a, b) {return b-a});
         //console.log("Sorted keys", sortedDateKeys);
 
+        // Create page wrappers
+        $page = createPageWrappers(totalPages);
+
         // Append html
+        var notificationCount = 0;
+        var page = 0;
         for (var i=0; i<sortedDateKeys.length; i++) {
             var thisDate = sortedDateKeys[i];
             addDateBreakLine(thisDate.getMonth()+1 + "/" +
                               thisDate.getDate() + "/" +
-                              thisDate.getFullYear());
+                              thisDate.getFullYear(), $page[page]);
             for (var j=0; j<dateHash[thisDate].length; j++) {
-                addNotification(dateHash[thisDate][j]);
+                notificationCount++;
+                addNotification(dateHash[thisDate][j], $page[page]);
+                if ((notificationCount%notificationsPerPage) == 0) {
+                    page++;
+                }
             }
         }
+
+        // Add page wrappers to notification wrapper
+        for (var i=0; i< $page.length; i++) {
+            $(".notification-wrapper").append($page[i]);
+        }
+
+        addPaginationNumbers(totalPages);
+
+        $('#1-page').show();
+
+        // Activate event listeners
         $('.tooltipped').tooltip({delay: 50});
         addEventHandlers();
     }
 
-    function addNotification(data) {
+    function createPageWrappers(pages) {
+        var $page = [];
+        for (var i=0; i < pages; i++) {
+            $page.push(jQuery('<div id="'+ (i+1) +'-page" class="notification-page"></div>'));
+        }
+        return $page;
+    }
+
+    function addPaginationNumbers(pageNumber) {
+        var $paginationNumbers;
+        var $pagination = $('.pagination');
+        $pagination.append('<li id="pagination-left" class="disabled"><a href="#notifications"><i class="material-icons">chevron_left</i></a></li>')
+        for (var i=0; i< pageNumber; i++) {
+            if (i==0) {
+                $paginationNumbers = '<li class="active pagination-number"><a href="#">1</a></li>'
+            }
+            else {
+                $paginationNumbers += '<li class="waves-effect pagination-number"><a href="#">' + (i+1) + '</a></li>'
+            }
+        }
+        $pagination.append($paginationNumbers);
+        $pagination.append('<li id="pagination-right" class="waves-effect"><a href="#notifications"><i class="material-icons">chevron_right</i></a></li>')
+    }
+
+    function addNotification(data, $page) {
         var $solveElement = '';
 
         if (data.read_at) {
@@ -103,10 +157,10 @@ $(document).ready(function() {
                             '</div>';
 
         // Add a row
-        $(".notification-wrapper").append($notification);
+        $page.append($notification);
     }
 
-    function addDateBreakLine(date) {
+    function addDateBreakLine(date, $page) {
         var $date = '<div class="row valign-wrapper">\n' +
                       '<div class="col s5"><hr></div>\n' +
                         '<div class="col s2 center-align"><h5>' + date + '</h5></div>\n' +
@@ -114,7 +168,7 @@ $(document).ready(function() {
                     '</div>'
 
         // Add date
-        $(".notification-wrapper").append($date);
+        $page.append($date);
     }
 
     function addEventHandlers() {
@@ -149,10 +203,79 @@ $(document).ready(function() {
                     Materialize.toast("Connection error!", 4000);
                 }
             })
+
+            $('.tooltipped').tooltip({delay: 50});
         });
 
         $("#no-btn").click(function() {
             $("#confirmation-modal").modal('close');
+        });
+
+
+        var activePage;
+        var prevPage;
+        var activeArrowClass = "waves-effect";
+        var inactiveArrowClass = "disabled";
+
+        $('.pagination-number').click(function() {
+            $this = $(this);
+            activePage = $this.text();
+
+            // Update active number
+            var activeClass = "active pagination-number";
+            var inactiveClass = "waves-effect pagination-number"
+            var $active = $this.siblings('.active');
+            prevPage = $active.text();
+
+            $active.removeClass(activeClass).addClass(inactiveClass);
+            $this.removeClass(inactiveClass).addClass(activeClass);
+
+            // Update arrows
+            var $leftArrow = $('#pagination-left');
+            var $rightArrow = $('#pagination-right');
+            if (activePage == 1) {
+                $leftArrow.removeClass(activeArrowClass).addClass(inactiveArrowClass);
+            }
+            else {
+                if ($leftArrow.hasClass("disabled")) {
+                    $leftArrow.removeClass(inactiveArrowClass).addClass(activeArrowClass);
+                }
+            }
+
+            if (activePage == totalPages) {
+                $rightArrow.removeClass(activeArrowClass).addClass(inactiveArrowClass);
+            }
+            else {
+                if ($rightArrow.hasClass("disabled")) {
+                    $rightArrow.removeClass(inactiveArrowClass).addClass(activeArrowClass);
+                }
+            }
+
+            // Show page
+            if (totalPages != 1) {
+                $page[prevPage - 1].hide();
+                $page[activePage -1].show();
+            }
+        });
+
+        $('#pagination-left').click(function() {
+            var $this = $(this);
+            if (!$this.hasClass("disabled")) {
+                if (totalPages != 1) {
+                    var $active = $this.siblings('.active');
+                    $active.prev().trigger("click");
+                }
+            }
+        });
+
+        $('#pagination-right').click(function() {
+            var $this = $(this);
+            if (!$this.hasClass("disabled")) {
+                if (totalPages != 1) {
+                    var $active = $this.siblings('.active');
+                    $active.next().trigger("click");
+                }
+            }
         });
     }
 });

@@ -75,6 +75,10 @@
   display: none;
 }
 
+#reservation-form button[type="submit"] {
+  display: none;
+}
+
 .error-message {
   color: red;
 }
