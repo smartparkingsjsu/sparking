@@ -60,6 +60,33 @@ $(document).ready(function() {
         $('.white-logo').show();
     });
 
+    $('#fake-btn').click(function() {
+        var email = null
+        var price = gon.price;
+        if ($('#hidden-email').length)  {
+            email = $('#hidden-email').text();
+        }
+        $payment = '<script\n' +
+                      'src="https://checkout.stripe.com/checkout.js" class="stripe-button"\n' +
+                      'data-key= "<%= Rails.application.secrets.stripe_publishable_key %>"\n' +
+                      'data-description= "Parking Spot Payment"\n' +
+                      'data-amount= ' + price + '\n' +
+                      'data-locale="auto"\n' +
+                      'data-email= email\n' +
+                      '>\n' +
+                    '</script>';
+
+        // Trigger the script and generates a button element inside the form
+        $('#reservation-form').append($payment);
+
+        setTimeout(function() {
+            var $paymentBtn = $('#reservation-form').children().last();
+            $paymentBtn.hide();
+            $paymentBtn.trigger("click");
+        }, 300);
+
+    });
+
     // Backdoor to go home. Press SHIFT+DEV
     var map = {16:false, 68: false, 69: false, 86: false};
     $(document).keydown(function(e) {
