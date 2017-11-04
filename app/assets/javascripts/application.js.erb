@@ -60,19 +60,54 @@ $(document).ready(function() {
         $('.white-logo').show();
     });
 
-    $('#fake-btn').click(function() {
-        var email = null
-        var price = gon.price;
+    // Reservation form
+
+    $('#payment-btn').click(function() {
+        var email;
+        var price;
+        var garage_id;
+        var length;
+        var date;
+
+        // Get email
         if ($('#hidden-email').length)  {
             email = $('#hidden-email').text();
         }
+
+        // Get URL params
+        date = new Date($('#date').val());
+        date = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+        length = $('#end_time').val() - $('#time').val();
+        garage_id = $('#garageid').val();
+
+        // Form URL
+        <% if Rails.env.development? %>
+        var price_url = "http://localhost:3000/api/v1/calculate?garage_id=" + garage_id + "&length=" + length + "&date=" + date;
+        <% else %>
+        var price_url = "http://smartparkingsjsu.herokuapp.com/api/v1/calculate?garage_id=" + garage_id + "&length=" + length + "&date=" + date;
+        <% end %>
+
+        // Get Price
+        $.ajax({
+            url: price_url,
+            success: function (response) {
+                price = response*100;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //console.log("Error fetching data");
+                Materialize.toast("Connection error!", 4000);
+                Materialize.toast("Try again please!", 4000);
+            },
+            async: false
+        });
+
         $payment = '<script\n' +
                       'src="https://checkout.stripe.com/checkout.js" class="stripe-button"\n' +
                       'data-key= "<%= Rails.application.secrets.stripe_publishable_key %>"\n' +
                       'data-description= "Parking Spot Payment"\n' +
                       'data-amount= ' + price + '\n' +
                       'data-locale="auto"\n' +
-                      'data-email= email\n' +
+                      'data-email= ' + email + '\n' +
                       '>\n' +
                     '</script>';
 

@@ -39,6 +39,8 @@
           <%= hidden_field_tag :user_booking_view, current_user.id %>
       <% end %>
   <% end %>
-  <button id="fake-btn" class="waves-effect waves-light btn">Fake me bruh</button>
+  <% if user_signed_in? && !garage_owner_super_admin? %>
+      <button id="payment-btn" class="waves-effect waves-light btn">Pay</button>
+  <% end %>
   <span id="hidden-email" style="display:none"><%= current_user.email %></span>
 </div>

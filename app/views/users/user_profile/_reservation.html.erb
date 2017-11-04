@@ -12,21 +12,20 @@
       <th>Start Time</th>
       <th>End Time</th>
       <th>Length</th>
+      <th>Code</th>
     </tr>
     </thead>
 
     <tbody class="booking-table">
       <% @bookings.each do |a| %>
-        <tr class="clickable booking-row">
+        <tr class="booking-row">
           <td><%= a.garage_spot.garage.name %></td>
           <td><%= a.garage_spot.spot.name %></td>
           <td><%= a.start_time.strftime("%m/%d/%y") %></td>
           <td><%= a.start_time.strftime("%l:%M %p") %></td>
           <td><%= a.end_time.strftime("%l:%M %p") %></td>
           <td><%= a.length %> hour(s)</td>
-        </tr>
-        <tr class="qr-picture">
-          <td><div class="qr"><%= raw get_qr_code(@hashids.encode(a.id)).as_html %></div></td>
+          <td><%= @hashids.encode(a.id) %></td>
         </tr>
       <% end %>
     </tbody>

@@ -15,6 +15,14 @@ include ReservationsHelper
     end
   end
 
+  def get_price_based_on_date
+    if @date.on_weekday?
+      @amount = (Garage.where(id: @garageid).first.weekday*@length*100).to_i
+    else
+      @amount = (Garage.where(id: @garageid).first.weekend*@length*100).to_i
+    end
+  end
+
   # In-garage booking method
   def get_spot_now
     find_garage
@@ -24,8 +32,8 @@ include ReservationsHelper
 
     @time = Time.now.in_time_zone.change(:sec => 0) + 1.minutes
     @last_in_list = @garage_spot.last
-    @amount = rand(100..1000)
-
+    
+    get_price_based_on_date
     booking_logic
   end
 
@@ -38,8 +46,8 @@ include ReservationsHelper
     user_booking_view
 
     @last_in_list = @garage_spot.last
-    @amount = rand(100..1000)
-
+    
+    get_price_based_on_date
     booking_logic
   end
 
