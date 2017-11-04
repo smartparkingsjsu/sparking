@@ -17,13 +17,17 @@ class UsersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'Profile was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    if user_params.nil?
+      redirect_back(fallback_location: :back, notice: 'Profile was successfully updated.')
+    else
+      respond_to do |format|
+        if @user.update(user_params)
+          format.html { redirect_to @user, notice: 'Profile was successfully updated.' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -59,7 +63,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :admin, :garage_id, licenseplates_attributes: Licenseplate.attribute_names.map(&:to_sym).push(:_destroy))
+      params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :admin, :garage_id, licenseplates_attributes: Licenseplate.attribute_names.map(&:to_sym).push(:_destroy)) if params[:user]
     end
 
 end

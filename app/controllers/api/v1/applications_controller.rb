@@ -5,10 +5,16 @@ class API::V1::ApplicationsController < ApplicationController
     date = params[:date]
     length = params[:length]
 
-    if DateTime.parse(date).on_weekday?
-      render json:  Garage.find(garage_id).weekday * length.to_i
+    if garage_id.present? & date.present? & length.present?
+      if DateTime.parse(date).on_weekday?
+        render json:  Garage.find(garage_id).weekday * length.to_i, status: :ok
+      else
+        render json:  Garage.find(garage_id).weekend * length.to_i, status: :ok
+      end
     else
-      render json:  Garage.find(garage_id).weekend * length.to_i
+      render status: :bad_request, json: {
+        message: "Params not found."
+      }
     end
   end
 
