@@ -41,6 +41,8 @@ Rails.application.routes.draw do
       resources :triggers
       resources :dashboards
       resources :notifications
+
+      match '/calculate' => 'applications#calculate', via: :get
     end
   end
 
