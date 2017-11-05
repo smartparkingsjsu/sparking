@@ -1,0 +1,22 @@
+<div class="row">
+  <h4><%= Garage.where(id: garage_owner?).first.name %></h4>
+</div>
+
+<!--div>
+  Zone: <!--%= click_to_edit Garage.where(id: garage_owner?).first, path: garage_path(garage_owner?), attribute: :zone %>
+</div-->
+<div class="row">
+  <div><h5>Prices</h5></div>
+  <div class="top-margin">
+    <span>Weekday: </span>
+    <span>
+      <%= click_to_edit Garage.where(id: garage_owner?).first, path: garage_path(garage_owner?), attribute: :weekday %>
+    </span>
+  </div>
+  <div>
+    <span>Weekend: </span>
+    <span>
+      <%= click_to_edit Garage.where(id: garage_owner?).first, path: garage_path(garage_owner?), attribute: :weekend %>
+    </span>
+  </div>
+</div>
