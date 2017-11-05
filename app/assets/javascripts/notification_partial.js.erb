@@ -2,16 +2,18 @@ $(document).ready(function() {
 
     <% if Rails.env.development? %>
       var base_url = "http://localhost:3000/api/v1/notifications/";
-      var url = base_url + gon.garage_id;
     <% else %>
       var base_url = "http://smartparkingsjsu.herokuapp.com/api/v1/notifications/";
-      var url = base_url + gon.garage_id;
     <% end %>
+
+    var url = base_url + gon.garage_id;
 
     var elementEnum = {
         "solveButton": '<a class="solve-btn waves-effect waves-light btn">Solve</a>\n',
         "checkIcon":  '<i class="small material-icons tooltipped" data-position="top" data-delay="50"\n' +
-                      ' data-tooltip="Problem has been solved">check_circle</i>'
+                      ' data-tooltip="Problem has been solved">check_circle</i>',
+        "yesButton": '<a class="waves-effect waves-light btn yes-btn">Yes</a>',
+        "noButton" : '<a class="waves-effect waves-light btn no-btn">No</a>'
     };
 
     var dateHash = {};
@@ -144,6 +146,11 @@ $(document).ready(function() {
             $solveElement = elementEnum.solveButton;
         }
 
+        var $confirmationWrapper =  '<div class="confirmation-wrapper">' +
+                                      elementEnum.yesButton +
+                                      elementEnum.noButton +
+                                    '</div>'
+
         // TODO: Change confidence to something else
         var $notification = '<div id="' + data.notification_id + '" class="row notification-block valign-wrapper">\n' +
                                 '<div class="col s8">\n' +
@@ -153,6 +160,7 @@ $(document).ready(function() {
                                 '</div>\n' +
                                 '<div class="col s4 right-align">\n' +
                                     $solveElement +
+                                    $confirmationWrapper +
                                 '</div>\n' +
                             '</div>';
 
@@ -175,15 +183,16 @@ $(document).ready(function() {
         $(".solve-btn").click(function() {
             $this = $(this);
 
-            // Open modal
-            $("#confirmation-modal").modal('open');
+            // show confirmation buttons
+            $this.hide();
+            $this.next().slideDown("slow");
         });
 
-        $("#yes-btn").click(function() {
-            $("#confirmation-modal").modal('close');
-            $parent = $this.parent();
-            $this.remove();
-            $parent.append(elementEnum.checkIcon);
+        $(".yes-btn").click(function() {
+            $parent = $(this).parent().parent();
+            $(this).parent().hide();
+            $(this).parent().prev().remove();
+            $parent.append(elementEnum.checkIcon).hide().slideDown("slow");
 
             var id = $parent.parent().attr('id');
             //console.log($parent.parent());
@@ -207,8 +216,9 @@ $(document).ready(function() {
             $('.tooltipped').tooltip({delay: 50});
         });
 
-        $("#no-btn").click(function() {
-            $("#confirmation-modal").modal('close');
+        $(".no-btn").click(function() {
+            $(this).parent().hide();
+            $(this).parent().prev().show();
         });
 
 
