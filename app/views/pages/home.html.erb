@@ -3,10 +3,6 @@
     <%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
-<%# <div class="map-frame" style='width: 100%;'>
-  <div id="map" style='width: 100%; height: 50vh;'></div>
-</div> %>
-
 <div class="row top-margin valign-wrapper">
   <div id="img-home" class="img-container">
     <%= image_tag "parking_background.png" %>
@@ -87,23 +83,3 @@
     </div>
   </li>
 </ul>
-
-<!-- Do not modify or move away anything below -->
-<script type="text/javascript">  
-handler = Gmaps.build('Google');  
-handler.buildMap({ 
-  provider: {
-        zoom:      20,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        styles:    mapStyle
-      },
-  internal: {id: 'map'}
-  }, 
-  
-  function(){  
-  markers = handler.addMarkers(<%=raw @all_garages.to_json %>);  
-  handler.bounds.extendWith(markers);  
-  handler.fitMapToBounds();  
-  handler.getMap().setZoom(15);  
-});  
-</script>

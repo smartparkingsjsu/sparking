@@ -78,7 +78,6 @@
 
       <!-- Everyone -->
       <% else %>
-        <!--<li><a class="modal-trigger header-icons" data-turbolinks="false" href="#modal_signup">Sign up</a></li>-->
         <li><%= link_to'Sign up', new_user_registration_path, class: "header-icons" %></li>
         <li><a class="modal-trigger header-icons margin-right" data-turbolinks="false" href="#modal_login">Log in</a></li>
       <% end %>
@@ -96,10 +95,3 @@
     <%= render "users/sessions/new" %>
   </div>
 </div>
-
-<!--<div class="modal modal-fixed-footer" id="modal_signup">-->
-  <!--<div class="modal-content">-->
-    <!--<h4>Sign Up</h4>-->
-    <!--<%= render "users/registrations/new" %>-->
-  <!--</div>-->
-<!--</div>-->
