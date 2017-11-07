@@ -1,5 +1,11 @@
-<b><%= name %></b><br><br>  
-
-<%= address %><br><br>
-
-<center><%= link_to "Book Now", garage_path(id), class: "btn btn-info" %></center>
+<div class="gmaps-wrapper">
+  <div class="gmaps-row">
+    <b><%= name %></b>
+  </div>
+  <div class="gmaps-row">
+    <span><%= address %></span>
+  </div>
+  <div class="center-align">
+    <a id="btn-<%= id %>" class="waves-effect waves-light btn gmaps-btn" onclick="selectGarage(this.id)">Select</a>
+  </div>
+</div>

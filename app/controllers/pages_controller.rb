@@ -13,12 +13,12 @@ respond_to :html, :xml, :json
       marker.lat plot.at(1)
       marker.lng plot.at(2)
 
-      url_alert = "/images/parking.png"  
+      icon = "/images/google_maps_icon.png"
 
       marker.picture({  
-        "url" => url_alert,  
-        "width" => 30,  
-        "height" => 30  
+        "url" => icon,
+        "width" => 30,
+        "height" => 40
       })  
 
       marker.infowindow render_to_string(:partial => "/pages/info",   
@@ -43,7 +43,7 @@ respond_to :html, :xml, :json
   end
 
   def show
-    # load_google_map
+    load_google_map
 
     @booking_time = get_booking_times
     @parking_garages = Garage.all
