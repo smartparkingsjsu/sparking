@@ -43,7 +43,6 @@ def main():
                 print("Building params...")
                 license_client.buildParams(edison.macAddress, response[0]["plate"], response[0]["confidence"])
                 print("Sending to sparking API!")
-                print(response)
                 license_client.check()
             else:
                 print("ERROR fetching openALPR API")
