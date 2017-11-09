@@ -2,15 +2,19 @@ from component.sparkingEdison import SparkingEdison
 from component.openalprApi import OpenalprApi
 from component.checkLicenseApi import CheckLicenseApi
 from component.ultrasonic import Ultrasonic
+from component.led import Led
 from threading import Thread
 
 def detectOjbect():
     ultrasonic = Ultrasonic()
+    led = Led()
     while(True):
         if (ultrasonic.isObjectPresent(objectDistance=22, timeStayTrigger=0.10, noise=2)):
             print("Turn LED ON object is there")
+            led.on()
         else:
             print("Turn LED OFF object not there")
+            led.off()
 
 def main():
 
