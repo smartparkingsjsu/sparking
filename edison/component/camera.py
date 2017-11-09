@@ -9,7 +9,7 @@ class Camera(Sensor):
         super(Camera, self).__init__()
         self.name = "Camera"
         self.type = "digital"
-        self.image_name = "melvin.jpg"
+        self.image_name = "plates.jpg"
         self.image_path = os.path.abspath(os.path.dirname(__file__)) + os.sep + ".." + \
                           os.sep + "images" + os.sep + self.image_name
 

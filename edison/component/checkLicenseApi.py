@@ -19,8 +19,8 @@ class CheckLicenseApi(object):
         # TODO: check if all params are there & change time
         response = self.apiclient.post(params = {
             "serial": self.edisonSerial,
-            # "time": str(datetime.datetime.now()),
-            "time": "2018-02-23 19:45:00",
+            "time": str(datetime.datetime.now()),
+            # "time": "2018-02-23 19:45:00",
             "license_plate": self.licensePlate,
             "confidence": self.confidence
         })

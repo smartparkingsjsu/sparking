@@ -17,6 +17,24 @@ class Ultrasonic(Sensor):
     def read(self):
         return self.distance()
 
+    def isObjectPresent(self, objectDistance, timeStayTrigger=0.5, threshold=0.75, noise=30):
+        # Input
+        # timeStayTrigger in minutes
+        # objectDistance in cm
+        # threshold in percentage 0.75 for 75%
+        count = 0
+        sleepAmount = timeStayTrigger*60
+        for i in range(int(sleepAmount)):
+            if (self.distance() < objectDistance + noise):
+                count += 1
+
+            time.sleep(1)
+
+        if ((count/sleepAmount) >= threshold):
+            return True
+        else:
+            return False
+
     def distance(self, measure='cm'):
         self.trig.write(0)
         time.sleep(0.002)
