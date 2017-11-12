@@ -1,5 +1,11 @@
 $(document).ready(function() {
-
+    
+    // Remove 12pm from start time & 1am from end time
+    $('#time').children().last().remove();
+    $('#end_time').children().first().remove();
+    $('#time').material_select();
+    $('#end_time').material_select();
+    
     var $endOptions = $('#end_time');
     var $endOptionsReference = $endOptions.children().clone();
 
@@ -38,11 +44,5 @@ $(document).ready(function() {
     // Use the picker object directly.
     var picker = $input.pickadate('picker');
     picker.set('select', new Date());
-
-    // Remove 12pm from start time & 1am from end time
-    $('#time').children().last().remove();
-    $('#end_time').children().first().remove();
-    $('#time').material_select();
-    $('#end_time').material_select();
 
 });
