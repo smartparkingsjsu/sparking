@@ -6,7 +6,9 @@ respond_to :html, :xml, :json
     @coordinates = []
 
     @list_all_garages.each do |a|
-      @coordinates << [a.at(0), Geocoder.coordinates(a.at(1)).at(0), Geocoder.coordinates(a.at(1)).at(1), a.at(2), a.at(1)]
+      if a.respond_to?('at')
+        @coordinates << [a.at(0), Geocoder.coordinates(a.at(1)).at(0), Geocoder.coordinates(a.at(1)).at(1), a.at(2), a.at(1)]
+      end
     end
 
     @all_garages = Gmaps4rails.build_markers(@coordinates) do |plot, marker|  
