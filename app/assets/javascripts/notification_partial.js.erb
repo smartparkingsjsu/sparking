@@ -37,7 +37,7 @@ $(document).ready(function() {
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 //console.log("Error fetching data");
-                Materialize.toast("Error fetching data", 4000);
+                Materialize.toast("Error fetching data", 6000, 'light-blue lighten-1');
                 window.setTimeout(getNotifications, 60000);
             }
         })
@@ -49,7 +49,7 @@ $(document).ready(function() {
             var notifications = data.notifications;
         }
         else {
-            Materialize.toast("Error fetching data", 4000);
+            Materialize.toast("Error fetching data", 6000, 'light-blue lighten-1');
             return -1;
         }
 
@@ -205,11 +205,11 @@ $(document).ready(function() {
                 data: {"notification_id": id},
                 timeout: 2000,
                 success: function() {
-                    Materialize.toast("Solved!", 4000);
+                    Materialize.toast("Solved!", 6000, 'light-blue lighten-1');
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     //console.log("Error fetching data");
-                    Materialize.toast("Connection error!", 4000);
+                    Materialize.toast("Connection error!", 6000, 'light-blue lighten-1');
                 }
             })
 

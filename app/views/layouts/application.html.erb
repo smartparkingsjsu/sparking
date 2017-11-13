@@ -30,7 +30,7 @@
     <div class="container">
 
       <% flash.each do |message_type, message| %>
-          <%= javascript_tag "Materialize.toast('#{message}', 4000)" %>
+          <%= javascript_tag "Materialize.toast('#{message}', 6000, 'light-blue lighten-1')" %>
       <% end %>
 
       <%= yield %>

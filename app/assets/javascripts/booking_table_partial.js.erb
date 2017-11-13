@@ -45,7 +45,7 @@ $(document).ready(function(){
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 //console.log("Error fetching data");
-                Materialize.toast("Connection error!", 4000);
+                Materialize.toast("Connection error!", 6000, 'light-blue lighten-1');
                 window.setTimeout(update, 60000);
             }
         })
