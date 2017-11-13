@@ -27,10 +27,24 @@
         <%= select_tag "end_time", options_for_select(@booking_time.map { |obj| [obj['time'], obj['value']] }), class: "end-select" %>
       </div>
 
-      <div class="input-field col s12 m12">
+      <div class="input-field col s12 m11">
         <%= label :garageid, "Parking garage" %>
         <br/><br/>
         <%= select_tag "garageid", options_from_collection_for_select(@parking_garages, "id", "name") %>
+      </div>
+
+      <div class="col m1 hide-on-small-only center-align">
+        <a id="gmap-icon" class="material-icons clickable tooltipped" data-delay="50"
+           data-position="top" data-tooltip="Open google maps">map
+        </a>
+        <a id="close-gmap" class="material-icons clickable tooltipped" data-delay="50"
+           data-position="top" data-tooltip="Close google maps">close
+        </a>
+      </div>
+
+      <!-- Google maps -->
+      <div class="map-frame">
+        <div id="map"></div>
       </div>
 
       <% if (garage_owner?.present?) || (super_admin? == true) %>
@@ -40,7 +54,42 @@
       <% end %>
   <% end %>
   <% if user_signed_in? && !garage_owner_super_admin? %>
-      <button id="payment-btn" class="waves-effect waves-light btn">Pay</button>
+      <div class="col s12"><button id="payment-btn" class="waves-effect waves-light btn">Pay</button></div>
   <% end %>
   <span id="hidden-email" style="display:none"><%= current_user.email %></span>
+
+  <!-- Google maps script -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+        var activeMap = false;
+
+        $('#gmap-icon').click(function(){
+            if (!activeMap) {
+                handler = Gmaps.build('Google');
+                handler.buildMap({
+                        provider: {
+                          zoom: 30,
+                          mapTypeId: google.maps.MapTypeId.ROADMAP
+                        },
+                        internal: {id: 'map'}
+                    },
+
+                    function(){
+                        markers = handler.addMarkers(<%=raw @all_garages.to_json %>);
+                        handler.bounds.extendWith(markers);
+                        handler.fitMapToBounds();
+                        handler.getMap().setZoom(15);
+                    });
+                activeMap = true;
+            }
+        });
+
+    });
+
+    function selectGarage(id) {
+        id = id.split("-")[1];
+        $('#garageid').val(id);
+        $('#garageid').material_select();
+    }
+  </script>
 </div>

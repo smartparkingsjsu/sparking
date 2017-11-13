@@ -6,19 +6,21 @@ respond_to :html, :xml, :json
     @coordinates = []
 
     @list_all_garages.each do |a|
-      @coordinates << [a.at(0), Geocoder.coordinates(a.at(1)).at(0), Geocoder.coordinates(a.at(1)).at(1), a.at(2), a.at(1)]
+      if a.respond_to?('at')
+        @coordinates << [a.at(0), Geocoder.coordinates(a.at(1)).at(0), Geocoder.coordinates(a.at(1)).at(1), a.at(2), a.at(1)]
+      end
     end
 
     @all_garages = Gmaps4rails.build_markers(@coordinates) do |plot, marker|  
       marker.lat plot.at(1)
       marker.lng plot.at(2)
 
-      url_alert = "/images/parking.png"  
+      icon = "/images/google_maps_icon.png"
 
       marker.picture({  
-        "url" => url_alert,  
-        "width" => 30,  
-        "height" => 30  
+        "url" => icon,
+        "width" => 30,
+        "height" => 40
       })  
 
       marker.infowindow render_to_string(:partial => "/pages/info",   
@@ -43,7 +45,7 @@ respond_to :html, :xml, :json
   end
 
   def show
-    # load_google_map
+    load_google_map
 
     @booking_time = get_booking_times
     @parking_garages = Garage.all

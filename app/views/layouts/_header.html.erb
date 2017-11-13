@@ -43,7 +43,8 @@
       <% if garage_owner? %>
         <script type="text/javascript">$(document).ready(function(){var bleh = <%= garage_owner? %>;registerSomeChannel(bleh);});</script>
 
-        <li><a class="header-icons" href="/garages/<%= garage_owner?%>/dashboard#notifications">
+        <li><a class="header-icons tooltipped" data-position="bottom" data-delay="50"
+               data-tooltip="Go to notifications page" href="/garages/<%= garage_owner?%>/dashboard#notifications">
           <span id="logo-notification" class="new badge red"><%= Notification.where(recipient_id: garage_owner?).where(read_at: nil).count %></span>
           <i class="material-icons center-align">notifications</i>
         </a></li>
@@ -77,7 +78,6 @@
 
       <!-- Everyone -->
       <% else %>
-        <!--<li><a class="modal-trigger header-icons" data-turbolinks="false" href="#modal_signup">Sign up</a></li>-->
         <li><%= link_to'Sign up', new_user_registration_path, class: "header-icons" %></li>
         <li><a class="modal-trigger header-icons margin-right" data-turbolinks="false" href="#modal_login">Log in</a></li>
       <% end %>
@@ -95,10 +95,3 @@
     <%= render "users/sessions/new" %>
   </div>
 </div>
-
-<!--<div class="modal modal-fixed-footer" id="modal_signup">-->
-  <!--<div class="modal-content">-->
-    <!--<h4>Sign Up</h4>-->
-    <!--<%= render "users/registrations/new" %>-->
-  <!--</div>-->
-<!--</div>-->
