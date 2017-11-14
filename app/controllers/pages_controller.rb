@@ -7,6 +7,7 @@ respond_to :html, :xml, :json
 
     @list_all_garages.each do |a|
       if a.respond_to?('at')
+        # TODO: investigate why this breaks the website sometimes
         @coordinates << [a.at(0), Geocoder.coordinates(a.at(1)).at(0), Geocoder.coordinates(a.at(1)).at(1), a.at(2), a.at(1)]
       end
     end

@@ -1,5 +1,7 @@
 $(document).ready(function() {
-    
+
+    var timeNow = new Date();
+
     // Remove 12pm from start time & 1am from end time
     $('#time').children().last().remove();
     $('#end_time').children().first().remove();
@@ -43,6 +45,13 @@ $(document).ready(function() {
     var $input = $('.datepicker').pickadate();
     // Use the picker object directly.
     var picker = $input.pickadate('picker');
-    picker.set('select', new Date());
+    picker.set('select', timeNow);
+
+    var time = timeNow.getHours();
+    if (time != 23) {
+        time += 1;
+    }
+    $('.start-select').val(time);
+    $('#end_time').val(time+1);
 
 });
