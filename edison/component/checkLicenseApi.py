@@ -5,16 +5,18 @@ import datetime
 class CheckLicenseApi(object):
 
     def __init__(self):
-        # self.apiclient = Api("http://smartparkingsjsu-api.herokuapp.com/api/v1/triggers")
-        self.apiclient = Api("http://localhost:3000/api/v1/triggers")
+        self.apiclient = Api("http://smartparkingsjsu-api.herokuapp.com/api/v1/triggers")
+        # self.apiclient = Api("http://localhost:3000/api/v1/triggers")
         self.confidence = None
         self.licensePlate = None
         self.edisonSerial = None
+        self.position = None
 
-    def buildParams(self, edisonSerial, licensePlate, confidence):
+    def buildParams(self, edisonSerial, licensePlate, confidence, position):
         self.licensePlate = licensePlate
         self.confidence = confidence
         self.edisonSerial = edisonSerial
+        self.position = position
 
     def check(self):
         print("PARAMS: ")
@@ -28,7 +30,8 @@ class CheckLicenseApi(object):
             "time": str(datetime.datetime.now()),
             # "time": "2018-02-23 19:45:00",
             "license_plate": self.licensePlate,
-            "confidence": self.confidence
+            "confidence": self.confidence,
+            "position": self.position
         })
 
         return response

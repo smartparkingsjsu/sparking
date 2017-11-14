@@ -4,8 +4,8 @@ import os
 class Edison(object):
 
     def __init__(self):
-        # self.macAddress = self.__retrieve_mac_address()
-        self.macAddress = "FZEDA547D013PB501"
+        self.macAddress = self.__retrieve_mac_address()
+        # self.macAddress = "FZEDA547D013PB501"
         self.sensors = None
 
     def __retrieve_mac_address(self):
