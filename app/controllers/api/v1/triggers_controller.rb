@@ -11,17 +11,21 @@ class API::V1::TriggersController < ApplicationController
   def create
     from_post_request
 
-    @get_garage_spot = GarageSpot.where(serial: @camera).first
-    @get_garage_id = @get_garage_spot.garage_id
-    @get_booking = Booking.where("garage_spot_id = ? AND start_time <= ? AND end_time >= ?", @get_garage_spot.id, @time, @time).first
-    @get_user_id = @get_booking.user.id
-    @get_license_plates = Licenseplate.where(user_id: @get_user_id).pluck(:license_plate)
+    @get_garage_spot = GarageSpot.where(serial: @camera)
 
-    unless @get_license_plates.include? @license
-      Notification.create(recipient_id: @get_garage_id, booking_id: @get_booking.id, confidence: @confidence, action: "license plate mismatch") 
+    @get_booking = Booking.where(garage_spot_id: @get_garage_spot.pluck(:id)).where("start_time <= ? AND end_time >= ?", @time, @time)
 
-      if @get_booking.garage_spot.garage.notify == true
-        NotifyMailer.notify_owner(@get_booking).deliver_later
+    @get_booking.each do |f|
+      @get_each_user_license = Licenseplate.where(user_id: f.user_id).pluck(:license_plate)
+
+      if @get_each_user_license.included_in?@license
+        @license = @license - @get_each_user_license
+      else
+        Notification.create(recipient_id: f.garage_spot.garage_id, booking_id: f.id, confidence: @confidence, action: "License plate mismatch at spot "+f.garage_spot.spot.name)
+
+        if f.garage_spot.garage.notify == true
+          NotifyMailer.notify_owner(f).deliver_later
+        end
       end
     end
 
