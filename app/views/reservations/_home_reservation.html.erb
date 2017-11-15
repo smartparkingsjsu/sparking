@@ -28,7 +28,7 @@
       </div>
 
       <div class="input-field col s12 m11">
-        <%= label :garageid, "Parking garage" %>
+        <%= label :garageid, "Parking garage", class: "garage-label" %>
         <br/><br/>
         <%= select_tag "garageid", options_from_collection_for_select(@parking_garages, "id", "name") %>
       </div>
@@ -90,6 +90,13 @@
         id = id.split("-")[1];
         $('#garageid').val(id);
         $('#garageid').material_select();
+        closeInfoWindow(handler);
+    }
+
+    function closeInfoWindow(handler){
+        if(handler.currentInfowindow()) {
+            handler.currentInfowindow().close();
+        }
     }
   </script>
 </div>
