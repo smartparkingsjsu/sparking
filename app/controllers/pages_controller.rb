@@ -48,6 +48,15 @@ respond_to :html, :xml, :json
 
     @booking_time = get_booking_times
     @parking_garages = Garage.all
+    gon.user_license = 0
+    gon.user_id = 0
+    if current_user.present?
+      gon.user_id = current_user.id
+      @user = User.find(current_user.id)
+      if @user.licenseplates
+        gon.user_license = @user.licenseplates.first
+      end
+    end
     gon.user_signed = current_user.present?
 
     render template: "pages/#{params[:page]}"

@@ -1,3 +1,5 @@
+@import "utilities/variables";
+
 .body-text {
   font-size: 20px;
 }
@@ -18,9 +20,10 @@
   display: none;
 }
 
-//.booking-row:hover {
-//  background-color: rgba(0, 0, 0, 0.05);
-//}
+.license-field-wrapper {
+  border: 2px solid $background-light-color;
+  padding: 1em 1em 1em 1em;
+}
 
 #vehicle-edit,
 #edit,
