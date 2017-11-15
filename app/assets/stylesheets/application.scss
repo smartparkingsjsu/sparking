@@ -5,6 +5,10 @@
 @import "qr_code";
 @import "abracadabra-scss";
 
+html {
+  overflow-x: hidden;
+}
+
 .brand-logo {
   margin-left: 1em;
 }
