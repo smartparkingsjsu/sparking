@@ -6,24 +6,27 @@ respond_to :html, :xml, :json
     @coordinates = []
 
     @list_all_garages.each do |a|
-      # TODO: investigate why this breaks the website sometimes
-      @coordinates << [a[0], Geocoder.coordinates(a[1])[0], Geocoder.coordinates(a[1])[1], a[2], a[1]]
+      if a != nil
+        @coordinates << [a[0], Geocoder.coordinates(a[1])[0], Geocoder.coordinates(a[1])[1], a[2], a[1]]
+      end
     end
 
-    @all_garages = Gmaps4rails.build_markers(@coordinates) do |plot, marker|  
-      marker.lat plot.at(1)
-      marker.lng plot.at(2)
+    if @coordinates.length > 0
+      @all_garages = Gmaps4rails.build_markers(@coordinates) do |plot, marker|
+        marker.lat plot.at(1)
+        marker.lng plot.at(2)
 
-      icon = "/images/google_maps_icon.png"
+        icon = "/images/google_maps_icon.png"
 
-      marker.picture({  
-        "url" => icon,
-        "width" => 30,
-        "height" => 40
-      })  
+        marker.picture({
+          "url" => icon,
+          "width" => 30,
+          "height" => 40
+        })
 
-      marker.infowindow render_to_string(:partial => "/pages/info",   
-      :locals => {:name => plot.at(3), :address => plot.at(4), :id => plot.at(0) })  
+        marker.infowindow render_to_string(:partial => "/pages/info",
+                                           :locals => {:name => plot.at(3), :address => plot.at(4), :id => plot.at(0) })
+      end
     end
   end
 
