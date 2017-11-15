@@ -3,7 +3,7 @@
     <%= stylesheet_link_tag 'reservation_partial', media: 'all', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
-<div id="reserve-form">
+<div id="reserve-form" class="top-margin">
   <%= form_tag reservations_online_reservation_url(@booking), :id => 'reservation-form',
                :time => params[:time],
                :end_time => params[:end_time],
@@ -58,8 +58,10 @@
   <% end %>
   <span id="hidden-email" style="display:none"><%= current_user.email %></span>
 
-  <!-- Google maps script -->
-  <script type="text/javascript">
+</div>
+
+<!-- Google maps script -->
+<script type="text/javascript">
     $(document).ready(function() {
         var activeMap = false;
 
@@ -68,8 +70,8 @@
                 handler = Gmaps.build('Google');
                 handler.buildMap({
                         provider: {
-                          zoom: 30,
-                          mapTypeId: google.maps.MapTypeId.ROADMAP
+                            zoom: 30,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
                         },
                         internal: {id: 'map'}
                     },
@@ -98,5 +100,4 @@
             handler.currentInfowindow().close();
         }
     }
-  </script>
-</div>
+</script>

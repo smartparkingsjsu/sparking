@@ -25,12 +25,15 @@
   width: 100%;
 }
 
-.top-margin {
-  margin-top: 20px;
+.full-width-bar {
+  width: 100vw;
+  position: relative;
+  margin-left: -50vw;
+  left: 50%;
 }
 
-.img-container {
-  width: 100%;
+.top-margin {
+  margin-top: 20px;
 }
 
 .nav-wrapper img {
