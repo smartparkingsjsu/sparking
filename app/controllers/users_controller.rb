@@ -48,6 +48,10 @@ class UsersController < ApplicationController
     get_user_booking
   end
 
+  def license_plate
+    @user = User.find(params[:user_id])
+  end
+
   def get_charges(booking_id)
     return Charge.where(booking_id: booking_id).first
   end
