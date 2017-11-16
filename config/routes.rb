@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   resources :garage_spots
   resources :spots
-  resources :users
+  resources :users do
+    get '/license_plate' => 'users#license_plate', :as => 'users_license_plate'
+  end
 
   resources :garages do
     get '/dashboard' => 'pages#dashboard', :as => 'pages_dashboard'

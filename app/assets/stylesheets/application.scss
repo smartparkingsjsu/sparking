@@ -5,6 +5,10 @@
 @import "qr_code";
 @import "abracadabra-scss";
 
+html {
+  overflow-x: hidden;
+}
+
 .brand-logo {
   margin-left: 1em;
 }
@@ -25,12 +29,15 @@
   width: 100%;
 }
 
-.top-margin {
-  margin-top: 20px;
+.full-width-bar {
+  width: 100vw;
+  position: relative;
+  margin-left: -50vw;
+  left: 50%;
 }
 
-.img-container {
-  width: 100%;
+.top-margin {
+  margin-top: 20px;
 }
 
 .nav-wrapper img {
@@ -86,6 +93,16 @@
 .map-frame {
   width: 100%;
   margin-bottom: 1em;
+}
+
+.invert-btn {
+  color: $secondary-color;
+  background-color: white;
+  border: 1px solid $secondary-color;
+}
+
+.invert-btn:hover {
+  color: white;
 }
 
 #map {
