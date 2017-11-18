@@ -5,8 +5,8 @@ import datetime
 class CheckLicenseApi(object):
 
     def __init__(self):
-        # self.apiclient = Api("http://smartparkingsjsu-api.herokuapp.com/api/v1/triggers")
-        self.apiclient = Api("http://localhost:3000/api/v1/triggers")
+        self.apiclient = Api("http://smartparkingsjsu-api.herokuapp.com/api/v1/triggers")
+        # self.apiclient = Api("http://localhost:3000/api/v1/triggers")
         self.confidence = None
         self.licensePlate = None
         self.edisonSerial = None

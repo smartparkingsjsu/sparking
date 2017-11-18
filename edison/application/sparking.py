@@ -36,7 +36,7 @@ def main():
         if trigger is not None:
             # skip for testing
             print("Taking picture!")
-            edison.sensors["camera"].write()
+            # edison.sensors["camera"].write()
 
             # Check with ALPR
             print("Checking with ALPR...")
