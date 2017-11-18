@@ -47,10 +47,10 @@ Spot.create(name: 'L1_08')
 Spot.create(name: 'L1_09')
 Spot.create(name: 'L1_10')
 
-GarageSpot.create(spot_id: '1', garage_id: '1', serial: 'FZEDA544D00YLV501') #Jing
+GarageSpot.create(spot_id: '1', garage_id: '1', serial: 'FZEDA547D013PB501') #Alexis
 GarageSpot.create(spot_id: '2', garage_id: '1', serial: 'FZEDA547D0131N500') #Melvin
-GarageSpot.create(spot_id: '3', garage_id: '1', serial: 'FZEDA547D013PB501') #Alexis
-GarageSpot.create(spot_id: '4', garage_id: '1', serial: 'FZEDA544D00YLV104')
+GarageSpot.create(spot_id: '3', garage_id: '1', serial: 'FZEDA547D013PB507')
+GarageSpot.create(spot_id: '4', garage_id: '1', serial: 'FZEDA544D00YLV501') #Jing
 GarageSpot.create(spot_id: '5', garage_id: '1', serial: 'FZEDA544D00YLV105')
 GarageSpot.create(spot_id: '6', garage_id: '1', serial: 'FZEDA544D00YLV106')
 GarageSpot.create(spot_id: '7', garage_id: '1', serial: 'FZEDA544D00YLV107')
@@ -65,10 +65,10 @@ GarageSpot.create(spot_id: '4', garage_id: '2', serial: 'FZEDA544D00YLX104')
 GarageSpot.create(spot_id: '5', garage_id: '2', serial: 'FZEDA544D00YLX105')
 GarageSpot.create(spot_id: '6', garage_id: '2', serial: 'FZEDA544D00YLX106')
 
-GarageSpot.create(spot_id: '1', garage_id: '1', serial: 'FZEDA544D00YLV501') #Jing
+GarageSpot.create(spot_id: '1', garage_id: '1', serial: 'FZEDA547D013PB501') #Alexis
 GarageSpot.create(spot_id: '2', garage_id: '1', serial: 'FZEDA547D0131N500') #Melvin
-GarageSpot.create(spot_id: '3', garage_id: '1', serial: 'FZEDA547D013PB501') #Alexis
-GarageSpot.create(spot_id: '4', garage_id: '1', serial: 'FZEDA544D00YLV104')
+GarageSpot.create(spot_id: '3', garage_id: '1', serial: 'FZEDA547D013PB507')
+GarageSpot.create(spot_id: '4', garage_id: '1', serial: 'FZEDA544D00YLV501') #Jing
 GarageSpot.create(spot_id: '5', garage_id: '1', serial: 'FZEDA544D00YLV105')
 GarageSpot.create(spot_id: '6', garage_id: '1', serial: 'FZEDA544D00YLV106')
 GarageSpot.create(spot_id: '7', garage_id: '1', serial: 'FZEDA544D00YLV107')
@@ -76,10 +76,10 @@ GarageSpot.create(spot_id: '8', garage_id: '1', serial: 'FZEDA544D00YLV108')
 GarageSpot.create(spot_id: '9', garage_id: '1', serial: 'FZEDA544D00YLV109')
 GarageSpot.create(spot_id: '10', garage_id: '1', serial: 'FZEDA544D00YLV110')
 
-GarageSpot.create(spot_id: '1', garage_id: '1', serial: 'FZEDA544D00YLV501') #Jing
+GarageSpot.create(spot_id: '1', garage_id: '1', serial: 'FZEDA547D013PB501') #Alexis
 GarageSpot.create(spot_id: '2', garage_id: '1', serial: 'FZEDA547D0131N500') #Melvin
-GarageSpot.create(spot_id: '3', garage_id: '1', serial: 'FZEDA547D013PB501') #Alexis
-GarageSpot.create(spot_id: '4', garage_id: '1', serial: 'FZEDA544D00YLV104')
+GarageSpot.create(spot_id: '3', garage_id: '1', serial: 'FZEDA547D013PB507')
+GarageSpot.create(spot_id: '4', garage_id: '1', serial: 'FZEDA544D00YLV501') #Jing
 GarageSpot.create(spot_id: '5', garage_id: '1', serial: 'FZEDA544D00YLV105')
 GarageSpot.create(spot_id: '6', garage_id: '1', serial: 'FZEDA544D00YLV106')
 GarageSpot.create(spot_id: '7', garage_id: '1', serial: 'FZEDA544D00YLV107')
