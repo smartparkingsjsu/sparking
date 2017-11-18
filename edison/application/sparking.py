@@ -36,7 +36,7 @@ def main():
         if trigger is not None:
             # skip for testing
             print("Taking picture!")
-            # edison.sensors["camera"].write()
+            edison.sensors["camera"].write()
 
             # Check with ALPR
             print("Checking with ALPR...")
@@ -45,7 +45,10 @@ def main():
             if response != -1:
                 # Send to sparking API
                 print("Building params...")
-                license_client.buildParams(edison.macAddress, response[0]["plate"], response[0]["confidence"])
+                plates = []
+                for r in response:
+                    plates.append(r["plate"])
+                license_client.buildParams(edison.macAddress, plates, response[0]["confidence"])
                 print("Sending to sparking API!")
                 license_client.check()
             else:
