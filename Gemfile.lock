@@ -115,6 +115,8 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
+    jquery-ui-rails (6.0.1)
+      railties (>= 3.2.16)
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -259,6 +261,7 @@ DEPENDENCIES
   jquery-inputmask-rails
   jquery-rails
   jquery-turbolinks
+  jquery-ui-rails
   material_icons
   materialize-sass
   pg
