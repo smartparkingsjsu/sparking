@@ -16,10 +16,10 @@ include ReservationsHelper
   end
 
   def get_price_based_on_date
-    if @date.on_weekday?
-      @amount = (Garage.where(id: @garageid).first.weekday*@length*100).to_i
+    if DateTime.now.on_weekday?
+      @amount = (Garage.where(id: @garageid).first.weekday*@length.to_i*100).to_i
     else
-      @amount = (Garage.where(id: @garageid).first.weekend*@length*100).to_i
+      @amount = (Garage.where(id: @garageid).first.weekend*@length.to_i*100).to_i
     end
   end
 
