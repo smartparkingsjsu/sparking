@@ -6,7 +6,7 @@ respond_to :html, :xml, :json
     @coordinates = []
 
     @list_all_garages.each do |a|
-      if a != nil
+      if a.nil?
         @coordinates << [a[0], Geocoder.coordinates(a[1])[0], Geocoder.coordinates(a[1])[1], a[2], a[1]]
       end
     end
