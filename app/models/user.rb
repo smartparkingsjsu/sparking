@@ -10,7 +10,6 @@ class User < ApplicationRecord
    accepts_nested_attributes_for :licenseplates, allow_destroy: true
 
    # Got rid of content validation
-
    has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "200x200#" }, :default_url => "/images/thumb.png"
    do_not_validate_attachment_file_type :avatar
 end 
