@@ -70,3 +70,16 @@
 .content-main {
   opacity: 0;
 }
+
+//User avatar
+.circle {
+  border-radius: 100px;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  img { width: 100% }
+
+  float: right;
+}
