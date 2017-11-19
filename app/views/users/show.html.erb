@@ -6,10 +6,35 @@
 <div class="row top-margin">
   <!-- Account -->
   <%= render "users/user_profile/account"%>
+  <div id="profile-row">
+    <div class="custom-container inactive-main top-right card-panel">
+      <div>
+        <div class="preview"><h5>Reservations</h5></div>
+        <div class="content-main">
+          <!-- History -->
+          <%= render "users/user_profile/history"%>
+        </div>
+      </div>
+    </div>
 
-  <!-- Vehicle -->
-  <%= render "users/user_profile/vehicle"%>
+    <div class="custom-container inactive-main bottom-right card-panel">
+      <div>
+        <div class="preview"><h5>Vehicle Info</h5></div>
+        <div class="content-main">
+          <!-- Vehicle -->
+          <%= render "users/user_profile/vehicle"%>
+        </div>
+      </div>
+    </div>
 
-  <!-- History -->
-  <%= render "users/user_profile/history"%>
+    <div class="custom-container active-main card-panel">
+      <div>
+        <div class="preview"><h5>Upcoming Reservation</h5></div>
+        <div class="content-main">
+          <!-- Countdown timer -->
+          <%= render "users/user_profile/clock"%>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

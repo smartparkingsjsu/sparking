@@ -32,6 +32,7 @@ gem 'stripe'
 # Meterialize
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
+gem 'jquery-ui-rails'
 gem 'materialize-sass'
 gem 'material_icons'
 

@@ -1,0 +1,29 @@
+<% content_for :head do %>
+    <%= javascript_include_tag 'users', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'users_license_plate', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
+<div class="row top-margin"><h4 class="center-align">You are almost there! Just add a license plate</h4></div>
+<div class="row">
+  <div class="col s12">
+    <%= form_for(@user) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="licenseplates">
+          <%= f.fields_for :licenseplates do |g| %>
+              <%= render 'users/licenseplate_fields', f: g %>
+          <% end %>
+        </div>
+
+        <div class="row">
+          <%= link_to_add_association 'Add License Plate', f, :licenseplates, class: "btn invert-btn", id: "add-license",
+                                      data: { association_insertion_node: '.licenseplates', association_insertion_method: :append } %>
+        </div>
+
+        <div class="row top-margin actions">
+          <%= f.submit "Save", class: "btn" %>
+        </div>
+    <% end %>
+  </div>
+</div>

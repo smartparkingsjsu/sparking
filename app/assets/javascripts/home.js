@@ -23,9 +23,14 @@ $(document).ready(function(){
 
     elementEnum.RESERVE_BTN.click(function() {
         if (gon.user_signed) {
-            $(this).fadeOut("slow");
-            elementEnum.HOME_IMG.fadeOut("slow");
-            elementEnum.RESERVE_FORM.delay(580).fadeIn("slow");
+            if (gon.user_license != 0 && gon.user_license != null) {
+                $(this).fadeOut("slow");
+                elementEnum.HOME_IMG.fadeOut("slow");
+                elementEnum.RESERVE_FORM.delay(580).fadeIn("slow");
+            }
+            else {
+                window.location = "users/" + gon.user_id + "/license_plate"
+            }
         }
         else {
             window.location = "login";
