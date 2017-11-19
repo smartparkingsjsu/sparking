@@ -21,14 +21,23 @@ class API::V1::TriggersController < ApplicationController
     @get_garage_spot = GarageSpot.where(serial: @camera).first
     @get_garage_id = @get_garage_spot.garage_id
     @get_booking = Booking.where("garage_spot_id = ? AND start_time <= ? AND end_time >= ?", @get_garage_spot.id, @time, @time).first
-    @get_user_id = @get_booking.user.id
-    @get_license_plates = Licenseplate.where(user_id: @get_user_id).pluck(:license_plate)
-
-    unless @get_license_plates.include? @license
-      Notification.create(recipient_id: @get_garage_id, booking_id: @get_booking.id, confidence: @confidence, action: "license plate mismatch") 
+    
+    if @get_booking.nil?
+      Notification.create(recipient_id: @get_garage_id, confidence: @confidence, action: "license plate mismatch at "+@get_garage_spot.name.to_s) 
 
       if @get_booking.garage_spot.garage.notify == true
         NotifyMailer.notify_owner(@get_booking).deliver_later
+      end
+    else
+      @get_user_id = @get_booking.user.id
+      @get_license_plates = Licenseplate.where(user_id: @get_user_id).pluck(:license_plate)
+
+      unless @get_license_plates.include? @license
+        Notification.create(recipient_id: @get_garage_id, booking_id: @get_booking.id, confidence: @confidence, action: "license plate mismatch") 
+
+        if @get_booking.garage_spot.garage.notify == true
+          NotifyMailer.notify_owner(@get_booking).deliver_later
+        end
       end
     end
 

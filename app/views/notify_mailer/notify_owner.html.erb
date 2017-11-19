@@ -4,8 +4,14 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hello <%= @booking.garage_spot.garage.name %> Admin!</h1>
-    <p>License plate mismatch is found at your garage. The booking is starts at <%= @booking.start_time %> and ends at <%= @booking.end_time %>. The spot is <%= @booking.garage_spot.spot.name %></p>
-    <p>Refer to your dashboard for more information!</p>
+    <% if @booking.nil? %>
+      <h1>Hello Garage Admin!</h1>
+      <p>Someone parks in your garage without a reservation or not having their license plate in the system.</p>
+      <p>Refer to your dashboard for more information!</p>
+    <% else %>
+      <h1>Hello <%= @booking.garage_spot.garage.name %> Admin!</h1>
+      <p>License plate mismatch is found at your garage. The booking is starts at <%= @booking.start_time %> and ends at <%= @booking.end_time %>. The spot is <%= @booking.garage_spot.spot.name %></p>
+      <p>Refer to your dashboard for more information!</p>
+    <% end %>
   </body>
 </html>
