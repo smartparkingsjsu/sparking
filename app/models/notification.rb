@@ -1,6 +1,6 @@
 class Notification < ApplicationRecord
     belongs_to :recipient, class_name: "Garage"
-    belongs_to :booking
+    belongs_to :booking, optional: true
     # validates :recipient_id, presence: true
     # validates :confidence, presence: true
     # validates :booking_id, presence: true

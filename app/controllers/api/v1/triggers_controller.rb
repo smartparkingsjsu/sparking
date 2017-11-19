@@ -25,9 +25,9 @@ class API::V1::TriggersController < ApplicationController
     if @get_booking.nil?
       Notification.create(recipient_id: @get_garage_id, confidence: @confidence, action: "license plate mismatch at "+@get_garage_spot.spot.name) 
 
-      # if @get_garage_spot.garage.notify == true
-      #   NotifyMailer.notify_owner(@get_booking).deliver_later
-      # end
+      if @get_garage_spot.garage.notify == true
+        NotifyMailer.notify_owner(@get_booking).deliver_later
+      end
     else
       if @get_booking.user.admin.nil?        
         @get_user_id = @get_booking.user.id
