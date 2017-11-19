@@ -5,12 +5,12 @@ class API::V1::TriggersController < ApplicationController
     @license = params[:license_plate]
     @camera = params[:serial]
     @confidence = params[:confidence]
-    @time = Time.now #params[:time] #.in_time_zone.to_s(:db) #@time = Time.now
+    @time = params[:time] #.in_time_zone.to_s(:db) #@time = Time.now
 
     logger.debug("")
     logger.debug("################# TIME START ##################")
     logger.debug("")
-    #logger.debug("Raw time: #{params[:time].inspect}")
+    logger.debug("Raw time: #{params[:time].inspect}")
     logger.debug("Converted time: #{@time.inspect}")
     logger.debug("################# TIME END ##################")
   end
