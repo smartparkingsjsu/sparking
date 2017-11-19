@@ -5,7 +5,14 @@ class API::V1::TriggersController < ApplicationController
     @license = params[:license_plate]
     @camera = params[:serial]
     @confidence = params[:confidence]
-    @time = params[:time].in_time_zone.to_s(:db) #@time = Time.now
+    @time = params[:time] #.in_time_zone.to_s(:db) #@time = Time.now
+
+    logger.debug("")
+    logger.debug("################# TIME START ##################")
+    logger.debug("")
+    logger.debug("Raw time: #{params[:time].inspect}")
+    logger.debug("Converted time: #{@time.inspect}")
+    logger.debug("################# TIME END ##################")
   end
 
   def create
@@ -25,7 +32,7 @@ class API::V1::TriggersController < ApplicationController
       end
     end
 
-    #debug_section
+    debug_section
 
     render status: :OK, json: {
         message: "Successfully created notification",
