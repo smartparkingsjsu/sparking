@@ -25,7 +25,7 @@ class API::V1::TriggersController < ApplicationController
       end
     end
 
-    #debug_section
+    debug_section
 
     render status: :OK, json: {
         message: "Successfully created notification",
