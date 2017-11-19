@@ -14,20 +14,31 @@ end
 
 task :booking_reminder => :environment do
     
-    @bookings = Booking.where("start_time <= ?", Time.now + 1.day)
+  @bookings = Booking.where("start_time <= ?", Time.now + 1.day)
 
-    @bookings.each do |booking|
-        user = User.new(name: booking.user.name, email: ENV["TEST_EMAIL"])
-        BookingNotifierMailer.send_booking_reminder(user, booking).deliver
+  @bookings.each do |booking|
+
+    if ENV["TEST_ENV"] == "production"
+      user = User.new(name: booking.user.name, email: booking.user.email)
+    else
+      user = User.new(name: booking.user.name, email: ENV["TEST_EMAIL"])
     end
+
+    BookingNotifierMailer.send_booking_reminder(user, booking).deliver
+  end
 end
 
 task :booking_end_reminder => :environment do
     
-    @bookings = Booking.where("end_time <= ?", Time.now + 30.minutes)
+  @bookings = Booking.where("end_time <= ?", Time.now + 30.minutes)
 
-    @bookings.each do |booking|
-        user = User.new(name: booking.user.name, email: ENV["TEST_PHONE"])
-        BookingNotifierMailer.send_booking_end_reminder(user, booking).deliver
+  @bookings.each do |booking|
+    if ENV["TEST_ENV"] == "production"
+      user = User.new(name: booking.user.name, email: ENV["TEST_PHONE"])
+    else
+      user = User.new(name: booking.user.name, email: ENV["TEST_PHONE"])
     end
+
+    BookingNotifierMailer.send_booking_end_reminder(user, booking).deliver
+  end
 end
