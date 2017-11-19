@@ -8,4 +8,8 @@ class User < ApplicationRecord
    has_many :notifications, foreign_key: :recipient_id
    has_many :licenseplates, :dependent => :destroy
    accepts_nested_attributes_for :licenseplates, allow_destroy: true
+
+   # Got rid of content validation
+   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "200x200#" }
+   do_not_validate_attachment_file_type :avatar
 end 
