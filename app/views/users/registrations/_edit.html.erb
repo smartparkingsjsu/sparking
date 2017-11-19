@@ -44,9 +44,22 @@
 
     </div>
 
+      <div>
+        <div class="file-field input-field">
+          <div class="btn">
+            Upload Photo
+            <%= f.file_field :avatar %>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text"/>
+          </div>
+        </div>
+      </div>
+
+
     <div class="actions">
       <%= f.submit "Update", class: "btn" %>
-      <%= link_to "Change Profile Picture", "https://en.gravatar.com/", class: "btn" %>
+
     </div>
   <% end %>
 </div> 
