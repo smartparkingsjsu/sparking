@@ -1,28 +1,22 @@
-# Clean yo branches
-git branch | grep -v "master" | xargs git branch -D
+# IIoT - Parking and Reservation System Using Image Processing
 
-# README
+Senior Project (Final Year Project) of Computer/Software Engineering (BS) in San Jose State University.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Project Summary
 
-Things you may want to cover:
+Student group developed a system (hardware and software) to provide a guarantee parking spot for garage user. System includes microcontrollers with cameras, image recognition API to analyze license plates, Rails Web App with reserve and pay for a parking spot online or in garage, scalable Rails API App for REST API calls from microcontroller and Web App, statistics of parking garages, real time notification for garage administrator when a license plate is mismatched, and E-mail notification for users and administrators. 
 
-* Ruby version
+## High Level Architecture Diagram
 
-* System dependencies
+![](/public/images/high_level.jpg)
 
-* Configuration
+## Software Technology
 
-* Database creation
+Ruby on Rails, Python, PostgreSQL, OpenAPLR API, RESTful API, Materialize Framework, ActionCable, Redis, Heroku PaaS, Google Maps, Coffeescript, JQuery, Javascript, Gmail SMTP, SendGrid
 
-* Database initialization
+## Hardware Technology
 
-* How to run the test suite
+Intel Edison, USB Camera, Barcode Scanner, Tablet Computers, Battery
 
-* Services (job queues, cache servers, search engines, etc.)
+## Demo Page
 
-* Deployment instructions
-
-* ...
-"# sparking" 
