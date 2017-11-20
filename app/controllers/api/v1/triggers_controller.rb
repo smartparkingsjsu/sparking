@@ -22,7 +22,7 @@ class API::V1::TriggersController < ApplicationController
     @get_garage_id = @get_garage_spot.garage_id
     @get_booking = Booking.where("garage_spot_id = ? AND start_time <= ? AND end_time >= ?", @get_garage_spot.id, @time, @time).first
     
-    if @get_booking.nil?
+    unless @get_booking.present?
       Notification.create(recipient_id: @get_garage_id, confidence: @confidence, action: "license plate mismatch at "+@get_garage_spot.spot.name) 
 
       if @get_garage_spot.garage.notify == true
