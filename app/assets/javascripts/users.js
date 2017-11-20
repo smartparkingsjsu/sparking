@@ -2,7 +2,9 @@ $(document).ready(function() {
 
     var elementEnum = {
         EDIT: $("#edit"),
-        VEHICLE_EDIT: $("#vehicle-edit")
+        VEHICLE_EDIT: $("#vehicle-edit"),
+        RESIZE: $(".resize-trigger")
+
     };
 
     var editToggle = false;
@@ -18,13 +20,18 @@ $(document).ready(function() {
     });
 
     $("#vehicle-edit-toggle").click(function() {
+        //changeContent($('.active-main'));
         if ( editToggle ) {
-            elementEnum.VEHICLE_EDIT.slideUp("slow");
+            elementEnum.VEHICLE_EDIT.hide("slow");
         }
         else {
-            elementEnum.VEHICLE_EDIT.slideDown("slow");
+            elementEnum.VEHICLE_EDIT.show("slow");
         }
         editToggle = !editToggle; 
+    });
+
+    $(".resize-trigger").click(function(){
+        changeContent($('.active-main'));
     });
 
     // TODO: Move to license plate js file
@@ -50,6 +57,7 @@ $(document).ready(function() {
             else {
                 $parent.hide(500);
             }
+            setTimeout(function() {changeContent($('.active-main'))}, 25);
         });
     }
 
@@ -114,4 +122,21 @@ $(document).ready(function() {
         console.log(contentHeight);
         return contentHeight;
     }
+
+    function changeContent($div){
+        $div.trigger($.Event('resize'));
+    }
+
+    $('.custom-container').bind('resize', function(e) {
+    });
+
+    $('.custom-container').resize(function() {
+        $this = $('.active-main');
+        setTimeout(function() {
+            var newHeight = getElemHeight($this);
+            console.log("Reized height", newHeight);
+            $this.animate({height: newHeight}, 75);
+        }, 500);
+
+    });
 });
