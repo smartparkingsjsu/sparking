@@ -31,7 +31,7 @@ class API::V1::TriggersController < ApplicationController
     logger.debug("################# USER END ##################")
 
     if @get_booking.present?
-      unless @get_booking.user.admin        
+      if !@get_booking.user.admin        
         @get_user_id = @get_booking.user.id
         @get_license_plates = Licenseplate.where(user_id: @get_user_id).pluck(:license_plate)
 
