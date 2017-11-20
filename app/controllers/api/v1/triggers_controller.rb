@@ -22,6 +22,14 @@ class API::V1::TriggersController < ApplicationController
     @get_garage_id = @get_garage_spot.garage_id
     @get_booking = Booking.where("garage_spot_id = ? AND start_time <= ? AND end_time >= ?", @get_garage_spot.id, @time, @time).first
     
+    logger.debug("")
+    logger.debug("################# USER START ##################")
+    logger.debug("")
+    logger.debug("User ID \t: #{@get_booking.user_id.inspect}")
+    logger.debug("User Admin \t: #{@get_booking.user.admin.inspect}")
+    logger.debug("User Name \t: #{@get_booking.user.name.inspect}")
+    logger.debug("################# USER END ##################")
+
     if @get_booking.present?
       unless @get_booking.user.admin        
         @get_user_id = @get_booking.user.id
