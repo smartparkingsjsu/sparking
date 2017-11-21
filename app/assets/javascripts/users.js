@@ -3,18 +3,19 @@ $(document).ready(function() {
     var elementEnum = {
         EDIT: $("#edit"),
         VEHICLE_EDIT: $("#vehicle-edit"),
-        RESIZE: $(".resize-trigger")
-
+        RESIZE: $(".resize-trigger"),
+        ACTIVE: $('.active-main'),
+        CONTAINER : $('.custom-container')
     };
 
     var editToggle = false;
 
     $("#edit-toggle").click(function() {
         if ( editToggle ) {
-            elementEnum.EDIT.slideUp("slow");
+            elementEnum.EDIT.slideUp(500);
         }
         else {
-            elementEnum.EDIT.slideDown("slow");
+            elementEnum.EDIT.slideDown(500);
         }
         editToggle = !editToggle; 
     });
@@ -22,15 +23,15 @@ $(document).ready(function() {
     $("#vehicle-edit-toggle").click(function() {
         //changeContent($('.active-main'));
         if ( editToggle ) {
-            elementEnum.VEHICLE_EDIT.hide("slow");
+            elementEnum.VEHICLE_EDIT.hide(500);
         }
         else {
-            elementEnum.VEHICLE_EDIT.show("slow");
+            elementEnum.VEHICLE_EDIT.show(500);
         }
         editToggle = !editToggle; 
     });
 
-    $(".resize-trigger").click(function(){
+    elementEnum.RESIZE.click(function(){
         changeContent($('.active-main'));
     });
 
@@ -68,10 +69,11 @@ $(document).ready(function() {
     var panel = "card-panel";
     var isAnimated = false;
 
-    var activeHeight = getElemHeight($('.active-main'));
-    $('.active-main').height(activeHeight);
+    var activeHeight = getElemHeight(elementEnum.ACTIVE);
+    elementEnum.ACTIVE.height(activeHeight);
+    elementEnum.ACTIVE.children().last().children().last().css({"opacity": 100});
 
-    $('.custom-container').click(function(){
+    elementEnum.CONTAINER.click(function(){
         var $this=$(this);
 
         if($this.hasClass(inactiveClass) && isAnimated==false){
@@ -80,26 +82,25 @@ $(document).ready(function() {
             isAnimated=true;
             var $contentMain = jQuery($this).children().first().children().last();
             var contentHeight = getElemHeight(jQuery($this));
-            // $this.removeClass(panel);
-            // jQuery($this).children().first().addClass(panel);
-            // $leftSib.addClass(panel);
-            // $leftSib.children().removeClass(panel);
+            console.log(jQuery($this));
 
             if($this.hasClass(topRight)){
                 var $rightSib=$parent.find('.bottom-right');
-                $leftSib.removeClass(activeClass).addClass(bottomRight, 300).addClass(inactiveClass, 500).animate({height: "10em"}, 50);
-                $this.removeClass(inactiveClass, 500).removeClass(topRight, 500).addClass(activeClass, 500).animate({height: contentHeight}, 50);
+                $leftSib.removeClass(activeClass).animate({height: "10em"}, 50).addClass(bottomRight, 300).addClass(inactiveClass, 500);
+                $this.removeClass(inactiveClass, 500).removeClass(topRight, 500).addClass(activeClass, 500).animate({height: contentHeight}, 50, function() {
+                    $contentMain.fadeTo("slow", 1);
+                });
                 $rightSib.removeClass(bottomRight, 800).addClass(topRight, 500);
 
             }
             else{
                 var $rightSib=$parent.find('.top-right');
-                $leftSib.removeClass(activeClass).addClass(inactiveClass, 600).addClass(topRight, 600).animate({height: "10em"}, 100);
-                $this.removeClass(inactiveClass, 300).removeClass(bottomRight, 150).addClass(activeClass, 500).animate({height: contentHeight}, 100);
+                $leftSib.removeClass(activeClass).animate({height: "10em"}, 100).addClass(inactiveClass, 600).addClass(topRight, 600);
+                $this.removeClass(inactiveClass, 300).removeClass(bottomRight, 150).addClass(activeClass, 500).animate({height: contentHeight}, 100, function() {
+                    $contentMain.fadeTo("slow", 1);
+                });
                 $rightSib.removeClass(topRight, 800).addClass(bottomRight, 500);
             }
-
-            $contentMain.animate({opacity: 100}, 400);
 
             $leftSib.children().first().children().last().animate({opacity: 0}, 400);
 
@@ -111,15 +112,10 @@ $(document).ready(function() {
     });
 
     function getElemHeight($elem){
-        var $contentMain = $elem.children().first().children().last();
-        var $preview = $elem.children().first().children().first();
-        var contentHeight = parseInt($contentMain.css("height"))+ parseInt($preview.css("height"))+
-            parseInt($contentMain.css("padding-top"))+ parseInt($contentMain.css("padding-bottom")) +
+        var $contentMain = $elem.children().first();
+        var contentHeight = parseInt($contentMain.css("height")) +
             parseInt($contentMain.css("margin-top")) + parseInt($contentMain.css("margin-bottom")) +
-            parseInt($preview.css("padding-top")) + parseInt($preview.css("padding-bottom")) +
-            parseInt($preview.css("margin-top")) + parseInt($preview.css("margin-bottom")) +
             parseInt($elem.css("padding-top")) + parseInt($elem.css("padding-bottom"));
-        console.log(contentHeight);
         return contentHeight;
     }
 
@@ -127,15 +123,17 @@ $(document).ready(function() {
         $div.trigger($.Event('resize'));
     }
 
-    $('.custom-container').bind('resize', function(e) {
+    elementEnum.CONTAINER.bind('resize', function(e) {
     });
 
-    $('.custom-container').resize(function() {
+    elementEnum.CONTAINER.resize(function() {
         $this = $('.active-main');
+        var newHeight = getElemHeight($this);
+        $this.animate({height: newHeight}, 300);
+
         setTimeout(function() {
             var newHeight = getElemHeight($this);
-            console.log("Reized height", newHeight);
-            $this.animate({height: newHeight}, 75);
+            $this.animate({height: newHeight}, 20);
         }, 500);
 
     });
