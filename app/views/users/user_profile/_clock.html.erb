@@ -1,1 +1,122 @@
-CLOCK Scabies
+<% content_for :head do %>
+    <%= javascript_include_tag 'users_clock', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'users_clock', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
+<div class="clock-wrapper top-margin">
+  <div class="clock-container row">
+    <div class="col s1">
+      <div id="day1" class="digit-container">
+        <div class="digit-wrapper">
+          <div class="current-digit"></div>
+          <div class="next-digit"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col s1">
+      <div id="day2" class="digit-container">
+        <div class="digit-wrapper">
+          <div class="current-digit"></div>
+          <div class="next-digit"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col s1">
+      <div id="day3" class="digit-container">
+        <div class="digit-wrapper">
+          <div class="current-digit"></div>
+          <div class="next-digit"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col s1">
+      <div id="colon1" class="digit-container">
+        <div class="digit-wrapper">
+          <div class="current-digit">:</div>
+        </div>
+      </div>
+    </div>
+    <div class="col s1">
+      <div id="hour1" class="digit-container">
+        <div class="digit-wrapper">
+          <div class="current-digit"></div>
+          <div class="next-digit"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col s1">
+      <div id="hour2" class="digit-container">
+        <div class="digit-wrapper">
+          <div class="current-digit"></div>
+          <div class="next-digit"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col s1">
+      <div id="colon2" class="digit-container">
+        <div class="digit-wrapper">
+          <div class="current-digit">:</div>
+        </div>
+      </div>
+    </div>
+    <div class="col s1">
+      <div id="min1" class="digit-container">
+        <div class="digit-wrapper">
+          <div class="current-digit"></div>
+          <div class="next-digit"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col s1">
+      <div id="min2" class="digit-container">
+        <div class="digit-wrapper">
+          <div class="current-digit"></div>
+          <div class="next-digit"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col s1">
+      <div id="colon3" class="digit-container">
+        <div class="digit-wrapper">
+          <div class="current-digit">:</div>
+        </div>
+      </div>
+    </div>
+    <div class="col s1">
+      <div id="sec1" class="digit-container">
+        <div class="digit-wrapper">
+          <div class="current-digit"></div>
+          <div class="next-digit"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col s1">
+      <div id="sec2" class="digit-container">
+        <div class="digit-wrapper">
+          <div class="current-digit"></div>
+          <div class="next-digit"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s3">Days</div>
+    <div class="col s2 offset-s1">Hours</div>
+    <div class="col s2 offset-s1">Minutes</div>
+    <div class="col s2 offset-s1">Seconds</div>
+  </div>
+  <div class="row">
+    <div class="col s12 m5">
+      <div><label for="reservation_location">Location</label></div>
+      <div><span id="reservation_location"></span></div>
+    </div>
+    <div class="col s12 m5">
+        <div><label for="reservation_time">Time</label></div>
+        <div><span id="reservation_time"></span></div>
+    </div>
+    <div class="col s12 m2">
+      <div><label for="reservation_code">Code</label></div>
+      <div><span id="reservation_code"></span></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+.clock-wrapper {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.clock-container {
+  height: 8em;
+  background-color: black;
+  color: white;
+}
+
+.clock-container .col {
+  height: 100%;
+  position: relative;
+  padding: 0px 0px 0px 0px !important;
+  overflow: hidden;
+}
+
+.digit-container {
+  /*   border: 0.01em solid black; */
+  position: absolute;
+  height: 200%;
+  width: 100%;
+  font-size: 4em;
+  bottom: 0%;
+}
+
+.digit-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.current-digit {
+  top: 56%;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+}
+
+.next-digit {
+  top: 6%;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+}
