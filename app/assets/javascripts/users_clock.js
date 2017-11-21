@@ -14,10 +14,15 @@ $(document).ready(function() {
         "sec1": $('#sec1'), "sec2": $('#sec2')
     };
 
-    updateCurrentTime(displayTime.day, displayTime.hour, displayTime.minute, displayTime.second);
-    updateNextTime(newDisplayTime.day, newDisplayTime.hour, newDisplayTime.minute, newDisplayTime.second);
+    if (newDisplayTime.day[1] != "-") {
+        updateCurrentTime(displayTime.day, displayTime.hour, displayTime.minute, displayTime.second);
+        updateNextTime(newDisplayTime.day, newDisplayTime.hour, newDisplayTime.minute, newDisplayTime.second);
 
-    updateClockLoop();
+        updateClockLoop();
+    }
+    else {
+        updateCurrentTime("000", "00", "00", "00");
+    }
 
     function updateCurrentTime(day, hour, minute, second) {
         setCurrentDigitTime(day[0], $timeEnum.day1);
@@ -151,23 +156,28 @@ $(document).ready(function() {
     function getClosestReservation() {
         $reservations = $('.booking-table').children();
 
-        for(var i=0; i <$reservations.length; i++) {
-            var $info = jQuery($reservations[i]).children();
-            var hashKey = new Date(jQuery($info[2]).text());
-            if (!sortedDateHash.hasOwnProperty(hashKey)) {
-                sortedDateHash[hashKey] = [];
-                sortedDateKeys.push(hashKey);
+        if ($reservations.length) {
+            for(var i=0; i <$reservations.length; i++) {
+                var $info = jQuery($reservations[i]).children();
+                var hashKey = new Date(jQuery($info[2]).text());
+                if (!sortedDateHash.hasOwnProperty(hashKey)) {
+                    sortedDateHash[hashKey] = [];
+                    sortedDateKeys.push(hashKey);
+                }
+                var timeString = jQuery($info[3]).text().split(" ");
+                var time = (timeString[2] === "PM") ? parseInt(timeString[1].split(":")[0]) + 12 : parseInt(timeString[1].split(":")[0]);
+
+                sortedDateHash[hashKey].push(time);
             }
-            var timeString = jQuery($info[3]).text().split(" ");
-            var time = (timeString[2] === "PM") ? parseInt(timeString[1].split(":")[0]) + 12 : parseInt(timeString[1].split(":")[0]);
+            sortedDateKeys.sort(function(a, b) {return a-b});
+            sortedDateHash[sortedDateKeys[0]].sort(function(a, b) {return a-b});
 
-            sortedDateHash[hashKey].push(time);
+            var closestDate = new Date(sortedDateKeys[0]);
+            closestDate.setHours(sortedDateHash[sortedDateKeys[0]][0]);
+            return closestDate;
         }
-        sortedDateKeys.sort(function(a, b) {return a-b});
-        sortedDateHash[sortedDateKeys[0]].sort(function(a, b) {return a-b});
-
-        var closestDate = new Date(sortedDateKeys[0]);
-        closestDate.setHours(sortedDateHash[sortedDateKeys[0]][0]);
-        return closestDate;
+        else {
+            return new Date();
+        }
     }
 });

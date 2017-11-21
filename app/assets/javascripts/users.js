@@ -82,7 +82,6 @@ $(document).ready(function() {
             isAnimated=true;
             var $contentMain = jQuery($this).children().first().children().last();
             var contentHeight = getElemHeight(jQuery($this));
-            console.log(jQuery($this));
 
             if($this.hasClass(topRight)){
                 var $rightSib=$parent.find('.bottom-right');
