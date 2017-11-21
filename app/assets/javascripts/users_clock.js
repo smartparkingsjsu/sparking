@@ -4,8 +4,6 @@ $(document).ready(function() {
     var sortedDateHash= {};
     var closestReservation = getClosestReservation();
     var reservationTime = closestReservation.date;
-    var reservationLocation = closestReservation.location;
-    var reservationCode = closestReservation.code;
 
     var displayTime = daysBetween(reservationTime, timeNow);
     var newDisplayTime = calculateNewTime(displayTime);
@@ -18,7 +16,7 @@ $(document).ready(function() {
     };
 
     if (newDisplayTime.day[1] != "-") {
-        updateInfo(reservationTime.toDateString(), reservationLocation, reservationCode);
+        updateInfo(reservationTime.toDateString(), closestReservation.location, closestReservation.code);
         updateCurrentTime(displayTime.day, displayTime.hour, displayTime.minute, displayTime.second);
         updateNextTime(newDisplayTime.day, newDisplayTime.hour, newDisplayTime.minute, newDisplayTime.second);
 
