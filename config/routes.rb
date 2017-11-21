@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :licenseplates
   resources :charges
+  resources :debugs
   
   resources :notifications do
     collection do
