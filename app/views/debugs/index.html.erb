@@ -1,0 +1,163 @@
+<h2>Garages</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Email</th>
+      <th>Notify</th>
+      <th>Weekday</th>
+      <th>Weekend</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @garages.each do |garage| %>
+      <tr>
+        <td><%= garage.id %></td>
+        <td><%= click_to_edit garage, path: garage_path(garage), attribute: :name %></td>
+        <td><%= click_to_edit garage, path: garage_path(garage), attribute: :address %></td>
+        <td><%= click_to_edit garage, path: garage_path(garage), attribute: :email %></td>
+        <td><%= click_to_edit garage, path: garage_path(garage), attribute: :notify %></td>
+        <td><%= click_to_edit garage, path: garage_path(garage), attribute: :weekday %></td>
+        <td><%= click_to_edit garage, path: garage_path(garage), attribute: :weekend %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!--
+
+<h2>Spots</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID<th>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spots.each do |spot| %>
+      <tr>
+        <td><%= spot.id %></td>
+        <td><%= click_to_edit spot, path: spot_path(spot), attribute: :name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+-->
+
+<h2>Garage Spots</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Garage_ID</th>
+      <th>Spot_ID</th>
+      <th>Spot Name</th>
+      <th>Garage Name</th>
+      <th>Serial</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @garage_spots.each do |garage_spot| %>
+      <tr>
+        <td><%= garage_spot.id %></td>
+        <td><%= click_to_edit garage_spot, path: garage_spot_path(garage_spot), attribute: :garage_id %></td>
+        <td><%= click_to_edit garage_spot, path: garage_spot_path(garage_spot), attribute: :spot_id %></td>
+        <td><%= garage_spot.spot.name %></td>
+        <td><%= garage_spot.garage.name %></td>
+        <td><%= click_to_edit garage_spot, path: garage_spot_path(garage_spot), attribute: :serial %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>License Plates</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User_ID</th>
+      <th>Name</th>
+      <th>License Plate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @licenseplates.each do |licenseplate| %>
+      <tr>
+        <td><%= licenseplate.id %></td>
+        <td><%= click_to_edit licenseplate, path: licenseplate_path(licenseplate), attribute: :user_id %></td>
+        <td><%= licenseplate.user.name %></td>
+        <td><%= click_to_edit licenseplate, path: licenseplate_path(licenseplate), attribute: :license_plate %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Booking</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User_ID</th>
+      <th>Name</th>
+      <th>GS_ID</th>
+      <th>Serial</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.id %></td>
+        <td><%= booking.user_id %></td>
+        <td><%= booking.user.name %></td>
+        <td><%= booking.garage_spot_id %></td>
+        <td><%= booking.garage_spot.serial %></td>
+        <td><%= booking.start_time %></td>
+        <td><%= booking.end_time %></td>
+        <td><%= booking.length %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!--
+
+<h2>Charge</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Booking_ID</th>
+      <th>Amount</th>
+      <th>Token</th>
+      <th>Paid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @charges.each do |charge| %>
+      <tr>
+        <td><%= charge.id %></td>
+        <td><%= click_to_edit charge, path: charge_path(charge), attribute: :booking_id %></td>
+        <td><%= click_to_edit charge, path: charge_path(charge), attribute: :amount %></td>
+        <td><%= click_to_edit charge, path: charge_path(charge), attribute: :token %></td>
+        <td><%= click_to_edit charge, path: charge_path(charge), attribute: :paid %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+-->
