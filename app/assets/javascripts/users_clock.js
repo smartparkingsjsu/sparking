@@ -2,7 +2,10 @@ $(document).ready(function() {
     var timeNow = new Date();
     var sortedDateKeys = [];
     var sortedDateHash= {};
-    var reservationTime = getClosestReservation();
+    var closestReservation = getClosestReservation();
+    var reservationTime = closestReservation.date;
+    var reservationLocation = closestReservation.location;
+    var reservationCode = closestReservation.code;
 
     var displayTime = daysBetween(reservationTime, timeNow);
     var newDisplayTime = calculateNewTime(displayTime);
@@ -15,12 +18,14 @@ $(document).ready(function() {
     };
 
     if (newDisplayTime.day[1] != "-") {
+        updateInfo(reservationTime.toDateString(), reservationLocation, reservationCode);
         updateCurrentTime(displayTime.day, displayTime.hour, displayTime.minute, displayTime.second);
         updateNextTime(newDisplayTime.day, newDisplayTime.hour, newDisplayTime.minute, newDisplayTime.second);
 
         updateClockLoop();
     }
     else {
+        updateInfo("N/A", "N/A", "N/A");
         updateCurrentTime("000", "00", "00", "00");
     }
 
@@ -155,29 +160,48 @@ $(document).ready(function() {
 
     function getClosestReservation() {
         $reservations = $('.booking-table').children();
+        var today = new Date();
 
         if ($reservations.length) {
             for(var i=0; i <$reservations.length; i++) {
                 var $info = jQuery($reservations[i]).children();
                 var hashKey = new Date(jQuery($info[2]).text());
-                if (!sortedDateHash.hasOwnProperty(hashKey)) {
-                    sortedDateHash[hashKey] = [];
-                    sortedDateKeys.push(hashKey);
-                }
                 var timeString = jQuery($info[3]).text().split(" ");
                 var time = (timeString[2] === "PM") ? parseInt(timeString[1].split(":")[0]) + 12 : parseInt(timeString[1].split(":")[0]);
 
-                sortedDateHash[hashKey].push(time);
+                if (!sortedDateHash.hasOwnProperty(hashKey)) {
+                    sortedDateHash[hashKey] = {
+                        "time": [],
+                        "location": jQuery($info[0]).text() + " - " + jQuery($info[1]).text(),
+                        "code": jQuery($info[6]).text()};
+                    hashKey.setHours(time);
+                    if (hashKey > today) {
+                        sortedDateKeys.push(hashKey);
+                    }
+                    hashKey.setHours(0);
+                }
+
+                sortedDateHash[hashKey].time.push(time);
             }
             sortedDateKeys.sort(function(a, b) {return a-b});
-            sortedDateHash[sortedDateKeys[0]].sort(function(a, b) {return a-b});
+            sortedDateHash[sortedDateKeys[0]].time.sort(function(a, b) {return a-b});
 
             var closestDate = new Date(sortedDateKeys[0]);
-            closestDate.setHours(sortedDateHash[sortedDateKeys[0]][0]);
-            return closestDate;
+            closestDate.setHours(sortedDateHash[sortedDateKeys[0]].time[0]);
+
+            var location = sortedDateHash[sortedDateKeys[0]].location;
+            var code = sortedDateHash[sortedDateKeys[0]].code;
+
+            return {"date": closestDate, "location": location, "code": code};
         }
         else {
-            return new Date();
+            return {"date": new Date(), "location": null, "code": null};
         }
+    }
+
+    function updateInfo(time, location, code) {
+        $('#reservation_location').text(location);
+        $('#reservation_time').text(time);
+        $('#reservation_code').text(code);
     }
 });
