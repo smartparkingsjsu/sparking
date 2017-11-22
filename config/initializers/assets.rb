@@ -22,6 +22,7 @@ Rails.application.config.assets.precompile += %w( booking_table_partial.js booki
 Rails.application.config.assets.precompile += %w( notification_partial.js notification_partial.css )
 Rails.application.config.assets.precompile += %w( reservation_partial.js reservation_partial.css )
 Rails.application.config.assets.precompile += %w( in_garage.js in_garage.css )
+Rails.application.config.assets.precompile += %w( users_clock.js users_clock.css )
 Rails.application.config.assets.precompile += %w( notifications.js )
 Rails.application.config.assets.precompile += %w( users_license_plate.js )
 Rails.application.config.assets.precompile += %w( header.css )

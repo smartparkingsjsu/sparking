@@ -1,9 +1,9 @@
 class GaragesController < ApplicationController
   before_action :set_garage, only: [:show, :edit, :update, :destroy]
-  before_action :set_garage_id, only: [:out]
+  before_action :set_garage_id, only: [:out, :out_success, :in_success, :retrieve]
   before_action :authenticate_user!
+  before_action :check_garage_owner_super_admin?
   include ReservationsHelper
-  #before_action :check_super_admin?
 
   # GET /garages
   # GET /garages.json
@@ -18,19 +18,15 @@ class GaragesController < ApplicationController
     end
   end
 
-  # def reterive_booking_id
-  #   hashids = Hashids.new("$p@rk!ng", 4)
-  #   @booking_id = hashids.decode(@hash_booking_id)
-  # end
-
   def retrieve
     session[:booking_confirmation] = params[:booking_confirmation]
     @hash_booking_id = session[:booking_confirmation]
 
     reterive_booking_id
-    @charge = Charge.joins(booking: :user).where(booking_id: @booking_id).first
 
-    if @charge.nil?
+    @booking = Booking.where(id: @booking_id).joins(:garage_spot).where("garage_id = ?", @garage_id).first
+
+    if @booking.nil?
       redirect_to garage_garages_search_path, notice: 'Unable to retreive booking with Booking Confirmation!'
     else
       session[:booking_id] = @booking_id
@@ -85,20 +81,37 @@ class GaragesController < ApplicationController
 
   def in_success
     get_booking_from_form
+    in_logic
   end
   
   def out_success
     get_booking_from_form
+    out_logic
   end
 
   def get_booking_from_form
     @hash_booking_id = params[:booking_id]
     reterive_booking_id
+  end
 
-    @booking = Booking.where(id: @booking_id).first
-    
+  def in_logic
+    @booking = Booking.where(id: @booking_id).joins(:garage_spot).where("garage_id = ? AND end_time >= ?", @garage_id, Time.now).first
+
     if @booking.nil?
       redirect_back(fallback_location: :back, notice: 'Booking not found!')
+    elsif Time.now+15.minutes < @booking.start_time
+      redirect_back(fallback_location: :back, notice: 'You are too early for your booking!')
+      #Time.now.in_time_zone.to_s(:db)
+    end
+  end
+
+  def out_logic
+    @booking = Booking.where(id: @booking_id).joins(:garage_spot).where("garage_id = ?", @garage_id).first
+
+    if @booking.nil?
+      redirect_back(fallback_location: :back, notice: 'Booking not found!')
+    elsif @booking.charge.paid == false
+      redirect_back(fallback_location: :back, notice: 'Payment missing!')
     end
   end
 
