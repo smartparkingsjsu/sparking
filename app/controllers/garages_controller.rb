@@ -93,7 +93,7 @@ class GaragesController < ApplicationController
     @hash_booking_id = params[:booking_id]
     reterive_booking_id
 
-    @booking = Booking.where(id: @booking_id).joins(garage_spot: :garage).where("garage_spots.garage_id = ?", @garage_id).first
+    @booking = Booking.where(id: @booking_id).joins(:garage_spot).where("garage_id = ?", @garage_id).first
   end
 
   def in_logic
