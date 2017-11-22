@@ -6,7 +6,6 @@ class DebugsController < ApplicationController
     @bookings = Booking.all
     @garages = Garage.all
     @spots = Spot.all
-    @charges = Charge.all
     @garage_spots = GarageSpot.all
     @licenseplates = Licenseplate.all
     #@notifications = Notification.all

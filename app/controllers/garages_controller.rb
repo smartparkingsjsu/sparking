@@ -95,10 +95,12 @@ class GaragesController < ApplicationController
     @hash_booking_id = params[:booking_id]
     reterive_booking_id
 
-    @booking = Booking.where(id: @booking_id).first
+    @booking = Booking.where(id: @booking_id).joins(garage_spot: :garage).where("garage_spots.garage_id = ?", @garage_id).first
     
     if @booking.nil?
       redirect_back(fallback_location: :back, notice: 'Booking not found!')
+    elsif @booking.charge.paid == false
+      redirect_back(fallback_location: :back, notice: 'Payment missing!')
     end
   end
 
