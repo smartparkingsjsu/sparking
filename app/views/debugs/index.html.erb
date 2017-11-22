@@ -108,6 +108,7 @@
   <thead>
     <tr>
       <th>ID</th>
+      <th>Code</th>
       <th>User_ID</th>
       <th>Name</th>
       <th>GS_ID</th>
@@ -121,6 +122,7 @@
     <% @bookings.each do |booking| %>
       <tr>
         <td><%= booking.id %></td>
+        <td><%= @hashids.encode(booking.id) %></td>
         <td><%= booking.user_id %></td>
         <td><%= booking.user.name %></td>
         <td><%= booking.garage_spot_id %></td>
@@ -133,8 +135,6 @@
   </tbody>
 </table>
 
-<!--
-
 <h2>Charge</h2>
 
 <table>
@@ -142,6 +142,7 @@
     <tr>
       <th>ID</th>
       <th>Booking_ID</th>
+      <th>Code</th>
       <th>Amount</th>
       <th>Token</th>
       <th>Paid</th>
@@ -151,13 +152,12 @@
     <% @charges.each do |charge| %>
       <tr>
         <td><%= charge.id %></td>
-        <td><%= click_to_edit charge, path: charge_path(charge), attribute: :booking_id %></td>
-        <td><%= click_to_edit charge, path: charge_path(charge), attribute: :amount %></td>
-        <td><%= click_to_edit charge, path: charge_path(charge), attribute: :token %></td>
-        <td><%= click_to_edit charge, path: charge_path(charge), attribute: :paid %></td>
+        <td><%= charge.booking_id %></td>
+        <td><%= @hashids.encode(charge.booking_id) %></td>
+        <td><%= charge.amount %></td>
+        <td><%= charge.token %></td>
+        <td><%= charge.paid %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
--->

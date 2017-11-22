@@ -10,6 +10,7 @@ class DebugsController < ApplicationController
     @garage_spots = GarageSpot.all
     @licenseplates = Licenseplate.all
     #@notifications = Notification.all
+    @hashids = Hashids.new("$p@rk!ng", 4)
   end
 
 end
