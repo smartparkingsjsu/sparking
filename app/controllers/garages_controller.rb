@@ -92,17 +92,22 @@ class GaragesController < ApplicationController
   def get_booking_from_form
     @hash_booking_id = params[:booking_id]
     reterive_booking_id
-
-    @booking = Booking.where(id: @booking_id).joins(:garage_spot).where("garage_id = ?", @garage_id).first
   end
 
   def in_logic
+    @booking = Booking.where(id: @booking_id).joins(:garage_spot).where("garage_id = ? AND end_time >= ?", @garage_id, Time.now).first
+
     if @booking.nil?
       redirect_back(fallback_location: :back, notice: 'Booking not found!')
+    elsif Time.now+15.minutes < @booking.start_time
+      redirect_back(fallback_location: :back, notice: 'You are too early for your booking!')
+      #Time.now.in_time_zone.to_s(:db)
     end
   end
 
   def out_logic
+    @booking = Booking.where(id: @booking_id).joins(:garage_spot).where("garage_id = ?", @garage_id).first
+
     if @booking.nil?
       redirect_back(fallback_location: :back, notice: 'Booking not found!')
     elsif @booking.charge.paid == false
