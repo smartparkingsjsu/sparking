@@ -15,8 +15,19 @@ This is the repository for Senior Project (Final Year Project) of Computer/Softw
 Student group developed a system (hardware and software) to provide a guarantee parking spot for garage user. System includes microcontrollers with cameras, image recognition API to analyze license plates, Rails Web App with reserve and pay for a parking spot online or in garage, scalable Rails API App for REST API calls from microcontroller and Web App, statistics of parking garages, real time notification for garage administrator when a license plate is mismatched, and E-mail notification for users and administrators. 
 
 
+# Architecture Diagram
+
 ## High Level Architecture Diagram
+
 ![](/public/images/high_level.jpg)
+
+## ER Diagram
+
+![](/public/images/er_diagram.png)
+
+## Relation Schema Diagram
+
+![](/public/images/relational_schema.png)
 
 # Technologies
 
