@@ -17,7 +17,11 @@ Student group developed a system (hardware and software) to provide a guarantee 
 
 # Architecture Diagram
 
+Below are the major components of the system. Not all the diagrams are provided as our system is pretty huge.
+
 ## High Level Architecture Diagram
+
+A complete garage system (hardware and software) solution that is based on Web Application.
 
 ![](/public/images/high_level.jpg)
 
@@ -28,6 +32,18 @@ Student group developed a system (hardware and software) to provide a guarantee 
 ## Relation Schema Diagram
 
 ![](/public/images/relational_schema.png)
+
+## Assign A Spot Algorithm Flow
+
+An algorithm to assign a spot to user.
+
+![](/public/images/booking_algorithm.jpeg)
+
+## License Plate Matching Flow
+
+An algorithm to check if the license plate received from HTTP POST request from micro controller matches the result in database.
+
+![](/public/images/api_matching.jpeg)
 
 # Technologies
 
@@ -41,6 +57,34 @@ Student group developed a system (hardware and software) to provide a guarantee 
 
 ### Database
 - PostgreSQL
+
+### Ruby Gems
+
+Below is part of gems that assist the development for our Web Application. 
+
+- gravatar_image_tag
+- [abracadabra](https://github.com/melvinchng/abracadabra.git) (fork and modified for Material Design)
+- cocoon
+- jquery-inputmask-rails
+- hashids
+- rqrcode
+- geocoder
+- gmaps4rails
+- gon
+- simple_calendar
+- stripe
+- jquery-rails
+- jquery-turbolinks
+- jquery-ui-rails
+- materialize-sass
+- material_icons
+- devise
+- redis
+- bcrypt
+- pg
+- better_errors
+- rails_db
+- rack-mini-profiler
 
 ### Other Technology & Programming Language Used
 - OpenAPLR API
@@ -56,6 +100,8 @@ Student group developed a system (hardware and software) to provide a guarantee 
 - Javascript
 - Gmail SMTP
 - SendGrid
+- Heroku Scheduler
+- Memcached Cloud
 
 ## Hardware Technology
 
@@ -65,7 +111,13 @@ Student group developed a system (hardware and software) to provide a guarantee 
 - Tablet Computers
 - Battery
 
+# Pictures of System In Action
+
+# Video of System In Action
+
 # Demo
+
+We do not provide tech support to anyone that tries to run our code. This is due to there are too many constraints that are set within the code and relies on a lot of dependencies. 
 
 | Description   | API Server    | Host |
 |-------------|-------------|-----|
