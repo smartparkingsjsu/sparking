@@ -1,6 +1,6 @@
 class GaragesController < ApplicationController
   before_action :set_garage, only: [:show, :edit, :update, :destroy]
-  before_action :set_garage_id, only: [:out]
+  before_action :set_garage_id, only: [:out, :out_success, :retrieve]
   before_action :authenticate_user!
   include ReservationsHelper
   #before_action :check_super_admin?
@@ -28,9 +28,10 @@ class GaragesController < ApplicationController
     @hash_booking_id = session[:booking_confirmation]
 
     reterive_booking_id
-    @charge = Charge.joins(booking: :user).where(booking_id: @booking_id).first
 
-    if @charge.nil?
+    @booking = Booking.where(id: @booking_id).joins(:garage_spot).where("garage_id = ?", @garage_id).first
+
+    if @booking.nil?
       redirect_to garage_garages_search_path, notice: 'Unable to retreive booking with Booking Confirmation!'
     else
       session[:booking_id] = @booking_id
