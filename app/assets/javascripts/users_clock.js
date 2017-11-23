@@ -174,6 +174,7 @@ $(document).ready(function() {
                         "code": jQuery($info[6]).text()};
                     hashKey.setHours(time);
                     if (hashKey > today) {
+                        hashKey.setHours(0);
                         sortedDateKeys.push(hashKey);
                     }
                     hashKey.setHours(0);
