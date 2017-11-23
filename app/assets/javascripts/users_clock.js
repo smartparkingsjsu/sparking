@@ -174,6 +174,7 @@ $(document).ready(function() {
                         "code": jQuery($info[6]).text()};
                     hashKey.setHours(time);
                     if (hashKey > today) {
+                        hashKey.setHours(0);
                         sortedDateKeys.push(hashKey);
                     }
                     hashKey.setHours(0);
@@ -181,14 +182,22 @@ $(document).ready(function() {
 
                 sortedDateHash[hashKey].time.push(time);
             }
-            sortedDateKeys.sort(function(a, b) {return a-b});
-            sortedDateHash[sortedDateKeys[0]].time.sort(function(a, b) {return a-b});
 
-            var closestDate = new Date(sortedDateKeys[0]);
-            closestDate.setHours(sortedDateHash[sortedDateKeys[0]].time[0]);
+            if (sortedDateKeys.length) {
+                sortedDateKeys.sort(function(a, b) {return a-b});
+                sortedDateHash[sortedDateKeys[0]].time.sort(function(a, b) {return a-b});
 
-            var location = sortedDateHash[sortedDateKeys[0]].location;
-            var code = sortedDateHash[sortedDateKeys[0]].code;
+                var closestDate = new Date(sortedDateKeys[0]);
+                closestDate.setHours(sortedDateHash[sortedDateKeys[0]].time[0]);
+
+                var location = sortedDateHash[sortedDateKeys[0]].location;
+                var code = sortedDateHash[sortedDateKeys[0]].code;
+            }
+            else {
+                var closestDate = new Date();
+                var location = null;
+                var code = null;
+            }
 
             return {"date": closestDate, "location": location, "code": code};
         }
