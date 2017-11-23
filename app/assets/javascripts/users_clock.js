@@ -182,14 +182,22 @@ $(document).ready(function() {
 
                 sortedDateHash[hashKey].time.push(time);
             }
-            sortedDateKeys.sort(function(a, b) {return a-b});
-            sortedDateHash[sortedDateKeys[0]].time.sort(function(a, b) {return a-b});
 
-            var closestDate = new Date(sortedDateKeys[0]);
-            closestDate.setHours(sortedDateHash[sortedDateKeys[0]].time[0]);
+            if (sortedDateKeys.length) {
+                sortedDateKeys.sort(function(a, b) {return a-b});
+                sortedDateHash[sortedDateKeys[0]].time.sort(function(a, b) {return a-b});
 
-            var location = sortedDateHash[sortedDateKeys[0]].location;
-            var code = sortedDateHash[sortedDateKeys[0]].code;
+                var closestDate = new Date(sortedDateKeys[0]);
+                closestDate.setHours(sortedDateHash[sortedDateKeys[0]].time[0]);
+
+                var location = sortedDateHash[sortedDateKeys[0]].location;
+                var code = sortedDateHash[sortedDateKeys[0]].code;
+            }
+            else {
+                var closestDate = new Date();
+                var location = null;
+                var code = null;
+            }
 
             return {"date": closestDate, "location": location, "code": code};
         }
