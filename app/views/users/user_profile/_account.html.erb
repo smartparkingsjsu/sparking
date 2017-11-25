@@ -1,22 +1,23 @@
 <div id="account" class="profile-container">
   <div class="row valign-wrapper">
+    <div class="wrapper">
+      <div class="col s12 m4 center-align">
+        <div class="circle responsive-img hoverable profPic"><%= image_tag @user.avatar.url(:thumb) %></div>
+      </div>
+        <div class="cover"></div>
 
-    <div class="col s12 m4 center-align">
-      <div class="circle hoverable"><%= image_tag @user.avatar.url(:thumb) %></div>
+      <div class="col s12 m3 center-align descrip">
+        <div class="row body-text"><%= @user.name %></div>
+        <div class="row body-text"><%= @user.email %></div>
+        <div class="row body-text"><%= number_to_phone(@user.phone, area_code: true) %></div>
+      </div>
+
+      <div class="col s12 m5 center-align">
+        <div><i id="edit-toggle" class="small material-icons"><a href="#">edit</a></i></div>
+      </div>
+
     </div>
 
-    <div class="col s12 m3 center-align">
-      <div class="row body-text"><%= @user.name %></div>
-      <div class="row body-text"><%= @user.email %></div>
-      <div class="row body-text"><%= number_to_phone(@user.phone, area_code: true) %></div>
-    </div>
-
-    <div class="col s12 m5 center-align">
-      <div><i id="edit-toggle" class="small material-icons"><a href="#">edit</a></i></div>
-    </div>
-
+    <%=render "users/registrations/edit"%>
   </div>
-
-  <%=render "users/registrations/edit"%>
-
 </div>
