@@ -13,8 +13,10 @@ html {
   overflow-x: hidden;
 }
 
-.brand-logo {
-  margin-left: 1em;
+@media screen and (min-width: 800px) {
+  .brand-logo {
+    margin-left: 1em;
+  }
 }
 
 .margin-right {
@@ -51,10 +53,6 @@ html {
 .nav-wrapper img {
   height: 100%;
   color: white;
-}
-
-.brand-logo {
-  margin-left: 1em;
 }
 
 .img-container img {
