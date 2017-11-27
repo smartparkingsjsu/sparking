@@ -17,7 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if params[:user][:password].blank?
       params[:user].delete("password")
       params[:user].delete("password_confirmation")
-      new_params = params.require(:user).permit(:name, :email, :phone)
+      new_params = params.require(:user).permit(:name, :email, :phone, :avatar)
       change_password = false
     end
 
