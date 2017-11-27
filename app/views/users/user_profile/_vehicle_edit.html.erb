@@ -9,15 +9,12 @@
       </div>
 
       <div class="row top-margin actions">
-        <div class="col s8">
-          <i id="add-license" class="left-align small material-icons tooltipped resize-trigger" data-position="right" data-delay="50"
-             data-tooltip="Add license plate">
-            <%= link_to_add_association 'add_circle', f, :licenseplates,
-            data: { association_insertion_node: '.licenseplates', association_insertion_method: :append } %>
-          </i>
+        <div class="col s4">
+          <%= f.submit "Update", class: "btn" %>
         </div>
-        <div class="col s4 center-align">
-          <%= f.submit "Save", class: "right-align btn" %>
+        <div class="col s8 right-align">
+            <%= link_to_add_association '+ Add License Plates', f, :licenseplates,
+            data: { association_insertion_node: '.licenseplates', association_insertion_method: :append } %>
         </div>
       </div>
   <% end %>

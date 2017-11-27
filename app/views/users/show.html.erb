@@ -3,35 +3,49 @@
     <%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
-<div class="row top-margin">
+<div class="top-margin">
   <!-- Account -->
   <%= render "users/user_profile/account"%>
+
+  <!-- Edits -->
+  <div id="edit" class="card-panel">
+    <h5 class="center-align">Edit</h5>
+
+    <h5 class="edit-title">User Information</h5>
+    <%=render "users/registrations/edit"%>
+
+    <hr class="top-margin">
+    <h5 class="edit-title">Vehicle Information</h5>
+    <%=render "users/user_profile/vehicle_edit"%>
+  </div>
+
+  <!-- History -->
   <div id="profile-row">
     <div class="custom-container inactive-main top-right card-panel">
       <div>
         <div class="preview top-margin"><h5 class="center-align">Reservations</h5></div>
         <div class="content-main">
-          <!-- History -->
           <%= render "users/user_profile/history"%>
         </div>
       </div>
     </div>
 
+    <!-- Vehicle -->
     <div class="custom-container inactive-main bottom-right card-panel">
       <div>
         <div class="preview top-margin"><h5 class="center-align">Vehicle Info</h5></div>
         <div class="content-main">
-          <!-- Vehicle -->
           <%= render "users/user_profile/vehicle"%>
         </div>
       </div>
     </div>
 
+
+    <!-- Countdown timer -->
     <div class="custom-container active-main card-panel">
       <div>
         <div class="preview top-margin"><h5 class="center-align">Upcoming Reservation</h5></div>
         <div class="content-main">
-          <!-- Countdown timer -->
           <%= render "users/user_profile/clock"%>
         </div>
       </div>

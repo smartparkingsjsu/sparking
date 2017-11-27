@@ -1,23 +1,22 @@
-<div id="account" class="profile-container">
-    <div class="row wrapper">
-        <div class="circle responsive-img hoverable profPic"><%= image_tag @user.avatar.url(:thumb) %></div>
+<div id="account">
+    <div class="wrapper">
+        <div class="circle responsive-img profPic"><%= image_tag @user.avatar.url(:thumb) %></div>
+
+        <div class="card descrip">
+          <div class="profile-info">
+            <div class="info-wrapper">
+              <div class="row">
+                <div class="col s12 m4 offset-m4 center-align">
+                  <div><%= @user.name %></div>
+                  <div><%= @user.email %></div>
+                  <div><%= number_to_phone(@user.phone, area_code: true) %></div>
+                </div>
+              </div>
+            </div>
+            <div id="edit-profile"><i class="small material-icons tooltipped" data-position="left" data-delay="50" data-tooltip="Edit Profile"><a class="clickable">edit</a></i></div>
+          </div>
+        </div>
+
         <div class="cover"></div>
-
-<div class="card descrip">
-  <div class="row">
-    <div class="col s12 m4 offset-m4 center-align">
-      <div class="row body-text"><%= @user.name %></div>
-      <div class="row body-text"><%= @user.email %></div>
-      <div class="row body-text"><%= number_to_phone(@user.phone, area_code: true) %></div>
-      <div><i id="edit-toggle" class="small material-icons"><a href="#">edit</a></i></div>
     </div>
-
-
-
-  </div>
-</div>
-
-    </div>
-
-    <%=render "users/registrations/edit"%>
 </div>
