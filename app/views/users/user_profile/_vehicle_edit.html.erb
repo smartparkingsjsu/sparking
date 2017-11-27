@@ -13,7 +13,7 @@
           <%= f.submit "Update", class: "btn" %>
         </div>
         <div class="col s8 right-align">
-            <%= link_to_add_association '+ Add License Plates', f, :licenseplates,
+            <%= link_to_add_association '+ Add License Plates', f, :licenseplates, id: "add-license",
             data: { association_insertion_node: '.licenseplates', association_insertion_method: :append } %>
         </div>
       </div>
