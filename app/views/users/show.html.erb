@@ -19,9 +19,13 @@
     <%=render "users/user_profile/vehicle_edit"%>
   </div>
 
-  <!-- History -->
+
   <div id="profile-row">
-    <div class="custom-container inactive-main top-right card-panel">
+
+    <!-- Desktop view -->
+
+    <!-- History -->
+    <div class="custom-container inactive-main top-right card-panel hide-on-small-only">
       <div>
         <div class="preview top-margin"><h5 class="center-align">Reservations</h5></div>
         <div class="content-main">
@@ -31,7 +35,7 @@
     </div>
 
     <!-- Vehicle -->
-    <div class="custom-container inactive-main bottom-right card-panel">
+    <div class="custom-container inactive-main bottom-right card-panel hide-on-small-only">
       <div>
         <div class="preview top-margin"><h5 class="center-align">Vehicle Info</h5></div>
         <div class="content-main">
@@ -42,7 +46,7 @@
 
 
     <!-- Countdown timer -->
-    <div class="custom-container active-main card-panel">
+    <div class="custom-container active-main card-panel hide-on-small-only">
       <div>
         <div class="preview top-margin"><h5 class="center-align">Upcoming Reservation</h5></div>
         <div class="content-main">
@@ -50,5 +54,20 @@
         </div>
       </div>
     </div>
+
+    <!-- Mobile view -->
+
+    <!-- Vehicle -->
+    <div class="col s12 card-panel show-on-small hide-on-med-and-up">
+      <h5 class="center-align">Vehicle Info</h5>
+      <%= render "users/user_profile/vehicle"%>
+    </div>
+
+    <!-- History -->
+    <div class="col s12 card-panel show-on-small hide-on-med-and-up">
+      <h5 class="center-align">Reservations</h5>
+      <%= render "users/user_profile/history"%>
+    </div>
+
   </div>
 </div>

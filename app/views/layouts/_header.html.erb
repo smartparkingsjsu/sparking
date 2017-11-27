@@ -16,7 +16,16 @@
       <% end %>
 
       <% if garage_owner? %>
+        <script type="text/javascript">$(document).ready(function(){var bleh = <%= garage_owner? %>;registerSomeChannel(bleh);});</script>
+
         <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?)) %></li>
+        <li><a href="/garages/<%= garage_owner?%>/dashboard#notifications">
+          Notifications
+          <span id="logo-notification" class="new badge red"><%= Notification.where(recipient_id: garage_owner?).where(read_at: nil).count %></span>
+        </a></li>
+        <li><%= link_to('Pay', garage_garages_search_path(:garage_id => garage_owner?)) %></li>
+        <li><%= link_to('Check-in', garages_path(:id => garage_owner?)) %></li>
+        <li><%= link_to('Check-out', garage_garages_out_path(:garage_id => garage_owner?)) %></li>
       <% elsif garage_owner_super_admin? %>
         <li><a href="/garages">Parking Garages</a></li>
       <% end %>
@@ -52,7 +61,7 @@
         <ul id='tools-dropdown' class='dropdown-content'>
           <li><%= link_to('Dashboard', garage_pages_dashboard_path(:garage_id => garage_owner?), class: "header-icons") %></li>
           <li class="divider"></li>
-          <li><%= link_to('Search', garage_garages_search_path(:garage_id => garage_owner?)) %></li>
+          <li><%= link_to('Pay', garage_garages_search_path(:garage_id => garage_owner?)) %></li>
           <li class="divider"></li>
           <li><%= link_to('Check-in', garages_path(:id => garage_owner?)) %></li>
           <li class="divider"></li>
