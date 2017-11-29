@@ -19,27 +19,27 @@ Student group developed a system (hardware and software) to provide a guarantee 
 
 Below are the major components of the system. Not all the diagrams are provided as our system is pretty huge.
 
-### High Level Architecture Diagram
+#### High Level Architecture Diagram
 
 A complete garage system (hardware and software) solution that is based on Web Application.
 
 ![](/public/images/high_level.jpg)
 
-### ER Diagram
+#### ER Diagram
 
 ![](/public/images/er_diagram.png)
 
-### Relation Schema Diagram
+#### Relation Schema Diagram
 
 ![](/public/images/relational_schema.png)
 
-### Assign A Spot Algorithm Flow
+#### Assign A Spot Algorithm Flow
 
 An algorithm to assign a spot to user.
 
 ![](/public/images/booking_algorithm.jpeg)
 
-### License Plate Matching Flow
+#### License Plate Matching Flow
 
 An algorithm to check if the license plate received from HTTP POST request from micro controller matches the result in database.
 
@@ -189,6 +189,36 @@ $ pip install <package_name>
 
 ### Pictures of System In Action
 
+#### Home Page
+![](/public/images/homepage.png)
+
+#### Materialize Notification Toast Feature
+![](/public/images/materialize_toast.png)
+
+#### Reservation: Online Booking
+![](/public/images/reservation_home.png)
+
+#### Reservation: Select Garage from Map via Online Booking
+![](/public/images/reservation_home_map.png)
+
+#### Reservation: Payment feature
+![](/public/images/reservation_home_payment.png)
+
+#### Reservation In Garage
+![](/public/images/reservation_home.png)
+
+#### Dynamic Count Down Clock for Upcoming Booking
+![](/public/images/profile_dynamic_clock.png)
+
+#### A list of Booking Associate to the User
+![](/public/images/profile_reservations.png)
+
+#### A list of Vehicle Info Associate to the User
+![](/public/images/profile_vehicle_info.png)
+
+#### Dynamic Update in Profile Page
+![](/public/images/profile_edit.png)
+
 ### Video of System In Action
 
 ### Ruby On Rails Demo
@@ -198,4 +228,4 @@ We do not provide tech support to anyone that tries to run our code Ruby on Rail
 | Description   | API Server    | Host |
 |-------------|-------------|-----|
 | Regular Server      | [Link](http://smartparkingsjsu.herokuapp.com) | [Heroku](http://www.heroku.com) |
-| API Server      | [Link](http://smartparkingsjsu.herokuapp.com) | [Heroku](http://www.heroku.com) |
+| API Server      | [Link](http://smartparkingsjsu-api.herokuapp.com) | [Heroku](http://www.heroku.com) |
