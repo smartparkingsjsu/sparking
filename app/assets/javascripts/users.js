@@ -2,7 +2,6 @@ $(document).ready(function() {
 
     var elementEnum = {
         EDIT: $("#edit"),
-        VEHICLE_EDIT: $("#vehicle-edit"),
         RESIZE: $(".resize-trigger"),
         ACTIVE: $('.active-main'),
         CONTAINER : $('.custom-container')
@@ -10,23 +9,12 @@ $(document).ready(function() {
 
     var editToggle = false;
 
-    $("#edit-toggle").click(function() {
+    $("#edit-profile").click(function() {
         if ( editToggle ) {
             elementEnum.EDIT.slideUp(500);
         }
         else {
             elementEnum.EDIT.slideDown(500);
-        }
-        editToggle = !editToggle; 
-    });
-
-    $("#vehicle-edit-toggle").click(function() {
-        //changeContent($('.active-main'));
-        if ( editToggle ) {
-            elementEnum.VEHICLE_EDIT.hide(500);
-        }
-        else {
-            elementEnum.VEHICLE_EDIT.show(500);
         }
         editToggle = !editToggle; 
     });

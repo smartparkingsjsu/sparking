@@ -4,6 +4,11 @@
   display: none;
   height: 100%;
   width: 100%;
-  border: $background-light-color solid 2px;
   padding: 20px 20px 20px 20px;
+}
+
+@media screen and (min-width: 800px) {
+  #reserve-form {
+    border: $background-light-color solid 2px;
+  }
 }

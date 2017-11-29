@@ -1,26 +1,24 @@
-<div id="vehicle" class="profile-container">
-  <div class="row valign-wrapper">
-
-    <div class="col s12 m7 center-align">
-      <% if !@user.licenseplates.present? %>
-        <div class="row body-text"><span class="bold error-message">* License plate required for reservation!</span></div>
-      <% end %>
-      <% @user.licenseplates.each do |licenseplate| %>
-          <tr>
-            <div class="row body-text"><span><%= licenseplate.license_plate %></span></div>
-            <div class="row body-text"><span><%= licenseplate.make %></span></div>
-            <div class="row body-text"><span><%= licenseplate.year %></span></div>
-            <div class="row body-text"><span><%= licenseplate.color %></span></div>
-          </tr>
-      <% end %>
-    </div>
-
-    <div class="col s12 m5 center-align">
-      <div><i id="vehicle-edit-toggle" class="small material-icons resize-trigger"><a href="#">edit</a></i></div>
-    </div>
-    
+<div id="vehicle" class="top-margin bottom-padding">
+  <div class="row">
+    <% @user.licenseplates.each do |licenseplate| %>
+        <div class="col s12 m6">
+          <div class="vehicle-wrapper">
+            <div class="row">
+              <div class="col s3">
+                <div><label>Plate:</label></div>
+                <div><label>Make:</label></div>
+                <div><label>Year:</label></div>
+                <div><label>Color:</label></div>
+              </div>
+              <div class="col s9">
+                <div><span class="truncate"><%= (licenseplate.license_plate)? licenseplate.license_plate : "N/A" %></span></div>
+                <div><span class="truncate"><%= (licenseplate.make.nil? || licenseplate.make == "")? "N/A" : licenseplate.make %></span></div>
+                <div><span class="truncate"><%= (licenseplate.year.nil? || licenseplate.year == "")? "N/A" : licenseplate.year %></span></div>
+                <div><span class="truncate"><%= (licenseplate.color.nil? || licenseplate.color == "")? "N/A" : licenseplate.color %></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
   </div>
-  
-  <%=render "users/user_profile/vehicle_edit"%>
-
 </div>

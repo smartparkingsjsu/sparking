@@ -1,4 +1,4 @@
-<div id="edit">
+<div>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
 
@@ -44,9 +44,26 @@
 
     </div>
 
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="file-field input-field">
+          <div class="row">
+            <div class="col s1">
+              <i id="upload-icon" class="material-icons"><a class="clickable">add_a_photo</a></i><%= f.file_field :avatar %>
+            </div>
+            <div class="col s11">
+              <div class="file-path-wrapper">
+                <input id="upload-text" class="file-path validate truncate" type="text" placeholder="No picture selected"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="actions">
       <%= f.submit "Update", class: "btn" %>
-      <%= link_to "Change Profile Picture", "https://en.gravatar.com/", class: "btn" %>
     </div>
+
   <% end %>
-</div> 
+</div>
