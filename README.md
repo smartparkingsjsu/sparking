@@ -122,6 +122,10 @@ Below is part of gems that assist the development for our Web Application.
 - Ultrasonic sensor
 - Camera
 
+#### Install
+
+1. Clone this repository
+
 #### Install camera firmware
 
 1. Add packages for opkg
@@ -172,18 +176,61 @@ $ python -m application.sparking
 $ pip install <package_name>
 ```
 
-## Ruby On Rails
+### Ruby On Rails
 
-### Required
+#### Required
 
 - Ruby 2.4.1
 - Rails 5.1
 
-### Install
+#### Install
 
 1. Clone this repository
 2. Install all the packages by using `bundle install` command.
 3. Start the server with `rails s` command.
+
+## Code Structure
+
+### Edison
+
+The edison code is under `sparking/edison/`
+
+.
+├── application             # Holds high level abstract code (application specific)
+│   └── sparking            # Smart Parking application logic
+├── component               # Device specific logic
+│   ├── camera
+│   ├── checkLicensePlate
+│   ├── led
+│   ├── openAlprApi
+│   ├── sparkingEdison
+│   └── ultrasonic 
+├── images                  # Directory to store images
+├── lib                     # Directory to store custom libraries
+└── wrapper                 # Lowest level logic
+    ├── api
+    ├── edison
+    └── sensor 
+
+### Rails Server
+
+The server code is under `sparking/`
+In the following structure, we will only highlight the most important directories
+
+.
+├── app                   # Application specific code (Uses MVC structure)
+│   ├── assets            # Directory for JS & CSS
+│   │   ├── javascript    # JS code
+│   │   └── stylesheets   # CSS code
+│   ├── controllers       # Has the logic between the model and view
+│   ├── models            # Stores all model related code
+│   └── views             # Directory for HTML files
+├── config                # Initialize set values for website
+│   └── routes            # Defines the URL structure of the website 
+├── db                    # Database related files
+│   ├── schema            # Generates database tables
+│   └── seeds             # Populates database with preset entries
+└── script                # Ruby scripts to test API endpoints
 
 ## Demo
 
