@@ -129,6 +129,11 @@ html {
   display: none;
 }
 
+@media only screen and (max-width: 600px) {
+  #img-home {
+    height: 40vh;
+  }
+}
 .error-message {
   color: red;
 }

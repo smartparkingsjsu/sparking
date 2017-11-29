@@ -3,7 +3,7 @@
     <%= stylesheet_link_tag 'reservation_partial', media: 'all', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
-<div id="reserve-form" class="top-margin row">
+<div id="reserve-form" class="top-margin">
   <%= form_tag reservations_online_reservation_url(@booking), :id => 'reservation-form',
                :time => params[:time],
                :end_time => params[:end_time],
