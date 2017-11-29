@@ -234,7 +234,7 @@ In the following structure, we will only highlight the most important directorie
 
 ## Demo
 
-### Pictures of System In Action
+### Screenshot of Ruby on Rails Web Application
 
 #### Home Page
 ![](/public/images/homepage.png)
@@ -245,26 +245,41 @@ In the following structure, we will only highlight the most important directorie
 #### Reservation: Online Booking
 ![](/public/images/reservation_home.png)
 
+#### Reservation: QR Code Generated for Online Booking
+![](/public/images/booking_qr.png)
+
+#### Reservation: Printer Friendly QR Code Generated for Online Booking
+![](/public/images/booking_qr_print.png)
+
 #### Reservation: Select Garage from Map via Online Booking
 ![](/public/images/reservation_home_map.png)
 
 #### Reservation: Payment feature
 ![](/public/images/reservation_home_payment.png)
 
-#### Reservation In Garage
-![](/public/images/reservation_home.png)
-
-#### Dynamic Count Down Clock for Upcoming Booking
+#### User Profile: Dynamic Count Down Clock for Upcoming Booking
 ![](/public/images/profile_dynamic_clock.png)
 
-#### A list of Booking Associate to the User
-![](/public/images/profile_reservations.png)
+#### User Profile" A list of Booking Associate to the User
+![](/public/images/profile_reservation.png)
 
-#### A list of Vehicle Info Associate to the User
-![](/public/images/profile_vehicle_info.png)
+#### User Profile: A list of Vehicle Info Associate to the User
+![](/public/images/profile_vehicle.png)
 
-#### Dynamic Update in Profile Page
+#### User Profile: Dynamic Update in Profile Page
 ![](/public/images/profile_edit.png)
+
+#### Garage Admin: Notification Feature (A channel for each Garage).
+![](/public/images/garage_notification_channel.png)
+
+#### Garage Admin: Notification Page
+![](/public/images/garage_notification_page.png)
+
+#### Garage Admin: Resolve Notification
+![](/public/images/garage_notification_resolve.png)
+
+#### Garage Admin: Parking Spot and Reservation View
+![](/public/images/garage_booking_table.png)
 
 ### Video of System In Action
 
