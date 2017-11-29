@@ -156,8 +156,8 @@ $ opkg install kernel-module-uvcvideo
 
 1. Run the following command
 ```
-wget https://bootstrap.pypa.io/get-pip.py --no-check-certificate 
-python get-pip.py
+$ wget https://bootstrap.pypa.io/get-pip.py --no-check-certificate 
+$ python get-pip.py
 ```
 
 ###### Run the application
