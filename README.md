@@ -303,7 +303,7 @@ In the following structure, we will only highlight the most important directorie
 ![](/public/images/edison_ultrasonic_battery.PNG)
 
 #### Edison: Ultrasonic with object
-![](/public/images/edison_ultrasonic_on.PNG)
+![](/public/images/edison_ultrasonic_on.png)
 
 #### Edison: Camera taking picture of license plate
 ![](/public/images/license.PNG)
