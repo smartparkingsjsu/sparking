@@ -10,10 +10,12 @@ This is the repository for Senior Project (Final Year Project) of Computer/Softw
 - Cherie Sew
 - Timothy Wu
 
+## Project Advisor
+- [Ronald Mak](http://www.cs.sjsu.edu/~mak/)
+
 ## Project Summary
 
 Student group developed a system (hardware and software) to provide a guarantee parking spot for garage user. System includes microcontrollers with cameras, image recognition API to analyze license plates, Rails Web App with reserve and pay for a parking spot online or in garage, scalable Rails API App for REST API calls from microcontroller and Web App, statistics of parking garages, real time notification for garage administrator when a license plate is mismatched, and E-mail notification for users and administrators. 
-
 
 ## Architecture Diagram
 
@@ -113,6 +115,19 @@ Below is part of gems that assist the development for our Web Application.
 
 ## Setup
 
+### Ruby On Rails
+
+#### Required
+
+- Ruby 2.4.1
+- Rails 5.1
+
+#### Install
+
+1. Clone this repository
+2. Install all the packages by using `bundle install` command.
+3. Start the server with `rails s` command.
+
 ### Edison
 
 #### Required
@@ -176,20 +191,28 @@ $ python -m application.sparking
 $ pip install <package_name>
 ```
 
-### Ruby On Rails
-
-#### Required
-
-- Ruby 2.4.1
-- Rails 5.1
-
-#### Install
-
-1. Clone this repository
-2. Install all the packages by using `bundle install` command.
-3. Start the server with `rails s` command.
-
 ## Code Structure
+
+### Rails Server
+
+The server code is under `sparking/`
+In the following structure, we will only highlight the most important directories
+
+    .
+    ├── app                   # Application specific code (Uses MVC structure)
+    │   ├── assets            # Directory for JS & CSS
+    │   │   ├── javascript    # JS code
+    │   │   └── stylesheets   # CSS code
+    │   ├── controllers       # Has the logic between the model and view
+    │   |   └── api           # API Controller
+    │   ├── models            # Stores all model related code
+    │   └── views             # Directory for HTML files
+    ├── config                # Initialize set values for website
+    │   └── routes            # Defines the URL structure of the website 
+    ├── db                    # Database related files
+    │   ├── schema            # Generates database tables
+    │   └── seeds             # Populates database with preset entries
+    └── script                # Ruby scripts to test API endpoints
 
 ### Edison
 
@@ -212,29 +235,16 @@ The edison code is under `sparking/edison/`
         ├── edison
         └── sensor 
 
-### Rails Server
-
-The server code is under `sparking/`
-In the following structure, we will only highlight the most important directories
-
-    .
-    ├── app                   # Application specific code (Uses MVC structure)
-    │   ├── assets            # Directory for JS & CSS
-    │   │   ├── javascript    # JS code
-    │   │   └── stylesheets   # CSS code
-    │   ├── controllers       # Has the logic between the model and view
-    │   ├── models            # Stores all model related code
-    │   └── views             # Directory for HTML files
-    ├── config                # Initialize set values for website
-    │   └── routes            # Defines the URL structure of the website 
-    ├── db                    # Database related files
-    │   ├── schema            # Generates database tables
-    │   └── seeds             # Populates database with preset entries
-    └── script                # Ruby scripts to test API endpoints
-
 ## Demo
 
 ### Ruby on Rails Web Application
+
+We do not provide tech support to anyone that tries to run our code Ruby on Rails code. This is due to there are too many constraints that are set within the code and relies on a lot of dependencies. Not all of the features available in this application are illustrated in the animated gif below. 
+
+| Description   | API Server    | Host |
+|-------------|-------------|-----|
+| Regular Server      | [Link](http://smartparkingsjsu.herokuapp.com) | [Heroku](http://www.heroku.com) |
+| API Server      | [Link](http://smartparkingsjsu-api.herokuapp.com) | [Heroku](http://www.heroku.com) |
 
 #### Home Page
 ![](/public/gif/home_page.gif)
@@ -263,11 +273,17 @@ In the following structure, we will only highlight the most important directorie
 #### Dynamic Notification for Garage Admin
 ![](/public/gif/admin_notification.gif)
 
-#### Booking A Spot In Person
+#### Get A Spot In Person (In The Garage)
 ![](/public/gif/user_get_spot.gif)
 
-#### Check In via Online Booking
+#### Check In via Online Booking (In The Garage)
 ![](/public/gif/user_check_in.gif)
+
+#### Search And Pay (In The Garage)
+![](/public/gif/search_and_pay.gif)
+
+#### Check Out (In The Garage)
+![](/public/gif/user_check_out.gif)
 
 ### Intel Edison
 
@@ -283,15 +299,4 @@ In the following structure, we will only highlight the most important directorie
 #### Edison: Console Output of image recognition from camera picture
 ![](/public/images/console_output.PNG)
 
-
-
 ### Video of System In Action
-
-### Ruby On Rails Demo
-
-We do not provide tech support to anyone that tries to run our code Ruby on Rails code. This is due to there are too many constraints that are set within the code and relies on a lot of dependencies. 
-
-| Description   | API Server    | Host |
-|-------------|-------------|-----|
-| Regular Server      | [Link](http://smartparkingsjsu.herokuapp.com) | [Heroku](http://www.heroku.com) |
-| API Server      | [Link](http://smartparkingsjsu-api.herokuapp.com) | [Heroku](http://www.heroku.com) |
