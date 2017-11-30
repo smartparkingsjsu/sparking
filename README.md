@@ -303,3 +303,4 @@ We do not provide tech support to anyone that tries to run our code Ruby on Rail
 ![](/public/images/console_output.PNG)
 
 ### Video of System In Action
+[![Link To Youtube](https://img.youtube.com/vi/Yx_ewRs2ULA/0.jpg)](https://www.youtube.com/watch?v=Yx_ewRs2ULA)
