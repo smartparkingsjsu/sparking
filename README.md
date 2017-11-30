@@ -237,68 +237,10 @@ In the following structure, we will only highlight the most important directorie
 ### Screenshot of Ruby on Rails Web Application
 
 #### Home Page
-![](/public/images/homepage.png)
+![](/public/gif/home_page.gif)
 
-#### Materialize Notification Toast Feature
-![](/public/images/materialize_toast.png)
-
-#### Reservation: Online Booking
-![](/public/images/reservation_home.png)
-
-#### Reservation: QR Code Generated for Online Booking
-![](/public/images/booking_qr.png)
-
-#### Reservation: Printer Friendly QR Code Generated for Online Booking
-![](/public/images/booking_qr_print.png)
-
-#### Reservation: Select Garage from Map via Online Booking
-![](/public/images/reservation_home_map.png)
-
-#### Reservation: Payment feature
-![](/public/images/reservation_home_payment.png)
-
-#### User Profile: Dynamic Count Down Clock for Upcoming Booking
-![](/public/images/profile_dynamic_clock.png)
-
-#### User Profile" A list of Booking Associate to the User
-![](/public/images/profile_reservation.png)
-
-#### User Profile: A list of Vehicle Info Associate to the User
-![](/public/images/profile_vehicle.png)
-
-#### User Profile: Dynamic Update in Profile Page
-![](/public/images/profile_edit.png)
-
-#### Garage Admin: Notification Feature (A channel for each Garage).
-![](/public/images/garage_notification_channel.png)
-
-#### Garage Admin: Notification Page
-![](/public/images/garage_notification_page.png)
-
-#### Garage Admin: Resolve Notification
-![](/public/images/garage_notification_resolve.png)
-
-#### Garage Admin: Parking Spot and Reservation View
-![](/public/images/garage_booking_table.png)
-
-#### Garage: Check In Page
-![](/public/images/garage_reservation_check_in.png)
-
-#### Garage: Check In For Online User
-![](/public/images/garage_reservation_check_in_online.png)
-
-#### Garage: Get A Spot For Drop In User
-![](/public/images/garage_reservation_check_in_get_spot.png)
-
-#### Garage: Confirmed A Check In For Online User
-![](/public/images/garage_reservation_check_in_confirmed.png)
-
-#### Garage: Search For Your Spot and Pay
-![](/public/images/garage_search_and_pay.png)
-
-#### Garage: Search For Your Spot and Pay
-![](/public/images/home_page.gif)
-
+#### Online Reservation Feature
+![](/public/gif/online_reservation.gif)
 
 
 ### Video of System In Action
