@@ -285,6 +285,9 @@ We do not provide tech support to anyone that tries to run our code Ruby on Rail
 #### Check Out (In The Garage)
 ![](/public/gif/user_check_out.gif)
 
+#### Mobile Friendly for Both User and Garage Owner
+![](/public/gif/mobile_friendly.gif)
+
 ### Intel Edison
 
 #### Edison: Ultrasonic with no object
