@@ -239,8 +239,35 @@ In the following structure, we will only highlight the most important directorie
 #### Home Page
 ![](/public/gif/home_page.gif)
 
+#### User Login
+![](/public/gif/user_login.gif)
+
 #### Online Reservation Feature
 ![](/public/gif/online_reservation.gif)
+
+#### User Profile
+![](/public/gif/profile.gif)
+
+#### Edit User Profile
+![](/public/gif/edit_profile.gif)
+
+#### Add/Edit/Delete Vehicle License Plate
+![](/public/gif/license_plate_edit.gif)
+
+#### Garage Admin Login
+![](/public/gif/admin_login.gif)
+
+#### Garage Owner Dashboard
+![](/public/gif/admin_dashboard.gif)
+
+#### Dynamic Notification for Garage Admin
+![](/public/gif/admin_notification.gif)
+
+#### Booking A Spot In Person
+![](/public/gif/user_get_spot.gif)
+
+#### Check In via Online Booking
+![](/public/gif/user_check_in.gif)
 
 ### Intel Edison
 
