@@ -281,6 +281,26 @@ In the following structure, we will only highlight the most important directorie
 #### Garage Admin: Parking Spot and Reservation View
 ![](/public/images/garage_booking_table.png)
 
+#### Garage: Check In Page
+![](/public/images/garage_reservation_check_in.png)
+
+#### Garage: Check In For Online User
+![](/public/images/garage_reservation_check_in_online.png)
+
+#### Garage: Get A Spot For Drop In User
+![](/public/images/garage_reservation_check_in_get_spot.png)
+
+#### Garage: Confirmed A Check In For Online User
+![](/public/images/garage_reservation_check_in_confirmed.png)
+
+#### Garage: Search For Your Spot and Pay
+![](/public/images/garage_search_and_pay.png)
+
+#### Garage: Search For Your Spot and Pay
+![](/public/images/home_page.gif)
+
+
+
 ### Video of System In Action
 
 ### Ruby On Rails Demo
