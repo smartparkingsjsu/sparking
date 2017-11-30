@@ -299,6 +299,18 @@ In the following structure, we will only highlight the most important directorie
 #### Garage: Search For Your Spot and Pay
 ![](/public/images/home_page.gif)
 
+#### Edison: Ultrasonic with no object
+![](/public/images/edison_ultrasonic_battery.PNG)
+
+#### Edison: Ultrasonic with object
+![](/public/images/edison_ultrasonic_on.PNG)
+
+#### Edison: Camera taking picture of license plate
+![](/public/images/license.PNG)
+
+#### Edison: Console Output of image recognition from camera picture
+![](/public/images/console_output.PNG)
+
 
 
 ### Video of System In Action
