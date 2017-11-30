@@ -234,13 +234,28 @@ In the following structure, we will only highlight the most important directorie
 
 ## Demo
 
-### Screenshot of Ruby on Rails Web Application
+### Ruby on Rails Web Application
 
 #### Home Page
 ![](/public/gif/home_page.gif)
 
 #### Online Reservation Feature
 ![](/public/gif/online_reservation.gif)
+
+### Intel Edison
+
+#### Edison: Ultrasonic with no object
+![](/public/images/edison_ultrasonic_battery.PNG)
+
+#### Edison: Ultrasonic with object
+![](/public/images/edison_ultrasonic_on.png)
+
+#### Edison: Camera taking picture of license plate
+![](/public/images/license.PNG)
+
+#### Edison: Console Output of image recognition from camera picture
+![](/public/images/console_output.PNG)
+
 
 
 ### Video of System In Action
