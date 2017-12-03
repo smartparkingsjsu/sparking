@@ -21,6 +21,10 @@ Student group developed a system (hardware and software) to provide a guarantee 
 
 ## Features Implemented
 
+### General
+- Mobile and user friendly front end
+- Dynamic update without redirecting
+
 ### User
 - Registration
 - Session (login and logout)
@@ -35,6 +39,7 @@ Student group developed a system (hardware and software) to provide a guarantee 
 ### Booking System (Online)
 - Online Booking
 - Payment System
+- Choose Garages from Google Map
 - Booking History
 - QR Code generation
 - Receive E-mail on a successful booking
