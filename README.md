@@ -1,21 +1,63 @@
 # IIoT - Parking and Reservation System Using Image Processing
 
-## Purpose
+## Background
+
+### Purpose
 
 This is the repository for Senior Project (Final Year Project) of Computer/Software Engineering (BS) in San Jose State University.
 
-## Team Members
+### Team Members
 - Yi Cong Ch'ng (Melvin)
 - Alexis Cheung Ho
 - Cherie Sew
 - Timothy Wu
 
-## Project Advisor
+### Project Advisor
 - [Ronald Mak](http://www.cs.sjsu.edu/~mak/)
 
-## Project Summary
+### Project Summary
 
 Student group developed a system (hardware and software) to provide a guarantee parking spot for garage user. System includes microcontrollers with cameras, image recognition API to analyze license plates, Rails Web App with reserve and pay for a parking spot online or in garage, scalable Rails API App for REST API calls from microcontroller and Web App, statistics of parking garages, real time notification for garage administrator when a license plate is mismatched, and E-mail notification for users and administrators. 
+
+## Features Implemented
+
+### User
+- Registration
+- Session (login and logout)
+- Forgot Password
+- Email Authentication
+- User Profile (basic information with vehicle information and license plate)
+- [Admin Only] Is a Garage Owner
+- Email & Text Notification System
+- Notify user if booking their booking due soon
+- Notify user if there is an upcoming booking
+
+### Booking System (Online)
+- Online Booking
+- Payment System
+- Booking History
+- QR Code generation
+- Receive E-mail on a successful booking
+
+### Garage System (In Person)
+- Check-in page (for online user)
+- Get a spot (for drop-in user)
+- Search for Parking Spot based on Booking ID
+- Payment System
+- Check-out page
+- Garage Dashboard 
+- Real-time notification system based on Garage (ActionCable)
+- Admin receive E-mail on license plate mismatch
+
+### APIs
+- Query booking information (HTTP GET) based on garage and time
+- Query and resolve notifications (HTTP GET & HTTP POST) based on garage
+- Process license plate information from HTTP POST request
+
+### Python Script
+- Capture license plate and store on onboard storage
+- Send license plate picture to OpenALPR for (HTTP POST) license plate recognition
+- Send license plate information (HTTP POST) to Rails backend for processing
 
 ## Architecture Diagram
 
